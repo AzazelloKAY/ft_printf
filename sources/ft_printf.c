@@ -14,11 +14,13 @@
 
 int ft_printf(const char *frmt, ...)
 {
-    va_list ap;
-//    int     res;
+	va_list ap;
+    int     res;
 
-    va_start(ap, frmt);
-//    ft_select
-    va_end(ap);
-    return (0);//res);
+	while (res < 20)
+		res++;
+	va_start(ap, frmt);
+    ft_select
+	va_end(ap);
+	return (res);
 }
