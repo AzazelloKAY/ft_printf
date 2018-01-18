@@ -15,10 +15,10 @@
 int ft_printf(const char *frmt, ...)
 {
     va_list ap;
-    int     res;
+//    int     res;
 
     va_start(ap, frmt);
 //    ft_select
     va_end(ap);
-    return (res);
+    return (0);//res);
 }
