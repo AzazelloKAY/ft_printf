@@ -3,8 +3,8 @@ project(ft_printf C)
 
 set(CMAKE_C_STANDARD 99)
 
-#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Werror -Wextra")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-format-invalid-specifier -Wno-format -Wno-macro-redefined -Wno-implicitly-unsigned-literal")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Werror -Wextra")
+#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-format-invalid-specifier -Wno-format -Wno-macro-redefined -Wno-implicitly-unsigned-literal")
 include_directories(
         libft/inc
         inc
@@ -79,8 +79,7 @@ set(SOURCE_FILES
 #        get_specification.c
 #        parse_print.c
 #        print_data.c
-        #        printf_main2.c
-        main.c
+#        printf_main2.c
 #        d_upper_case.c
 #        di_lower_case.c
 #        u_lower_case.c
@@ -89,6 +88,7 @@ set(SOURCE_FILES
 #        o_upper_case.c
 #        x_lower_case.c
 #        x_upper_case.c
-        ) # sources
+        main.c
+        sources/ft_printf.c sources/ft_printf.h) # sources
 add_executable(ft_printf ${SOURCE_FILES}) # compilation
 target_link_libraries(ft_printf -lft) # linkage
