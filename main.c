@@ -1,7 +1,14 @@
 #include <stdio.h>
-#include "sources/ft_printf.h"
+#include "includes/ft_printf.h"
 
-int main() {
-    printf("Hello, World! m\n");
+int     ft_l(void)
+{
+    return (0);
+}
+
+int main()
+{
+    ft_printf("Hello, World! m\n");
+    ft_l();
     return 0;
 }

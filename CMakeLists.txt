@@ -9,6 +9,7 @@ include_directories(
         libft/inc
         inc
 ) # header directories
+target_include_directories(includes)
 link_directories(
         libft
 ) # library directories
@@ -89,6 +90,6 @@ set(SOURCE_FILES
 #        x_lower_case.c
 #        x_upper_case.c
         main.c
-        sources/ft_printf.c sources/ft_printf.h) # sources
+        sources/ft_printf.c includes/ft_printf.h) # sources
 add_executable(ft_printf ${SOURCE_FILES}) # compilation
 target_link_libraries(ft_printf -lft) # linkage
