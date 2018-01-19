@@ -15,4 +15,19 @@ typedef struct	s_word
 	func_p	func;
 }				t_word;
 
+typedef struct 	s_prnt
+{
+	int 	buf_len;
+	int 	res_len;
+	int 	tmp;
+	int 	minwidth;
+	int		precision;
+	uint8_t fplus;
+	uint8_t fmins;
+	uint8_t fhash;
+	func_p	func;
+	va_list arg;
+	char 	*buf;
+}				t_print;
+
 #endif

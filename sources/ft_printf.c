@@ -12,15 +12,27 @@
 
 #include "../includes/ft_printf.h"
 
+void	ft_printbuf(char *c, int len)
+{
+
+}
+
 int ft_printf(const char *frmt, ...)
 {
-	va_list ap;
-    int     res;
+	t_print	*pf;
 
-	while (res < 20)
-		res++;
-	va_start(ap, frmt);
-    ft_select
-	va_end(ap);
-	return (res);
+	va_start(pf->arg, frmt);
+	while (*frmt)
+	{
+		if (*frmt == '%')
+		{
+			write (1, pf->buf, pf->buf_len);
+//			ft_select(frmt);
+			frmt += pf->tmp;
+		}
+		else
+			frmt++;
+	}
+	va_end(pf->arg);
+	return (pf->res_len);
 }
