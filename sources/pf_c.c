@@ -1,19 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   pf_cs.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akokoshk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: akokoshk <akokoshk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/28 21:45:53 by akokoshk          #+#    #+#             */
-/*   Updated: 2017/10/28 21:45:53 by akokoshk         ###   ########.fr       */
+/*   Created: 2018/01/21 16:03:02 by akokoshk          #+#    #+#             */
+/*   Updated: 2018/01/21 16:04:11 by akokoshk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/ft_printf.h"
 
-void	ft_putstr(char const *s)
-{
-	if (s != NULL)
-		write(1, s, ft_strlen(s));
-}
+#include <stdio.h>//******************************
+
+

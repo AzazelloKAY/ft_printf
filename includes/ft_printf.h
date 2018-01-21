@@ -5,15 +5,8 @@
 # include <stdarg.h>
 # include "../libft/libft.h"
 
-int		ft_printf(const char *format, ...);
+typedef void	(*func_p)(void*);
 
-typedef void	*(*func_p)(int, int);
-
-typedef struct	s_word
-{
-	char	*name;
-	func_p	func;
-}				t_word;
 
 typedef struct 	s_prnt
 {
@@ -23,11 +16,14 @@ typedef struct 	s_prnt
 	int 	minwidth;
 	int		precision;
 	uint8_t fplus;
-	uint8_t fmins;
+	uint8_t fmnus;
 	uint8_t fhash;
-	func_p	func;
+	char 	*spec;
 	va_list arg;
 	char 	*buf;
+	func_p	*flist;
 }				t_print;
+
+int				ft_printf(const char *format, ...);
 
 #endif
