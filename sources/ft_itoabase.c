@@ -1,6 +1,14 @@
-//
-// Created by Ali on 22.01.2018.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoabase.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akokoshk <akokoshk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/22 18:57:14 by akokoshk          #+#    #+#             */
+/*   Updated: 2018/01/22 19:41:45 by akokoshk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
@@ -13,15 +21,12 @@ char	*ft_ud_toa_base(unsigned long long val, int base)
 
 	tmp = val;
 	bchr = "0123456789ABCDEF";
-	len = ((val == 0) || (val < 0 && base == 10)) ? 1 : 0;
-	while (tmp != 0)
-	{
+	len = 1;
+	while ((tmp /= base) != 0)
 		len++;
-		tmp /= base;
-	}
 	if (!(res = ft_strnew(len)))
 		return (NULL);
-	res[0] = (char) ((val < 0 && base == 10) ? '-' : '0');
+	res[0] = (char) '0';
 	while (val)
 	{
 		res[--len] = bchr[val % base];
@@ -36,7 +41,7 @@ char	*ft_sd_toa_base(long long val, int base)
 	char *t;
 
 	res = ft_ud_toa_base((unsigned long long)val, base);
-	if (val < 0)
+	if (val < 0 && base == 10)
 	{
 		t = ft_strjoin("-", res);
 		ft_memdel((void**)&res);

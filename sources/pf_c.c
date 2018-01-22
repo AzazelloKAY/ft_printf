@@ -14,31 +14,36 @@
 
 #include <stdio.h>//******************************
 
-int		ftpf_printer(t_print *pf, char *c)
-{
-	char	*line; //replase with variable in *PF??
-	//make all flags
-	//and print the line
-	return ((int)ft_strlen(line));
-}
+//int		ftpf_printer(t_print *pf)
+//{
+//	char	*line; //replase with variable in *PF??
+//	//make all flags
+//	//and print the line
+//	return ((int)ft_strlen(line));
+//}
 
-int		ftpf_c(t_print *pf, void *x)
+int		ftpf_c(t_print *pf)
 {
 	char	*var;
 
 	//process *X by specifik type, and make the korrect line of it;
-	return (ftpf_printer(pf, var));
+	return (0);
 }
 
-int		ftpf_s(t_print *pf, void* x)
+int		ftpf_s(t_print *pf)
 {
-	char	*var;
-	return (ftpf_printer(pf, var));
+	char	*line;
+
+	line = va_arg(pf->arg, char*);
+
+	ft_putstr(line);
+
+	return (ft_strlen(line));//ftpf_printer(pf, var));
 }
 
-int		ftpf_persent(t_print *pf, void* x)
+int		ftpf_persent(t_print *pf)
 {
-	return (ftpf_printer(pf, "%"));
+	return (0);
 }
 
 
