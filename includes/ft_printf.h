@@ -13,6 +13,10 @@ typedef struct 	s_prnt
 	int 	buf_len;
 	int 	res_len;
 
+
+	//long double	forthefuture;// for presitious float
+	//FIX FT_STRJOIN!!!!!!!!!!!!
+
 	//move flags and spec-s to separet struct????
 	int 	minwidth;
 	int		precision;
