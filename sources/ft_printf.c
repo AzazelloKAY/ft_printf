@@ -24,18 +24,15 @@ void	ft_reset_pf(t_print *pf)
 	pf->fplus = 0;
 	pf->fmnus = 0;
 	pf->fhash = 0;
-	pf->spec = 0;
-}
+	pf->fzero = 0;
+	pf->fspace = 0;
+	pf->fdot = 0;
 
-int		ft_intit_flist(t_print *pf)
-{
-	if(pf->flist != NULL)
-		ft_memdel((void**)pf->flist);
-	pf->flist = ft_memalloc(sizeof(func_p) * 128);
-	pf->flist[0] = &ftpf_undefined;
-	pf->flist['c'] = &ftpf_c;
-	pf->flist['s'] = &ftpf_s;
-	pf->flist['%'] = &ftpf_persent;
+	pf->flong = 0;
+	pf->flongd = 0;
+	pf->fshort = 0;
+
+	//pf->spec = 0;
 }
 
 char	*ft_printbuf(t_print *pf, const char *start, const char *stop)
@@ -55,19 +52,23 @@ int		ft_parser(t_print *pf, char *frmt)
 	ft_reset_pf(pf);
 	len = 0;
 	pf->tfrm = frmt + 1;
-	pf->spec = *pf->tfrm; //dellllllll!!!!!
-	while (pf->tfrm[len] || (pf->flist[pf->tfrm[len]] != NULL))
+	//pf->spec = *pf->tfrm; //dellllllll!!!!!
+	while (*pf->tfrm || (pf->flist[*pf->tfrm] != NULL))
 	{
+	//	if (*pf->tfrm <= 32 || *pf->tfrm >= 127)
+	//		return (-1);
 //		get checking of NULL function pointer down here and fork to kalling function and break with nothing/undefine
 
-		printf("%p", pf->flist[pf->tfrm[len]]);//?????????????????????????????????
-		pf->flist[pf->tfrm[len]](pf);
-		len++;
+		printf("%p", pf->flist[*pf->tfrm]);//?????????????????????????????????
+
+		if (pf->flist[*pf->tfrm](pf) < 0)
+			return (0);
+		pf->tfrm++;
 	}
-	if (pf->tfrm[len] == 0)
-		pf->flist[0](pf);
-	pf->tfrm = &(pf->tfrm[len]); //len - 1 check precision of pointing
-	return (len); //return length of specificator and flags
+	//here we come only in the end of the line
+	pf->flist[0](pf);
+	len = pf->tfrm - frmt; //spec len, does this need in my code????????????????
+	return (len); //return length of specificator and flags //or job status // speclen == pf->tfrm - frmt
 }
 
 int		ft_printf(const char *frmt, ...)
@@ -78,8 +79,8 @@ int		ft_printf(const char *frmt, ...)
 		return (-1);
 	ft_intit_flist(pf);
 	pf->tfrm = frmt;
-	va_start(pf->intarg, frmt);
 
+	va_start(pf->intarg, frmt);
 	va_copy(pf->arg, pf->intarg);
 
 	while (*frmt)
@@ -90,8 +91,6 @@ int		ft_printf(const char *frmt, ...)
 			//move to the end of spec %-+0#12.2d and moving the pf->buf there
 			//also do all job, colling function foreach char
 			ft_parser(pf, frmt);
-//			if (ft_loncher(pf, pf->spec, va_arg(pf->arg, void*)))
-//				return (-1);
 			frmt = pf->tfrm;
 		}
 		else

@@ -16,14 +16,21 @@ int main()
 //	printf("num=%d",x);
 //	printf("start>");
 
-	int xx = ft_printf("\n>%s >> ", "<my test string>");//"<words in arg>\n");
+//	int xx = ft_printf("\n>%s >> ", "<my test string>");//"<words in arg>\n");
 
 
 //	printf("\npf=%d",printf("\n\n>%в__|%d|__", xx));
 
 
 
-//	int a =29;
-//	printf("<< pf2>=%d\n",printf("%-05.2d", a));
+	int a;
+	//printf("_%lu\n", sizeof(long double));
+
+	a = 234;//.19;
+	//ft_bzero(&a, sizeof(long double));
+
+
+
+	printf("<< pf2>=%d\n",printf("%4. 05d", a));
     return (0);
 }

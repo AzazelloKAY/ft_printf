@@ -14,11 +14,9 @@
 
 int		ft_iswspace(char *str)
 {
-	if (*str == ' ' || *str == '\t')
-		return (1);
-	else if (*str == '\n' || *str == '\v')
-		return (1);
-	else if (*str == '\f' || *str == '\r')
+	if (*str == ' ' || *str == '\t'
+		|| *str == '\n' || *str == '\v'
+		|| *str == '\f' || *str == '\r')
 		return (1);
 	return (0);
 }
