@@ -48,8 +48,6 @@ int 		ftpf_setflag(t_print *pf)
 		pf->flongd = 1;
 	else if (*pf->tfrm == 'h')
 		pf->fshort += 1;
-//	else
-//		return (-1);
 	return (0);
 }
 
