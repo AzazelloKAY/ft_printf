@@ -11,13 +11,14 @@
 # define FREE_LAST 1
 # define FREE_BOTH 2
 
-typedef int		(*func_p)(void*);
+typedef int		(*func_p)(void*); //0 - move forvard; 1 - time to stop spec parse
 
 typedef struct 	s_prnt
 {
 	int 		buf_len;
 	int 		res_len;
 	const char 	*tfrm;
+	char 		*res;
 
 	//long double	forthefuture;// for presitious float
 
@@ -30,25 +31,30 @@ typedef struct 	s_prnt
 	int8_t		fzero;
 	int8_t		fspace;
 	int8_t		fdot;
-	int8_t		flong;
-	int8_t		flongd;
-	int8_t		fshort;
+	int8_t		f_ld;
+	int8_t		f_s;
+	int8_t		f_l;
+	int8_t		f_j;
+	int8_t		f_z;
 
 
 	//char		spec;//в моей схеме не нужно т,к, сам символ будет вызывать ф-цию
 
 	va_list		arg;
-	va_list		intarg;
+	va_list		initarg;
 	func_p		*flist;
 }				t_print;
 
 int				ft_printf(const char *format, ...);
 
-int				ft_intit_flist(t_print *pf);
+//int				ft_intit_flist(t_print *pf);
+t_print			*ft_init_pf(const char *frm);
 int				ftpf_setflag(t_print *pf);
 int				ftpf_parsenum(t_print *pf);
 int				ftpf_c(t_print *pf);
 int				ftpf_s(t_print *pf);
+int				ftpf_id(t_print *pf);
+int				ftpf_u(t_print *pf);
 int				ftpf_persent(t_print *pf);
 
 int				ftpf_undefined(t_print *pf);

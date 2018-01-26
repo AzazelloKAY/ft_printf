@@ -14,27 +14,6 @@
 
 #include <stdio.h>//******************************
 
-void	ft_reset_pf(t_print *pf)
-{
-//	if (pf-> != NULL)
-//		ft_memdel(pf->);
-	pf->buf_len = 0;
-	pf->minwidth = 0;
-	pf->precision = 0;
-	pf->fplus = 0;
-	pf->fmnus = 0;
-	pf->fhash = 0;
-	pf->fzero = 0;
-	pf->fspace = 0;
-	pf->fdot = 0;
-
-	pf->flong = 0;
-	pf->flongd = 0;
-	pf->fshort = 0;
-
-	//pf->spec = 0;
-}
-
 char	*ft_printbuf(t_print *pf, const char *start, const char *stop)
 {
 	size_t len;
@@ -45,70 +24,58 @@ char	*ft_printbuf(t_print *pf, const char *start, const char *stop)
 	return ((char*)start + len);
 }
 
-int		ft_parser(t_print *pf, char *frmt)
+int		ft_parser(t_print *pf, char *frm)
 {
-	int		len;
+	//int		len;
 
 	ft_reset_pf(pf);
-	len = 0;
-	pf->tfrm = frmt + 1;
+	//len = 0;
+	pf->tfrm = frm + 1;
 	//pf->spec = *pf->tfrm; //dellllllll!!!!!
-	while (*pf->tfrm || (pf->flist[*pf->tfrm] != NULL))
+	while (*pf->tfrm)
 	{
-	//	if (*pf->tfrm <= 32 || *pf->tfrm >= 127)
-	//		return (-1);
-//		get checking of NULL function pointer down here and fork to kalling function and break with nothing/undefine
+		if (*pf->tfrm >= 32 && *pf->tfrm <= 127 && (pf->flist[*pf->tfrm] != NULL))
+		{
+			if (pf->flist[*pf->tfrm](pf))
+				break ;
+		}
+		else
+		{
+			pf->flist[0](pf);
+			break ;
+		}
+		pf->tfrm++;
 
 		printf("%p", pf->flist[*pf->tfrm]);//?????????????????????????????????
-
-		if (pf->flist[*pf->tfrm](pf) < 0)
-			return (0);
-		pf->tfrm++;
 	}
-	//here we come only in the end of the line
-	pf->flist[0](pf);
-	len = pf->tfrm - frmt; //spec len, does this need in my code????????????????
-	return (len); //return length of specificator and flags //or job status // speclen == pf->tfrm - frmt
+
+	//len = pf->tfrm - frm; //spec len, does it need in my code????????????????
+	return (0); //return length of specificator and flags //or job status // speclen == pf->tfrm - frm
 }
 
-int		ft_printf(const char *frmt, ...)
+int		ft_printf(const char *frm, ...)
 {
 	t_print	*pf;
 
-	if (!(pf = ft_memalloc(sizeof(t_print))))
+	if (!(pf = ft_init_pf(frm)))
 		return (-1);
-	ft_intit_flist(pf);
-	pf->tfrm = frmt;
-
-	va_start(pf->intarg, frmt);
-	va_copy(pf->arg, pf->intarg);
-
-	while (*frmt)
+	va_start(pf->initarg, frm);
+	va_copy(pf->arg, pf->initarg);
+	while (*frm)
 	{
-		if (*frmt == '%')
+		if (*frm == '%')
 		{
-			ft_printbuf(pf, pf->tfrm, frmt);
+			ft_printbuf(pf, pf->tfrm, frm);
 			//move to the end of spec %-+0#12.2d and moving the pf->buf there
 			//also do all job, colling function foreach char
-			ft_parser(pf, frmt);
-			frmt = pf->tfrm;
+			ft_parser(pf, frm);
+			frm = pf->tfrm;
 		}
 		else
-			frmt++;
+			frm++;
 	}
-	ft_printbuf(pf, pf->tfrm, frmt);
-	va_end(pf->intarg);
+	ft_printbuf(pf, pf->tfrm, frm);
+	va_end(pf->initarg); //va_end(pf->arg);??????
 	return (pf->res_len);
 }
 
-
-
-
-
-//int		ft_loncher(t_print *pf, int spec, void *x)
-//{
-//	if (spec <= 32 || spec >= 127)
-//		return (1);
-//	pf->res_len += pf->flist[spec](pf, x);
-//	return (0);
-//}

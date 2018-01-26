@@ -27,7 +27,7 @@ int		ftpf_c(t_print *pf)
 	char	*var;
 
 	//process *X by specifik type, and make the korrect line of it;
-	return (0);
+	return (1);
 }
 
 int		ftpf_s(t_print *pf)
@@ -43,6 +43,15 @@ int		ftpf_s(t_print *pf)
 
 int		ftpf_persent(t_print *pf)
 {
+	return (1);
+}
+
+int		ftpf_undefined(t_print *pf)
+{
+
+	//также как %c для встреченной нестандартного символа, и продолжаем обычную работу
+	ft_putstr(pf->tfrm);
+	pf->res_len += ft_strlen(pf->tfrm);
 	return (0);
 }
 

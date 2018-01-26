@@ -12,9 +12,4 @@
 
 #include "../includes/ft_printf.h"
 
-int		ftpf_undefined(t_print *pf)
-{
-	ft_putstr(pf->tfrm);
-	pf->res_len += ft_strlen(pf->tfrm);
-	return (0);
-}
+

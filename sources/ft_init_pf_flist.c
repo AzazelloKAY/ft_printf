@@ -4,6 +4,23 @@
 
 #include "../includes/ft_printf.h"
 
+void		ft_reset_pf(t_print *pf)
+{
+	pf->buf_len = 0;
+	pf->minwidth = 0;
+	pf->precision = 0;
+	pf->fplus = 0;
+	pf->fmnus = 0;
+	pf->fhash = 0;
+	pf->fzero = 0;
+	pf->fspace = 0;
+	pf->fdot = 0;
+
+	pf->flong = 0;
+	pf->flongd = 0;
+	pf->fshort = 0;
+}
+
 static void	ft_flist_digit(t_print *pf)
 {
 	pf->flist['1'] = ftpf_parsenum;
@@ -17,14 +34,14 @@ static void	ft_flist_digit(t_print *pf)
 	pf->flist['9'] = ftpf_parsenum;
 }
 
-int		ft_intit_flist(t_print *pf)
+int			ft_init_flist(t_print *pf)
 {
-	if(pf->flist != NULL)
-		ft_memdel((void**)pf->flist);
-	pf->flist = ft_memalloc(sizeof(func_p) * 128);
 	pf->flist[0] = &ftpf_undefined;
 	pf->flist['c'] = &ftpf_c;
 	pf->flist['s'] = &ftpf_s;
+	pf->flist['i'] = &ftpf_id;
+	pf->flist['d'] = &ftpf_id;
+	pf->flist['u'] = &ftpf_u;
 	pf->flist['%'] = &ftpf_persent;
 
 	pf->flist['-'] = ftpf_setflag;
@@ -36,8 +53,25 @@ int		ft_intit_flist(t_print *pf)
 	pf->flist['l'] = ftpf_setflag;
 	pf->flist['L'] = ftpf_setflag;
 	pf->flist['h'] = ftpf_setflag;
+	pf->flist['z'] = ftpf_setflag;
+	pf->flist['j'] = ftpf_setflag;
 	ft_flist_digit(pf);
 	//pf->flist[''] = ftpf_setflag;
 
+}
+
+t_print		*ft_init_pf(const char *frm)
+{
+	t_print	*pf;
+
+	if (!(pf = ft_memalloc(sizeof(t_print))))
+		return (NULL);
+	if (!(pf->flist = ft_memalloc(sizeof(func_p) * 128)))
+		return (NULL);
+	ft_init_flist(pf);
+	if (frm == NULL)
+		return (NULL);
+	pf->tfrm = frm;
+	return (pf);
 }
 

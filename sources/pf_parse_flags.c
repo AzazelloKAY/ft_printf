@@ -24,6 +24,20 @@ static int 	ftpf_atoiskip(t_print *pf)
 	return (num);
 }
 
+static void	ftpf_setlhflag(t_print *pf)
+{
+	if (*pf->tfrm == 'l')
+	{
+		pf->f_l = (pf->f_l > 1) ? pf->f_l : 1;
+		pf->f_l = (*(pf->tfrm - 1) == 'l') ? 2 : pf->f_l;
+	}
+	else if (*pf->tfrm == 'h')
+	{
+		pf->f_s = (pf->f_s > 1) ? pf->f_s: 1;
+		pf->f_s = (*(pf->tfrm - 1) == 'h') ? 2 : pf->f_s;
+	}
+}
+
 int 		ftpf_setflag(t_print *pf)
 {
 	if (*pf->tfrm == '-')
@@ -42,16 +56,18 @@ int 		ftpf_setflag(t_print *pf)
 		pf->tfrm++;
 		pf->precision = ftpf_atoiskip(pf);
 	}
-	else if (*pf->tfrm == 'l')
-		pf->flong += 1;
 	else if (*pf->tfrm == 'L')
-		pf->flongd = 1;
-	else if (*pf->tfrm == 'h')
-		pf->fshort += 1;
+		pf->f_ld = 1;
+	else
+		ftpf_setlhflag(pf);
 	return (0);
 }
 
 int			ftpf_parsenum(t_print *pf)
 {
-	pf->precision = ftpf_atoiskip(pf);
+	int tmp;
+
+	tmp = ftpf_atoiskip(pf);
+	pf->precision = (tmp > pf->precision) ? tmp : pf->precision;
+	return (0);
 }

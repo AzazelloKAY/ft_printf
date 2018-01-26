@@ -23,14 +23,17 @@ int main()
 
 
 
-	int a;
+	long a;
 	//printf("_%lu\n", sizeof(long double));
 
-	a = 234;//.19;
+	a = -1541;//.19;
+	int c = (unsigned int) a;
 	//ft_bzero(&a, sizeof(long double));
 
+	unsigned long long b;
 
+	b = (unsigned long) a;
 
-	printf("<< pf2>=%d\n",printf("%4. 05d", a));
+	printf("<< pf2>=%d\n",printf("%d", a));//a & 0x7FFFFFFFFFFFFFFF));
     return (0);
 }
