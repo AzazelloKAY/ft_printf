@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-char	*ft_joinandfree(char const *s1, char const *s2, int flag)
+char	*ft_joinfree(char const *s1, char const *s2, int flag)
 {
 	char *res;
 

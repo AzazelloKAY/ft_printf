@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-char	*ft_ud_toa_base(uint64_t val, int base)
+char	*ft_utoa_base(t_print *pf, uint64_t val, int base)
 {
 	char		*bchr;
 	char		*res;
@@ -24,6 +24,7 @@ char	*ft_ud_toa_base(uint64_t val, int base)
 	len = 1;
 	while ((tmp /= base) != 0)
 		len++;
+	pf->buf_len = len;
 	if (!(res = ft_strnew(len)))
 		return (NULL);
 	res[0] = (char) '0';
@@ -35,7 +36,7 @@ char	*ft_ud_toa_base(uint64_t val, int base)
 	return (res);
 }
 
-char	*ft_sd_toa_base(int64_t val, int base)
+char	*ft_stoa_base(t_print *pf, int64_t val, int base)
 {
 	char	*bchr;
 	char	*res;
@@ -47,6 +48,7 @@ char	*ft_sd_toa_base(int64_t val, int base)
 	len = 1;
 	while ((tmp /= base) != 0)
 		len++;
+	pf->buf_len = len;
 	if (!(res = ft_strnew(len)))
 		return (NULL);
 	res[0] = (char) '0';

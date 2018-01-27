@@ -14,8 +14,9 @@
 
 #include <stdio.h>//******************************
 
-char	*ft_printbuf(t_print *pf, const char *start, const char *stop)
+char			*ft_printbuf(t_print *pf, const char *start, const char *stop)
 {
+
 	size_t len;
 
 	len = (stop - start);
@@ -24,20 +25,21 @@ char	*ft_printbuf(t_print *pf, const char *start, const char *stop)
 	return ((char*)start + len);
 }
 
-int		ft_parser(t_print *pf, char *frm)
+static char		*ft_parser(t_print *pf, char *frm)
 {
-	//int		len;
-
 	ft_reset_pf(pf);
-	//len = 0;
 	pf->tfrm = frm + 1;
-	//pf->spec = *pf->tfrm; //dellllllll!!!!!
 	while (*pf->tfrm)
 	{
+		printf("%p", pf->flist[*pf->tfrm]);//?????????????????????????????????
+
 		if (*pf->tfrm >= 32 && *pf->tfrm <= 127 && (pf->flist[*pf->tfrm] != NULL))
 		{
 			if (pf->flist[*pf->tfrm](pf))
-				break ;
+			{
+				pf->tfrm++;
+				break;
+			}
 		}
 		else
 		{
@@ -45,15 +47,12 @@ int		ft_parser(t_print *pf, char *frm)
 			break ;
 		}
 		pf->tfrm++;
-
-		printf("%p", pf->flist[*pf->tfrm]);//?????????????????????????????????
 	}
-
 	//len = pf->tfrm - frm; //spec len, does it need in my code????????????????
-	return (0); //return length of specificator and flags //or job status // speclen == pf->tfrm - frm
+	return (pf->tfrm); //return length of specificator and flags //or job status // speclen == pf->tfrm - frm
 }
 
-int		ft_printf(const char *frm, ...)
+int				ft_printf(const char *frm, ...)
 {
 	t_print	*pf;
 
@@ -68,8 +67,7 @@ int		ft_printf(const char *frm, ...)
 			ft_printbuf(pf, pf->tfrm, frm);
 			//move to the end of spec %-+0#12.2d and moving the pf->buf there
 			//also do all job, colling function foreach char
-			ft_parser(pf, frm);
-			frm = pf->tfrm;
+			frm = ft_parser(pf, frm);
 		}
 		else
 			frm++;

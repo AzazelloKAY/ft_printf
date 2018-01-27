@@ -7,7 +7,7 @@
 void		ft_reset_pf(t_print *pf)
 {
 	pf->buf_len = 0;
-	pf->minwidth = 0;
+	pf->minlen = 0;
 	pf->precision = 0;
 	pf->fplus = 0;
 	pf->fmnus = 0;
@@ -16,9 +16,15 @@ void		ft_reset_pf(t_print *pf)
 	pf->fspace = 0;
 	pf->fdot = 0;
 
-	pf->flong = 0;
-	pf->flongd = 0;
-	pf->fshort = 0;
+	pf->f_l = 0;
+	pf->f_ld = 0;
+	pf->f_h = 0;
+	pf->f_j = 0;
+	pf->f_z = 0;
+
+	pf->sign = "+";
+	if (pf->buf)
+		ft_strdel(&pf->buf);
 }
 
 static void	ft_flist_digit(t_print *pf)

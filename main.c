@@ -21,19 +21,15 @@ int main()
 
 //	printf("\npf=%d",printf("\n\n>%в__|%d|__", xx));
 
-
-
-	long a;
 	//printf("_%lu\n", sizeof(long double));
 
-	a = -1541;//.19;
+
+
+	unsigned a = 429;//.19;
+	ft_printf("%9.5u", a);
 	int c = (unsigned int) a;
 	//ft_bzero(&a, sizeof(long double));
 
-	unsigned long long b;
-
-	b = (unsigned long) a;
-
-	printf("<< pf2>=%d\n",printf("%d", a));//a & 0x7FFFFFFFFFFFFFFF));
+	printf("\n<< pf2>=%d\n",printf("=%9.5u", a));//a & 0x7FFFFFFFFFFFFFFF));
     return (0);
 }

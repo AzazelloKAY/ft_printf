@@ -33,8 +33,8 @@ static void	ftpf_setlhflag(t_print *pf)
 	}
 	else if (*pf->tfrm == 'h')
 	{
-		pf->f_s = (pf->f_s > 1) ? pf->f_s: 1;
-		pf->f_s = (*(pf->tfrm - 1) == 'h') ? 2 : pf->f_s;
+		pf->f_h = (pf->f_h > 1) ? pf->f_h: 1;
+		pf->f_h = (*(pf->tfrm - 1) == 'h') ? 2 : pf->f_h;
 	}
 }
 
@@ -68,6 +68,6 @@ int			ftpf_parsenum(t_print *pf)
 	int tmp;
 
 	tmp = ftpf_atoiskip(pf);
-	pf->precision = (tmp > pf->precision) ? tmp : pf->precision;
+	pf->minlen = (tmp > pf->minlen) ? tmp : pf->minlen;
 	return (0);
 }
