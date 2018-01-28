@@ -20,7 +20,7 @@ char	*ft_utoa_base(t_print *pf, uint64_t val, int base)
 	uint64_t	tmp;
 
 	tmp = val;
-	bchr = "0123456789ABCDEF";
+	bchr = "0123456789abcdef";
 	len = 1;
 	while ((tmp /= base) != 0)
 		len++;
@@ -44,7 +44,7 @@ char	*ft_stoa_base(t_print *pf, int64_t val, int base)
 	int64_t tmp;
 
 	tmp = val;
-	bchr = "0123456789ABCDEF";
+	bchr = "0123456789abcdef";
 	len = 1;
 	while ((tmp /= base) != 0)
 		len++;

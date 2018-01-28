@@ -17,7 +17,7 @@ typedef struct 	s_prnt
 {
 	int 		buf_len;
 	int 		res_len;
-	const char 	*tfrm;
+	char	 	*tfrm;
 	char 		*res;
 	char 		*buf;
 
@@ -25,7 +25,7 @@ typedef struct 	s_prnt
 
 	//move flags and spec-s to separet struct????
 	int 		minlen;
-	int			precision;
+	int			precis;
 	char 		*sign;
 	int8_t		fplus;
 	int8_t		fmnus;
@@ -36,12 +36,13 @@ typedef struct 	s_prnt
 	int8_t		f_ld;
 	int8_t		f_h;
 	int8_t		f_l;
+	int8_t		f_hh;
+	int8_t		f_ll;
 	int8_t		f_j;
 	int8_t		f_z;
 
 
 	//char		spec;//в моей схеме не нужно т,к, сам символ будет вызывать ф-цию
-
 	va_list		arg;
 	va_list		initarg;
 	func_p		*flist;
@@ -49,7 +50,6 @@ typedef struct 	s_prnt
 
 int				ft_printf(const char *format, ...);
 
-//int				ft_intit_flist(t_print *pf);
 t_print			*ft_init_pf(const char *frm);
 int				ftpf_setflag(t_print *pf);
 int				ftpf_parsenum(t_print *pf);
@@ -57,7 +57,9 @@ int				ftpf_c(t_print *pf);
 int				ftpf_s(t_print *pf);
 int				ftpf_id(t_print *pf);
 int				ftpf_u(t_print *pf);
-int				ftpf_persent(t_print *pf);
+int				ftpf_x(t_print *pf);
+int				ftpf_p(t_print *pf);
+int				ftpf_o(t_print *pf);
 
 int				ftpf_undefined(t_print *pf);
 

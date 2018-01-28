@@ -19,27 +19,47 @@ static int 	ftpf_atoiskip(t_print *pf)
 	if (!ft_isdigit(*pf->tfrm))
 		return (0);
 	num = ft_atoi(pf->tfrm);
-	while (ft_isdigit(pf->tfrm))
+	while (ft_isdigit(*(pf->tfrm + 1)))
 		pf->tfrm++;
 	return (num);
 }
 
+int			ftpf_parsenum(t_print *pf)
+{
+	pf->minlen = ftpf_atoiskip(pf);
+	return (0);
+}
+
 static void	ftpf_setlhflag(t_print *pf)
 {
+	//позже сплитнуть на идивидуальные для каждого спека
+	//**************
 	if (*pf->tfrm == 'l')
 	{
-		pf->f_l = (pf->f_l > 1) ? pf->f_l : 1;
-		pf->f_l = (*(pf->tfrm - 1) == 'l') ? 2 : pf->f_l;
+		if (*(pf->tfrm + 1) == 'l')
+		{
+			pf->f_ll = 1;
+			pf->tfrm++;
+		}
+		else
+			pf->f_l = 1;
 	}
 	else if (*pf->tfrm == 'h')
 	{
-		pf->f_h = (pf->f_h > 1) ? pf->f_h: 1;
-		pf->f_h = (*(pf->tfrm - 1) == 'h') ? 2 : pf->f_h;
+		if (*(pf->tfrm + 1) == 'h')
+		{
+			pf->f_hh = 1;
+			pf->tfrm++;
+		}
+		else
+			pf->f_h = 1;
 	}
 }
 
 int 		ftpf_setflag(t_print *pf)
 {
+	//позже сплитнуть на идивидуальные для каждого спека
+	//**************
 	if (*pf->tfrm == '-')
 		pf->fmnus = 1;//(pf->fmnus == 0) ? 1 : -1/*error?????*/;
 	else if (*pf->tfrm == '+')
@@ -54,7 +74,7 @@ int 		ftpf_setflag(t_print *pf)
 	{
 		pf->fdot = 1;
 		pf->tfrm++;
-		pf->precision = ftpf_atoiskip(pf);
+		pf->precis = ftpf_atoiskip(pf);
 	}
 	else if (*pf->tfrm == 'L')
 		pf->f_ld = 1;
@@ -63,11 +83,4 @@ int 		ftpf_setflag(t_print *pf)
 	return (0);
 }
 
-int			ftpf_parsenum(t_print *pf)
-{
-	int tmp;
 
-	tmp = ftpf_atoiskip(pf);
-	pf->minlen = (tmp > pf->minlen) ? tmp : pf->minlen;
-	return (0);
-}
