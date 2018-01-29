@@ -60,6 +60,8 @@ int				ftpf_u(t_print *pf);
 int				ftpf_x(t_print *pf);
 int				ftpf_p(t_print *pf);
 int				ftpf_o(t_print *pf);
+int				ftpf_uni_s(t_print *pf);
+int				ftpf_uni_c(t_print *pf);
 
 int				ftpf_undefined(t_print *pf);
 

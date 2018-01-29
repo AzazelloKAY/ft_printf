@@ -52,20 +52,41 @@ int main()
 //	printf("orig=%020.p<\n", 0);
 //	ft_printf("my=%20p<\n", 0);
 
-	printf("or x=%#.0x<\n", 0);
-	ft_printf("my x>%#.0x<\n", 0);
+//	printf("or x=%#.0x<\n", 0);
+//	ft_printf("my x>%#.0x<\n", 0);
+//
+//	printf("or o=%#.0o<\n", 0);
+//	ft_printf("my o>%#.0o<\n", 0);
+//
+//	printf("or d=%.0d<\n", 0);
+//	ft_printf("my d>%.0d<\n", 0);
+//	printf("or u=%.0u<\n", 0);
+//	ft_printf("my u>%.0u<\n", 0);
+//
+//	printf("or p=%10.5s<\n", "asdrew  wer");
+//	fflush(stdout);
+//	ft_printf("my p=%10.5s<\n", "asdrew  wer");
+//	fflush(stdout);
 
-	printf("or o=%#.0o<\n", 0);
-	ft_printf("my o>%#.0o<\n", 0);
+	uint16_t da = 0xB1CE0000;
+	uint32_t dd = 0xB1CE;
+	uint8_t a1 = 0xB1;
+	uint8_t a2 = 0xCE;
+	char s[4];
+	s[0] = 0xF0;
+	s[1] = 0x80;
+	s[2] = 0x8E;
+	s[3] = 0xB1;
+	write(1, s, 4);
+//	write(1, &a2, 1);
+//	write(1, &a1, 1);
+//	write(1, &dd, 2);
+//	write(1, &da, 2);
 
-	printf("or d=%.0d<\n", 0);
-	ft_printf("my d>%.0d<\n", 0);
-	printf("or u=%.0u<\n", 0);
-	ft_printf("my u>%.0u<\n", 0);
 
-	printf("or p=%-10.0p<\n", 0);
-	fflush(stdout);
-	ft_printf("my p=%-10.0p<\n", 0);
-	fflush(stdout);
-    return (0);
+
+	return (0);
 }
+
+
+

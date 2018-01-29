@@ -39,9 +39,7 @@ int			ftpf_c(t_print *pf)
 {
 	//если пришел l флаг то работаем как с символом юникода
 	if (pf->f_l == 1)
-	{
-		//ftpf_uni_c(pf);
-	}
+		ftpf_uni_c(pf);
 	else
 	{
 		pf->buf = ft_strnew(1);
@@ -59,9 +57,7 @@ int			ftpf_s(t_print *pf)
 
 	//если пришел l флаг то работаем как с символом юникода
 	if (pf->f_l == 1)
-	{
-		//ftpf_uni_s(pf);
-	}
+		ftpf_uni_s(pf);
 	else
 	{
 		s = va_arg(pf->arg, char*);
