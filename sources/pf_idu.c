@@ -6,31 +6,31 @@
 
 #include <stdio.h>//******************************
 
-static int		ft_getvarg_s(t_print *pf, char *sp, void *prm)
+static int		ft_getvarg_s(t_print *pf, char *sp, int64_t *prm)
 {
 	if (*sp == 'D')
-		*(int64_t*)prm = va_arg(pf->arg, int64_t);
+		*prm = va_arg(pf->arg, int64_t);
 	else if (pf->f_l > 0 || pf->f_ll > 0 || pf->f_ld > 0 || pf->f_z > 0 || pf->f_j > 0)
-		*(int64_t*)prm = va_arg(pf->arg, int64_t);
+		*prm = va_arg(pf->arg, int64_t);
 	else if (pf->f_h == 2)
-		*(int8_t*)prm = va_arg(pf->arg, int8_t);
+		*prm = va_arg(pf->arg, int8_t);
 	else if (pf->f_h == 1)
-		*(int16_t*)prm = va_arg(pf->arg, int16_t);
+		*prm = va_arg(pf->arg, int16_t);
 	else
-		*(int32_t*)prm = va_arg(pf->arg, int32_t);
+		*prm = va_arg(pf->arg, int32_t);
 	return (0);
 }
 
-static int		ft_getvarg_u(t_print *pf, char *sp, void *prm)
+static int		ft_getvarg_u(t_print *pf, char *sp, uint64_t *prm)
 {
 	if (*sp == 'U')
-		*(uint64_t*)prm = va_arg(pf->arg, uint64_t);
+		*prm = va_arg(pf->arg, uint64_t);
 	else if (pf->f_l > 0 || pf->f_ll > 0 || pf->f_ld > 0 || pf->f_z > 0 || pf->f_j > 0)
-		*(uint64_t*)prm = va_arg(pf->arg, uint64_t);
+		*prm = va_arg(pf->arg, uint64_t);
 	else if (pf->f_h == 1)
-		*(uint16_t*)prm = va_arg(pf->arg, uint16_t);
+		*prm = va_arg(pf->arg, uint16_t);
 	else if (pf->f_hh == 1)
-		*(uint8_t*)prm = va_arg(pf->arg, uint8_t);
+		*prm = va_arg(pf->arg, uint8_t);
 	else
 		*(uint32_t*)prm = va_arg(pf->arg, uint32_t);
 	return (0);

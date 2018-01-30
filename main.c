@@ -4,11 +4,52 @@
 
 //	fflush(stdout);
 
+
+
 int main()
 {
 	setlocale(LC_ALL,"");
 
 //	ft_putstr("asdasdgfsdg#$%$^$&$&^*546867sd\n");
+
+uint32_t x = 945;
+
+
+	ft_printf("%012C", L'ж');
+
+
+//	uint32_t	res;
+//	uint8_t		*b;
+//	uint8_t		bb;
+//
+//	res = 0;
+//
+//
+//		mask = 0xC080;
+//		b[3] = (x & 0x3F) + 0x80;
+//		b[2] = ((x & 0x7C0) >> 6) + 0xC0;
+//		res = ((x & 0x7C0) << 2) + (x & 0x3F) + 0xC080;
+//
+//	b = &res;
+//	printf("==%hhu\n", b[0]);
+//	fflush(stdout);
+//
+//	write(1, &b[1], 1);
+//	write(1, &b[0], 1);
+//
+//		bb = (((x & 0x7C0) >> 6)  + 0xC0);
+//		write(1, &bb, 1);
+//		bb = ((x & 0x3F) + 0x80);
+//		write(1, &bb, 1);
+//
+//	char f[3];
+//
+//	f[0] = ((x & 0x7C0) << 2) + (x & 0x3F) + 0xC080;
+//	printf("___%s", f);
+
+
+
+
 
 //	long i = 7;
 //	int8_t xx = 127;
@@ -63,21 +104,23 @@ int main()
 //	printf("or u=%.0u<\n", 0);
 //	ft_printf("my u>%.0u<\n", 0);
 //
-//	printf("or p=%10.5s<\n", "asdrew  wer");
+//
+//	int ss = -42;
+//	printf("\nor p=%d<\n", ss);
 //	fflush(stdout);
-//	ft_printf("my p=%10.5s<\n", "asdrew  wer");
+//	ft_printf("my p=%d<\n", ss);
 //	fflush(stdout);
-
-	uint16_t da = 0xB1CE0000;
-	uint32_t dd = 0xB1CE;
-	uint8_t a1 = 0xB1;
-	uint8_t a2 = 0xCE;
-	char s[4];
-	s[0] = 0xF0;
-	s[1] = 0x80;
-	s[2] = 0x8E;
-	s[3] = 0xB1;
-	write(1, s, 4);
+//
+//	uint16_t da = 0xB1CE0000;
+//	uint32_t dd = 0xB1CE;
+//	uint8_t a1 = 0xB1;
+//	uint8_t a2 = 0xCE;
+//	char s[4];
+//	s[0] = 0xF0;
+//	s[1] = 0x80;
+//	s[2] = 0x8E;
+//	s[3] = 0xB1;
+//	write(1, s, 4);
 //	write(1, &a2, 1);
 //	write(1, &a1, 1);
 //	write(1, &dd, 2);

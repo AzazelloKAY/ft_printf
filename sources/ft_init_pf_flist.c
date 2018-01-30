@@ -45,6 +45,7 @@ static void		ft_init_flist(t_print *pf)
 {
 	pf->flist[0] = &ftpf_undefined;
 	pf->flist['c'] = &ftpf_c;
+	pf->flist['C'] = &ftpf_uni_c;
 	pf->flist['s'] = &ftpf_s;
 	pf->flist['i'] = &ftpf_id;
 	pf->flist['d'] = &ftpf_id;

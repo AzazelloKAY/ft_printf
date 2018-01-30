@@ -4,18 +4,18 @@
 
 #include "../includes/ft_printf.h"
 
-static int		ft_getvarg(t_print *pf, void *prm)
+static int		ft_getvarg(t_print *pf, uint64_t *prm)
 {
 	if (pf->tfrm == 'O')
-		*(uint64_t*)prm = va_arg(pf->arg, uint64_t);
+		*prm = va_arg(pf->arg, uint64_t);
 	else if (pf->f_l > 0 || pf->f_ll > 0 || pf->f_ld > 0 || pf->f_z > 0 || pf->f_j > 0)
-		*(uint64_t*)prm = va_arg(pf->arg, uint64_t);
+		*prm = va_arg(pf->arg, uint64_t);
 	else if (pf->f_h == 1)
-		*(uint16_t*)prm = va_arg(pf->arg, uint16_t);
+		*prm = va_arg(pf->arg, uint16_t);
 	else if (pf->f_hh == 1)
-		*(uint8_t*)prm = va_arg(pf->arg, uint8_t);
+		*prm = va_arg(pf->arg, uint8_t);
 	else
-		*(uint32_t*)prm = va_arg(pf->arg, uint32_t);
+		*prm = va_arg(pf->arg, uint32_t);
 	return (0);
 }
 
