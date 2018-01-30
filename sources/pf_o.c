@@ -41,9 +41,10 @@ static void		pf_process_o(t_print *pf)
 	dif = (int)ft_strlen(pf->buf);
 	pf->buf_len = dif;
 	pf->res_len += pf->buf_len;
-	if (*pf->tfrm == 'x')
-		while (dif--)
-			pf->buf[dif] = ft_tolower(pf->buf[dif]);
+	//хвост кода от копировани я Х процессора
+//	if (*pf->tfrm == 'x')
+//		while (dif--)
+//			pf->buf[dif] = ft_tolower(pf->buf[dif]);
 }
 
 int			ftpf_o(t_print *pf)

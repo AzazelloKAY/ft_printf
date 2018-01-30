@@ -61,8 +61,8 @@ int			ftpf_s(t_print *pf)
 	else
 	{
 		s = va_arg(pf->arg, char*);
-		pf->buf = ft_strsub(s, 0, ((pf->fdot == 1) ? pf->precis : ft_strlen(s)));
-		pf->buf_len = (int)ft_strlen(pf->buf);
+		pf->buf_len = ((pf->fdot == 1) ? pf->precis : (int)ft_strlen(s));	//?????????????need testing
+		pf->buf = ft_strsub(s, 0, (size_t)pf->buf_len);						//?????????????need testing
 		pf_process_cs(pf);
 		write(1, pf->buf, pf->buf_len);
 	}
