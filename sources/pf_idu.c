@@ -39,26 +39,14 @@ static int		ft_getvarg_u(t_print *pf, char *sp, uint64_t *prm)
 
 static void		pf_process_idu(t_print *pf)
 {
-	int		dif;
+	//int		dif;
 	char	fil;
 
-	dif = pf->precis - pf->buf_len;
-	if ((pf->fdot == 1) && (dif > 0))
-		pf->buf = ft_joinfree(
-				ft_memset(ft_strnew(dif), '0', dif), pf->buf, F_BOTH);
-	if (*pf->tfrm != 'u' && *pf->tfrm != 'U'
-		&& (pf->sign[0] == '-' || pf->fplus == 1))
-		pf->buf = ft_joinfree(pf->sign, pf->buf, F_LAST);
+	ftpf_process_precis(pf, pf->buf, pf->buf_len);
+	if (*pf->tfrm != 'u' && *pf->tfrm != 'U')
+		ftps_process_sign(pf);
 	fil = (pf->fmnus == 0 && pf->fdot == 0 && pf->fzero == 1) ? '0' : ' ';
-	dif = pf->minlen - (int)ft_strlen(pf->buf);
-	if (dif > 0 && (pf->fmnus == 0))
-		pf->buf = ft_joinfree(
-				ft_memset(ft_strnew(dif), fil, dif), pf->buf, F_BOTH);
-	if (dif > 0 && (pf->fmnus == 1))
-		pf->buf = ft_joinfree(
-				pf->buf, ft_memset(ft_strnew(dif), fil, dif), F_BOTH);
-	dif = (int)ft_strlen(pf->buf);
-	pf->buf_len = dif;
+	ftpf_process_minlen(pf, pf->buf, pf->buf_len, fil);
 	pf->res_len += pf->buf_len;
 }
 

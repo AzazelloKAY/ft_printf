@@ -33,6 +33,8 @@ typedef struct 	s_prnt
 	int8_t		fzero;
 	int8_t		fspace;
 	int8_t		fdot;
+	int8_t		f_ml_star;
+	int8_t		f_ps_star;
 	int8_t		f_ld;
 	int8_t		f_h;
 	int8_t		f_l;
@@ -52,7 +54,16 @@ int				ft_printf(const char *format, ...);
 
 t_print			*ft_init_pf(const char *frm);
 int				ftpf_setflag(t_print *pf);
+int				ftpf_setstarflag(t_print *pf);
+int				ftpf_setdotflag(t_print *pf);
+
 int				ftpf_parsenum(t_print *pf);
+int 			ftpf_process_minlen(t_print *pf, char *buf, int len, char fil);
+int				ftpf_process_precis(t_print *p, char *buf, int len);
+int				ftps_process_sign(t_print *pf);
+void			pf_process_cs(t_print *pf);
+long			ft_abs(long x);
+
 int				ftpf_c(t_print *pf);
 int				ftpf_s(t_print *pf);
 int				ftpf_id(t_print *pf);

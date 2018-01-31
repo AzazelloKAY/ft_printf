@@ -26,6 +26,7 @@ static int 	ftpf_atoiskip(t_print *pf)
 
 int			ftpf_parsenum(t_print *pf)
 {
+	pf->f_ml_star = 0;
 	pf->minlen = ftpf_atoiskip(pf);
 	return (0);
 }
@@ -56,6 +57,21 @@ static void	ftpf_setlhflag(t_print *pf)
 	}
 }
 
+int 		ftpf_setstarflag(t_print *pf)
+{
+	pf->f_ml_star = 1;
+	return (0);
+}
+
+int			ftpf_setdotflag(t_print *pf)
+{
+	pf->fdot = 1;
+	pf->tfrm++;
+	pf->f_ps_star = (*pf->tfrm == '*') ? 1 : 0;
+	pf->precis = ftpf_atoiskip(pf);
+	return (0);
+}
+
 int 		ftpf_setflag(t_print *pf)
 {
 	//позже сплитнуть на идивидуальные для каждого спека
@@ -70,12 +86,6 @@ int 		ftpf_setflag(t_print *pf)
 		pf->fspace = 1;
 	else if (*pf->tfrm == '#')
 		pf->fhash = 1;
-	else if (*pf->tfrm == '.')
-	{
-		pf->fdot = 1;
-		pf->tfrm++;
-		pf->precis = ftpf_atoiskip(pf);
-	}
 	else if (*pf->tfrm == 'L')
 		pf->f_ld = 1;
 	else

@@ -6,7 +6,7 @@
 
 #include <stdio.h>//******************************
 
-uint32_t		pf_addmask(uint32_t x)
+static uint32_t		pf_addmask(uint32_t x)
 {
 	if (x <= 0x7F)
 		return (x);
@@ -20,43 +20,33 @@ uint32_t		pf_addmask(uint32_t x)
 
 
 //дебаг заменить на вызов из pf_cs.c
-static void		pf_process_cs(t_print *pf)
-{
-	int		dif;
-	char	fil;
-
-	fil = (pf->fmnus == 0 && pf->fzero == 1) ? '0' : ' ';
-	dif = pf->minlen - pf->buf_len;
-	if (dif > 0 && (pf->fmnus == 0))
-		pf->buf = ft_joinfree(
-				ft_memset(ft_strnew(dif), fil, dif), pf->buf, F_BOTH);
-	if (dif > 0 && (pf->fmnus == 1))
-		pf->buf = ft_joinfree(
-				pf->buf, ft_memset(ft_strnew(dif), fil, dif), F_BOTH);
-	if (dif > 0)
-		pf->buf_len += dif;
-	pf->res_len += pf->buf_len;
-	if (*pf->tfrm == 'x')
-		while (dif--)
-			pf->buf[dif] = ft_tolower(pf->buf[dif]);
-}
+//static void		pf_process_cs(t_print *pf)
+//{
+//	//int		dif;
+//	char	fil;
+//
+//	fil = (pf->fmnus == 0 && pf->fzero == 1) ? '0' : ' ';
+//	ftpf_process_minlen(pf, pf->buf, pf->buf_len, fil);
+//	pf->res_len += pf->buf_len;
+//}
 
 int 		ft_unilen(uint32_t *s)
 {
 	int len;
 
+	len = 0;
 	while (*s++ != 0)
 		len++;
 	return (len);
 }
 
-int		ft_uint_to_str(char *s, uint32_t *u)
+int			ft_uint_to_str(char *s, uint32_t u)
 {
 	uint8_t *t;
 	int 	i;
 	int 	res;
 
-	t = u;
+	t = &u;
 	i = 3;
 	res = 0;
 	while (i >= 0)
@@ -77,22 +67,43 @@ int			ftpf_uni_c(t_print *pf)
 {
 	uint32_t c;
 
-	c = 0;
 	c = va_arg(pf->arg, uint32_t);
 	pf->buf = ft_strnew(4);
-	c = pf_addmask(c);
-	pf->buf_len = ft_uint_to_str(pf->buf, &c);
+	pf->buf_len = ft_uint_to_str(pf->buf, pf_addmask(c));
 	pf_process_cs(pf);
 	write(1, pf->buf, pf->buf_len);
+	return (0);
 }
 
 
 
 int			ftpf_uni_s(t_print *pf)
 {
-	uint32_t *s;
+	uint32_t	*s;
+	int 		slen;
+	int 		i;
 
 	s = va_arg(pf->arg, uint32_t*);
-	pf->buf_len = ft_unilen(s);
+	slen = ft_unilen(s);
+	pf->buf = ft_strnew(slen * 4);
+	i = 0;
+	while (i < slen )
+	{
+		pf->buf_len += ft_uint_to_str(&(pf->buf[pf->buf_len]), pf_addmask(s[i]));
+		if (pf->fdot == 1 && pf->buf_len > pf->precis)
+		{
+			//удалить последний символ!!!! длинной которую верент юинтТУстр
+			break;
+		}
+		i++;
+	}
+	if ((pf->fdot == 1)  && (pf->precis < pf->buf_len))
+	{
+		//выводить только полные ЮНИКОД символы попадающие в длинну пресижина!!!!!!!!!!!
+		pf->buf[pf->precis] = 0;
+		pf->buf_len = pf->precis;
+	}
+	pf_process_cs(pf);
+	write(1, pf->buf, pf->buf_len);
 }
 

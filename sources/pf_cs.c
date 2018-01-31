@@ -14,25 +14,14 @@
 
 #include <stdio.h>//******************************
 
-static void		pf_process_cs(t_print *pf)
+void		pf_process_cs(t_print *pf)
 {
-	int		dif;
+	//int		dif;
 	char	fil;
 
 	fil = (pf->fmnus == 0 && pf->fzero == 1) ? '0' : ' ';
-	dif = pf->minlen - pf->buf_len;
-	if (dif > 0 && (pf->fmnus == 0))
-		pf->buf = ft_joinfree(
-				ft_memset(ft_strnew(dif), fil, dif), pf->buf, F_BOTH);
-	if (dif > 0 && (pf->fmnus == 1))
-		pf->buf = ft_joinfree(
-				pf->buf, ft_memset(ft_strnew(dif), fil, dif), F_BOTH);
-	if (dif > 0)
-		pf->buf_len += dif;
+	ftpf_process_minlen(pf, pf->buf, pf->buf_len, fil);
 	pf->res_len += pf->buf_len;
-	if (*pf->tfrm == 'x')
-		while (dif--)
-			pf->buf[dif] = ft_tolower(pf->buf[dif]);
 }
 
 int			ftpf_c(t_print *pf)

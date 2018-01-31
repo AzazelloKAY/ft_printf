@@ -15,7 +15,8 @@ void		ft_reset_pf(t_print *pf)
 	pf->fzero = 0;
 	pf->fspace = 0;
 	pf->fdot = 0;
-
+	pf->f_ml_star = 0;
+	pf->f_ps_star = 0;
 	pf->f_ld = 0;
 	pf->f_l = 0;
 	pf->f_h = 0;
@@ -47,6 +48,7 @@ static void		ft_init_flist(t_print *pf)
 	pf->flist['c'] = &ftpf_c;
 	pf->flist['C'] = &ftpf_uni_c;
 	pf->flist['s'] = &ftpf_s;
+	pf->flist['S'] = &ftpf_uni_s;
 	pf->flist['i'] = &ftpf_id;
 	pf->flist['d'] = &ftpf_id;
 	pf->flist['D'] = &ftpf_id;
@@ -64,12 +66,13 @@ static void		ft_init_flist(t_print *pf)
 	pf->flist['#'] = ftpf_setflag;
 	pf->flist['0'] = ftpf_setflag;
 	pf->flist[' '] = ftpf_setflag;
-	pf->flist['.'] = ftpf_setflag;
+	pf->flist['.'] = ftpf_setdotflag;
 	pf->flist['l'] = ftpf_setflag;
 	pf->flist['L'] = ftpf_setflag;
 	pf->flist['h'] = ftpf_setflag;
 	pf->flist['z'] = ftpf_setflag;
 	pf->flist['j'] = ftpf_setflag;
+	pf->flist['*'] = ftpf_setstarflag;
 	ft_flist_digit(pf);
 	//pf->flist[''] = ftpf_setflag;
 }

@@ -15,7 +15,9 @@ int main()
 uint32_t x = 945;
 
 
-	ft_printf("%012C", L'ж');
+	ft_printf("\n%020.5S", L"жОпА");
+	printf("\n%020.5S", L"жОпА");
+
 
 
 //	uint32_t	res;

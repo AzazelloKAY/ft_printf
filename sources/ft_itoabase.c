@@ -54,7 +54,7 @@ char	*ft_stoa_base(t_print *pf, int64_t val, int base)
 	res[0] = (char) '0';
 	while (val)
 	{
-		res[--len] = bchr[val % base];
+		res[--len] = bchr[ft_abs(val % base)];
 		val /= base;
 	}
 	return (res);

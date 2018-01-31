@@ -21,30 +21,16 @@ static int		ft_getvarg(t_print *pf, uint64_t *prm)
 
 static void		pf_process_o(t_print *pf)
 {
-	int		dif;
+	//int		dif;
 	char	fil;
 
 	if (pf->fhash == 1)
 		pf->buf = ft_joinfree("0", pf->buf, F_LAST);
-	dif = pf->precis - (int)ft_strlen(pf->buf);
-	if ((pf->fdot == 1) && (dif > 0))
-		pf->buf = ft_joinfree(
-				ft_memset(ft_strnew(dif), '0', dif), pf->buf, F_BOTH);
+	pf->buf_len += (pf->fhash == 1) ? 1 : 0;
+	ftpf_process_precis(pf, pf->buf, pf->buf_len);
 	fil = (pf->fmnus == 0 && pf->fdot == 0 && pf->fzero == 1) ? '0' : ' ';
-	dif = pf->minlen - (int)ft_strlen(pf->buf);
-	if (dif > 0 && (pf->fmnus == 0))
-		pf->buf = ft_joinfree(
-				ft_memset(ft_strnew(dif), fil, dif), pf->buf, F_BOTH);
-	if (dif > 0 && (pf->fmnus == 1))
-		pf->buf = ft_joinfree(
-				pf->buf, ft_memset(ft_strnew(dif), fil, dif), F_BOTH);
-	dif = (int)ft_strlen(pf->buf);
-	pf->buf_len = dif;
+	ftpf_process_minlen(pf, pf->buf, pf->buf_len, fil);
 	pf->res_len += pf->buf_len;
-	//хвост кода от копировани я Х процессора
-//	if (*pf->tfrm == 'x')
-//		while (dif--)
-//			pf->buf[dif] = ft_tolower(pf->buf[dif]);
 }
 
 int			ftpf_o(t_print *pf)
