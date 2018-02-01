@@ -10,9 +10,11 @@
 #                                                                              #
 #******************************************************************************#
 
+# LIBFT MAKE
+
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
-NAME = libft.a
+# NAME = libft.a
 
 SOURCES = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 ft_memchr.c ft_memcmp.c ft_strlen.c ft_strdup.c ft_strcpy.c ft_strncpy.c \
@@ -34,16 +36,16 @@ all: $(NAME)
 	@$(CC) $(FLAGS) -o $@ -c $<
 
 $(NAME): $(OBJECTS) libft.h
-	@ar rc $(NAME) $(OBJECTS)
-	@ranlib $(NAME)
-	@echo "libft compiled"
+#	@ar rc $(NAME) $(OBJECTS)
+#	@ranlib $(NAME)
+	@echo "libft objects compiled"
 
 clean:
 	@rm -f $(OBJECTS)
-	@echo "cleaned"
+	@echo "libft objects cleaned"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "fcleaned"
+	@echo "libft objects fcleaned"
 
 re:	fclean all

@@ -1,10 +1,16 @@
-//
-// Created by Antonin KOKOSHKO on 1/26/18.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pf_idu.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akokoshk <akokoshk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/31 21:25:47 by akokoshk          #+#    #+#             */
+/*   Updated: 2018/02/01 19:19:07 by akokoshk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-
-#include <stdio.h>//******************************
 
 static int		ft_getvarg_s(t_print *pf, char *sp, int64_t *prm)
 {
@@ -39,7 +45,6 @@ static int		ft_getvarg_u(t_print *pf, char *sp, uint64_t *prm)
 
 static void		pf_process_idu(t_print *pf)
 {
-	//int		dif;
 	char	fil;
 
 	ftpf_process_precis(pf, pf->buf, pf->buf_len);

@@ -1,6 +1,14 @@
-//
-// Created by Antonin KOKOSHKO on 1/28/18.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pf_xp.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akokoshk <akokoshk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/01 19:34:08 by akokoshk          #+#    #+#             */
+/*   Updated: 2018/02/01 19:34:33 by akokoshk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
@@ -22,7 +30,7 @@ static void		pf_process_x(t_print *pf)
 	char	fil;
 
 	ftpf_process_precis(pf, pf->buf, pf->buf_len);
-	if (pf->fhash == 1 /*&& pf->buf[0] != 0*/)
+	if (pf->fhash == 1)
 		pf->buf = ft_joinfree("0x", pf->buf, F_LAST);
 	pf->buf_len += (pf->fhash == 1) ? 2 : 0;
 	fil = (pf->fmnus == 0 && pf->fdot == 0 && pf->fzero == 1) ? '0' : ' ';
@@ -53,8 +61,11 @@ int				ftpf_p(t_print *pf)
 	pf->fhash = 1;
 	x = va_arg(pf->arg, uint64_t);
 	pf->buf = ft_utoa_base(pf, x, 16);
-	((x == 0 && pf->fdot == 1 && pf->precis == 0) ? pf->buf[0] = 0 : 0); //******** FIX HERE
-	((x == 0 && pf->fdot == 1 && pf->precis == 0) ? pf->buf_len = 0 : 0);
+	if (x == 0 && pf->fdot == 1 && pf->precis == 0)
+	{
+		pf->buf[0] = 0;
+		pf->buf_len = 0;
+	}
 	pf_process_x(pf);
 	write(1, pf->buf, pf->buf_len);
 	return (1);

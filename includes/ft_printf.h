@@ -53,33 +53,52 @@ typedef struct 	s_prnt
 int				ft_printf(const char *format, ...);
 
 t_print			*ft_init_pf(const char *frm);
-int				ftpf_setflag(t_print *pf);
-int				ftpf_setstarflag(t_print *pf);
+int				ftpf_set_starflag(t_print *pf);
+int				ftpf_set_lflag(t_print *pf);
+int				ftpf_set_hflag(t_print *pf);
 int				ftpf_setdotflag(t_print *pf);
 
 int				ftpf_parsenum(t_print *pf);
+int 			ftpf_set_minusflag(t_print *pf);
+int 			ftpf_set_plusflag(t_print *pf);
+int 			ftpf_set_zeroflag(t_print *pf);
+int 			ftpf_set_hashflag(t_print *pf);
+int 			ftpf_set_spaceflag(t_print *pf);
+int 			ftpf_set_ldflag(t_print *pf);
+int 			ftpf_set_jflag(t_print *pf);
+int 			ftpf_set_zflag(t_print *pf);
+
+
 int 			ftpf_process_minlen(t_print *pf, char *buf, int len, char fil);
 int				ftpf_process_precis(t_print *p, char *buf, int len);
 int				ftps_process_sign(t_print *pf);
-void			pf_process_cs(t_print *pf);
 long			ft_abs(long x);
+int				ftpf_atoiskip(t_print *pf);
+
 
 int				ftpf_c(t_print *pf);
 int				ftpf_s(t_print *pf);
+void			pf_process_cs(t_print *pf);
+
 int				ftpf_id(t_print *pf);
 int				ftpf_u(t_print *pf);
+
 int				ftpf_x(t_print *pf);
 int				ftpf_p(t_print *pf);
+
 int				ftpf_o(t_print *pf);
+
+//int				ft_uni_to_chr(char *dst, uint32_t c);
 int				ftpf_uni_s(t_print *pf);
 int				ftpf_uni_c(t_print *pf);
 
 int				ftpf_undefined(t_print *pf);
 
-void			ft_reset_pf(t_print *pf); //reset PF after each spec
+void			ft_reset_pf(t_print *pf);
+
 char			*ft_joinfree(char const *s1, char const *s2, int flag);
 
-char	*ft_utoa_base(t_print *pf, uint64_t val, int base);
-char	*ft_stoa_base(t_print *pf, int64_t val, int base);
+char			*ft_utoa_base(t_print *pf, uint64_t val, int base);
+char			*ft_stoa_base(t_print *pf, int64_t val, int base);
 
 #endif

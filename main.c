@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <locale.h>
 #include "includes/ft_printf.h"
 
@@ -15,10 +16,20 @@ int main()
 uint32_t x = 945;
 
 
-	ft_printf("\n%020.5S", L"жОпА");
-	printf("\n%020.5S", L"жОпА");
+//	if (MB_CUR_MAX == 1)
+//		printf("aaaaaa\n");
+//	else if (MB_CUR_MAX == 4)
+//		printf("XYIIIII");
 
 
+//	ft_printf("\n%5b\n", L"жОпА");
+//	printf("\n%05b\n", L"жОпА");
+
+	ft_printf("\n% жжж\n");
+	printf("\n% жжж\n");
+
+//char *ff = "жы";
+//	write(1, ff, 4);
 
 //	uint32_t	res;
 //	uint8_t		*b;

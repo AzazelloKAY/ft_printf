@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoinandfree.c                                :+:      :+:    :+:   */
+/*   pf_parse_flags.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akokoshk <akokoshk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/24 19:33:50 by akokoshk          #+#    #+#             */
-/*   Updated: 2018/02/01 19:31:40 by akokoshk         ###   ########.fr       */
+/*   Created: 2018/01/31 20:43:37 by akokoshk          #+#    #+#             */
+/*   Updated: 2018/02/01 19:17:53 by akokoshk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-/*
-*** F_NONE -1
-*** F_FIRST 0
-*** F_LAST 1
-*** F_BOTH 2
-*/
-
-char	*ft_joinfree(char const *s1, char const *s2, int flag)
+int 		ftpf_set_ldflag(t_print *pf)
 {
-	char *res;
-
-	res = ft_strjoin(s1, s2);
-	if (flag == 0 || flag == 2)
-		ft_memdel(&s1);
-	if (flag == 1 || flag == 2)
-		ft_memdel(&s2);
-	return (res);
+	pf->f_ld = 1;
+	return (0);
 }
+
+int 		ftpf_set_jflag(t_print *pf)
+{
+	pf->f_j = 1;
+	return (0);
+}
+
+int 		ftpf_set_zflag(t_print *pf)
+{
+	pf->f_z = 1;
+	return (0);
+}
+

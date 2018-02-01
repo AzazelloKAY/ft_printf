@@ -1,6 +1,14 @@
-//
-// Created by Antonin KOKOSHKO on 1/28/18.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pf_o.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akokoshk <akokoshk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/31 21:20:46 by akokoshk          #+#    #+#             */
+/*   Updated: 2018/02/01 19:19:13 by akokoshk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
@@ -21,7 +29,6 @@ static int		ft_getvarg(t_print *pf, uint64_t *prm)
 
 static void		pf_process_o(t_print *pf)
 {
-	//int		dif;
 	char	fil;
 
 	if (pf->fhash == 1)

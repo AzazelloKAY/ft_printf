@@ -1,10 +1,16 @@
-//
-// Created by Antonin KOKOSHKO on 1/29/18.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pf_uni.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akokoshk <akokoshk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/01 19:14:40 by akokoshk          #+#    #+#             */
+/*   Updated: 2018/02/01 19:17:35 by akokoshk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-
-#include <stdio.h>//******************************
 
 static uint32_t		pf_addmask(uint32_t x)
 {
@@ -18,19 +24,7 @@ static uint32_t		pf_addmask(uint32_t x)
 		return (((x & 0x1C0000) << 6) + ((x & 0x3F000) << 4) + ((x & 0xFC0) << 2) + (x & 0x3F) + 0xF0808080);
 }
 
-
-//дебаг заменить на вызов из pf_cs.c
-//static void		pf_process_cs(t_print *pf)
-//{
-//	//int		dif;
-//	char	fil;
-//
-//	fil = (pf->fmnus == 0 && pf->fzero == 1) ? '0' : ' ';
-//	ftpf_process_minlen(pf, pf->buf, pf->buf_len, fil);
-//	pf->res_len += pf->buf_len;
-//}
-
-int 		ft_unilen(uint32_t *s)
+static int			ft_unilen(uint32_t *s)
 {
 	int len;
 
@@ -40,22 +34,22 @@ int 		ft_unilen(uint32_t *s)
 	return (len);
 }
 
-int			ft_uint_to_str(char *s, uint32_t u)
+static int		ft_uni_to_chr(char *dst, uint32_t c)
 {
-	uint8_t *t;
-	int 	i;
-	int 	res;
+	uint8_t		*t;
+	int 		i;
+	int 		res;
 
-	t = &u;
+	c = pf_addmask(c);
+	t = &c;
 	i = 3;
 	res = 0;
 	while (i >= 0)
 	{
-		*s = t[i];
-
+		*dst = t[i];
 		if (t[i] != 0)
 		{
-			s++;
+			dst++;
 			res++;
 		}
 		i--;
@@ -63,47 +57,41 @@ int			ft_uint_to_str(char *s, uint32_t u)
 	return (res);
 }
 
-int			ftpf_uni_c(t_print *pf)
+int					ftpf_uni_c(t_print *pf)
 {
 	uint32_t c;
 
 	c = va_arg(pf->arg, uint32_t);
 	pf->buf = ft_strnew(4);
-	pf->buf_len = ft_uint_to_str(pf->buf, pf_addmask(c));
+	pf->buf_len = ft_uni_to_chr(pf->buf, c);
 	pf_process_cs(pf);
 	write(1, pf->buf, pf->buf_len);
-	return (0);
+	return (1);
 }
 
-
-
-int			ftpf_uni_s(t_print *pf)
+int				ftpf_uni_s(t_print *pf)
 {
 	uint32_t	*s;
-	int 		slen;
 	int 		i;
+	int 		ustrlen;
+	int			ucharlen;
 
 	s = va_arg(pf->arg, uint32_t*);
-	slen = ft_unilen(s);
-	pf->buf = ft_strnew(slen * 4);
+	ustrlen = ft_unilen(s);
+	pf->buf = ft_strnew(ustrlen * 4);
 	i = 0;
-	while (i < slen )
+	while (i < ustrlen)
 	{
-		pf->buf_len += ft_uint_to_str(&(pf->buf[pf->buf_len]), pf_addmask(s[i]));
-		if (pf->fdot == 1 && pf->buf_len > pf->precis)
+		ucharlen = ft_uni_to_chr(&(pf->buf[pf->buf_len]), s[i]);
+		if (pf->fdot == 1 && (pf->buf_len + ucharlen) > pf->precis)
 		{
-			//удалить последний символ!!!! длинной которую верент юинтТУстр
+			pf->buf[pf->buf_len] = 0;
 			break;
 		}
+		pf->buf_len += ucharlen;
 		i++;
-	}
-	if ((pf->fdot == 1)  && (pf->precis < pf->buf_len))
-	{
-		//выводить только полные ЮНИКОД символы попадающие в длинну пресижина!!!!!!!!!!!
-		pf->buf[pf->precis] = 0;
-		pf->buf_len = pf->precis;
 	}
 	pf_process_cs(pf);
 	write(1, pf->buf, pf->buf_len);
+	return (1);
 }
-

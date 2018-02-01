@@ -24,13 +24,24 @@ void		ft_reset_pf(t_print *pf)
 	pf->f_ll = 0;
 	pf->f_j = 0;
 	pf->f_z = 0;
-
 	pf->sign = "+";
 	ft_strdel(&pf->buf);
 }
 
 static void		ft_flist_digit(t_print *pf)
 {
+	pf->flist['-'] = ftpf_set_minusflag;
+	pf->flist['+'] = ftpf_set_plusflag;
+	pf->flist['#'] = ftpf_set_hashflag;
+	pf->flist['0'] = ftpf_set_zeroflag;
+	pf->flist[' '] = ftpf_set_spaceflag;
+	pf->flist['.'] = ftpf_setdotflag;
+	pf->flist['l'] = ftpf_set_lflag;
+	pf->flist['L'] = ftpf_set_ldflag;
+	pf->flist['h'] = ftpf_set_hflag;
+	pf->flist['z'] = ftpf_set_zflag;
+	pf->flist['j'] = ftpf_set_jflag;
+	pf->flist['*'] = ftpf_set_starflag;
 	pf->flist['1'] = ftpf_parsenum;
 	pf->flist['2'] = ftpf_parsenum;
 	pf->flist['3'] = ftpf_parsenum;
@@ -60,21 +71,7 @@ static void		ft_init_flist(t_print *pf)
 	pf->flist['o'] = &ftpf_o;
 	pf->flist['O'] = &ftpf_o;
 	pf->flist['%'] = &ftpf_undefined;
-
-	pf->flist['-'] = ftpf_setflag;
-	pf->flist['+'] = ftpf_setflag;
-	pf->flist['#'] = ftpf_setflag;
-	pf->flist['0'] = ftpf_setflag;
-	pf->flist[' '] = ftpf_setflag;
-	pf->flist['.'] = ftpf_setdotflag;
-	pf->flist['l'] = ftpf_setflag;
-	pf->flist['L'] = ftpf_setflag;
-	pf->flist['h'] = ftpf_setflag;
-	pf->flist['z'] = ftpf_setflag;
-	pf->flist['j'] = ftpf_setflag;
-	pf->flist['*'] = ftpf_setstarflag;
 	ft_flist_digit(pf);
-	//pf->flist[''] = ftpf_setflag;
 }
 
 t_print		*ft_init_pf(const char *frm)

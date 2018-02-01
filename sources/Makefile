@@ -6,11 +6,11 @@
 #    By: akokoshk <akokoshk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 20:46:24 by akokoshk          #+#    #+#              #
-#    Updated: 2018/02/01 21:32:25 by akokoshk         ###   ########.fr        #
+#    Updated: 2018/02/01 21:33:09 by akokoshk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# MAIN MAKE
+# PRINTF MAKE
 
 CC = gcc
 FLAGS = -Wall -Wextra -Werror

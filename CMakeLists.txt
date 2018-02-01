@@ -17,7 +17,10 @@ link_directories(
 ) # library directories
 set(SOURCE_FILES
         main.c
-        sources/ft_printf.c includes/ft_printf.h sources/pf_cs.c sources/ft_itoabase.c sources/pf_parse_flags.c sources/ft_strjoinandfree.c sources/ft_init_pf_flist.c sources/pf_idu.c sources/pf_xp.c sources/pf_o.c sources/pf_uni.c sources/pf_process_func.c) # sources
+        sources/ft_printf.c includes/ft_printf.h sources/pf_cs.c sources/ft_itoabase.c
+        sources/pf_parse_flags_a.c sources/pf_parse_flags_b.c sources/pf_parse_flags_c.c
+        sources/ft_strjoinandfree.c sources/ft_init_pf_flist.c sources/pf_idu.c
+        sources/pf_xp.c sources/pf_o.c sources/pf_uni.c sources/pf_process_func.c) # sources
 add_executable(ft_printf ${SOURCE_FILES}) # compilation
 target_link_libraries(ft_printf -lft) # linkage
 target_link_libraries(ft_printf ${CMAKE_SOURCE_DIR}/libft/libft.a)

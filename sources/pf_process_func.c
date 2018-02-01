@@ -1,6 +1,14 @@
-//
-// Created by Ali on 31.01.2018.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pf_process_func.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akokoshk <akokoshk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/31 22:32:18 by akokoshk          #+#    #+#             */
+/*   Updated: 2018/02/01 19:17:42 by akokoshk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
@@ -42,4 +50,16 @@ int 		ftps_process_sign(t_print *pf)
 long 		ft_abs(long x)
 {
 	return ((x < 0) ? -x : x);
+}
+
+int 		ftpf_atoiskip(t_print *pf)
+{
+	int num;
+
+	if (!ft_isdigit(*pf->tfrm))
+		return (0);
+	num = ft_atoi(pf->tfrm);
+	while (ft_isdigit(*(pf->tfrm + 1)))
+		pf->tfrm++;
+	return (num);
 }
