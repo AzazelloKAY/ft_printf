@@ -6,7 +6,7 @@
 #    By: akokoshk <akokoshk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 20:46:24 by akokoshk          #+#    #+#              #
-#    Updated: 2018/02/01 21:32:25 by akokoshk         ###   ########.fr        #
+#    Updated: 2018/02/01 22:21:01 by akokoshk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,31 +14,30 @@
 
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
-NAME = fdf
-SOURCES = fdffunctions.c fdfmain.c fdfmakeres.c fdfperspective.c ft_brez.c \
-fdfkeyhooks.c fdfmakeimg.c fdfparser.c fdfrotation.c
-OBJFOLDER = sources
-OBJECTS = $(SOURCES:.c=.o)
+NAME = libftprintf.a
+SOURCES = sources
 LIBFOLDER = libft
+OBJECTS_PF = $(SOURCES)/*.o
+OBJECTS_LIB = $(LIBFOLDER)/*.o
 
 all: $(NAME)
 
-%.o : %.c
-	@$(CC) $(FLAGS) -o $@ -c $<
-
-$(NAME): $(OBJECTS)
+$(NAME):
 	@make -C $(LIBFOLDER)
-	@$(CC) $(FLAGS) $(OBJECTS) -L $(LIBFOLDER) -lft -o $(NAME)
-	@echo "ft_printf compiled"
+	@make -C $(SOURCES)
+	@ar rc $(NAME) $(OBJECTS_PF) $(OBJECTS_LIB)
+	@echo "libftprintf.a compiled"
 
 clean:
 	@rm -f $(OBJECTS)
 	@make clean -C $(LIBFOLDER)
+	@make clean -C $(SOURCES)
 	@echo "ft_printf cleaned"
 
 fclean: clean
 	@rm -f $(NAME)
 	@make fclean -C $(LIBFOLDER)
+	@make fclean -C $(SOURCES)
 	@echo "ft_printf fcleaned"
 
 re:	fclean all
