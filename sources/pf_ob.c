@@ -53,3 +53,14 @@ int			ftpf_o(t_print *pf)
 	write(1, pf->buf, pf->buf_len);
 	return (1);
 }
+
+int			ftpf_b(t_print *pf)
+{
+	uint64_t x;
+
+	x = va_arg(pf->arg, uint64_t);;
+	pf->buf = ft_utoa_base(pf, x, 2);
+	pf_process_cs(pf);
+	write(1, pf->buf, pf->buf_len);
+	return (1);
+}

@@ -33,7 +33,7 @@ typedef struct 	s_prnt
 	int8_t		fzero;
 	int8_t		fspace;
 	int8_t		fdot;
-	int8_t		f_ml_star;
+	//int8_t		f_ml_star;
 	int8_t		f_ps_star;
 	int8_t		f_ld;
 	int8_t		f_h;
@@ -68,13 +68,11 @@ int 			ftpf_set_ldflag(t_print *pf);
 int 			ftpf_set_jflag(t_print *pf);
 int 			ftpf_set_zflag(t_print *pf);
 
-
 int 			ftpf_process_minlen(t_print *pf, char *buf, int len, char fil);
 int				ftpf_process_precis(t_print *p, char *buf, int len);
 int				ftps_process_sign(t_print *pf);
 long			ft_abs(long x);
 int				ftpf_atoiskip(t_print *pf);
-
 
 int				ftpf_c(t_print *pf);
 int				ftpf_s(t_print *pf);
@@ -87,8 +85,8 @@ int				ftpf_x(t_print *pf);
 int				ftpf_p(t_print *pf);
 
 int				ftpf_o(t_print *pf);
+int				ftpf_b(t_print *pf);
 
-//int				ft_uni_to_chr(char *dst, uint32_t c);
 int				ftpf_uni_s(t_print *pf);
 int				ftpf_uni_c(t_print *pf);
 

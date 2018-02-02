@@ -29,4 +29,3 @@ int 		ftpf_set_zflag(t_print *pf)
 	pf->f_z = 1;
 	return (0);
 }
-

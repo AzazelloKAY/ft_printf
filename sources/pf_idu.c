@@ -18,10 +18,10 @@ static int		ft_getvarg_s(t_print *pf, char *sp, int64_t *prm)
 		*prm = va_arg(pf->arg, int64_t);
 	else if (pf->f_l > 0 || pf->f_ll > 0 || pf->f_ld > 0 || pf->f_z > 0 || pf->f_j > 0)
 		*prm = va_arg(pf->arg, int64_t);
-	else if (pf->f_h == 2)
-		*prm = va_arg(pf->arg, int8_t);
 	else if (pf->f_h == 1)
 		*prm = va_arg(pf->arg, int16_t);
+	else if (pf->f_hh == 1)
+		*prm = va_arg(pf->arg, int8_t);
 	else
 		*prm = va_arg(pf->arg, int32_t);
 	return (0);
@@ -41,7 +41,6 @@ static int		ft_getvarg_u(t_print *pf, char *sp, uint64_t *prm)
 		*(uint32_t*)prm = va_arg(pf->arg, uint32_t);
 	return (0);
 }
-
 
 static void		pf_process_idu(t_print *pf)
 {

@@ -25,8 +25,10 @@ uint32_t x = 945;
 //	ft_printf("\n%5b\n", L"жОпА");
 //	printf("\n%05b\n", L"жОпА");
 
-	ft_printf("\n% жжж\n");
-	printf("\n% жжж\n");
+	ft_printf("\n==%h+h+h+d\n", 0x1ff);
+	printf("\n>>%.*-*+*+d<\n", 2, 4, 5);
+	printf("\n\e[36m%lu\n", sizeof(uint64_t));
+
 
 //char *ff = "жы";
 //	write(1, ff, 4);
