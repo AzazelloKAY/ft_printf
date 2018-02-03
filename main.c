@@ -23,11 +23,17 @@ uint32_t x = 945;
 
 
 //	ft_printf("\n%5b\n", L"жОпА");
-//	printf("\n%05b\n", L"жОпА");
+	char *cc = NULL;
+	printf("123\e[m%s\n", ft_strjoin(cc, "asd"));
+	fflush(stdout);
 
-	ft_printf("\n==%h+h+h+d\n", 0x1ff);
-	printf("\n>>%.*-*+*+d<\n", 2, 4, 5);
-	printf("\n\e[36m%lu\n", sizeof(uint64_t));
+	t_colors n = e_blue;
+
+	//printf("n = %s\n", ft_joinfree("\\e[", ft_itoa(n), F_LAST));
+	ft_printf("a{black}a{red}a{green}a{orange}a{blue}s{purple}s{cyan}s{gay}s{white}sss%dzzz{{white}zzz", 54);
+//	ft_printf("\n>n = %d\n", n);
+	//printf("\n>>%*l5d<\n", -21, 23);
+//	printf("<\\e[36m  ffff  \033[31mx1B sdfsdfgds%lu\n", sizeof(uint64_t));
 
 
 //char *ff = "жы";

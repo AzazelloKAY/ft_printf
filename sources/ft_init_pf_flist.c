@@ -15,8 +15,7 @@ void		ft_reset_pf(t_print *pf)
 	pf->fzero = 0;
 	pf->fspace = 0;
 	pf->fdot = 0;
-	pf->f_ml_star = 0;
-	pf->f_ps_star = 0;
+	pf->f_t = 0;
 	pf->f_ld = 0;
 	pf->f_l = 0;
 	pf->f_h = 0;
@@ -40,6 +39,7 @@ static void		ft_flist_digit(t_print *pf)
 	pf->flist['L'] = ftpf_set_ldflag;
 	pf->flist['h'] = ftpf_set_hflag;
 	pf->flist['z'] = ftpf_set_zflag;
+	pf->flist['t'] = ftpf_set_tflag;
 	pf->flist['j'] = ftpf_set_jflag;
 	pf->flist['*'] = ftpf_set_starflag;
 	pf->flist['1'] = ftpf_parsenum;
@@ -72,6 +72,7 @@ static void		ft_init_flist(t_print *pf)
 	pf->flist['o'] = &ftpf_o;
 	pf->flist['O'] = &ftpf_o;
 	pf->flist['%'] = &ftpf_undefined;
+	pf->flist['n'] = &ftpf_n;
 	ft_flist_digit(pf);
 }
 
@@ -87,6 +88,7 @@ t_print		*ft_init_pf(const char *frm)
 	if (frm == NULL)
 		return (NULL);
 	pf->tfrm = frm;
+	pf->f_curcolor = e_def;
 	return (pf);
 }
 

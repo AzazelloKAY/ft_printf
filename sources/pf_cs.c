@@ -31,7 +31,8 @@ int			ftpf_c(t_print *pf)
 		pf->buf[0] = (va_arg(pf->arg, int32_t));
 		pf->buf_len = 1;
 		pf_process_cs(pf);
-		write(1, pf->buf, pf->buf_len);
+//		write(1, pf->buf, pf->buf_len);
+		pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
 	}
 	return (1);
 }
@@ -48,7 +49,8 @@ int			ftpf_s(t_print *pf)
 		pf->buf_len = ((pf->fdot == 1) ? pf->precis : (int)ft_strlen(s));
 		pf->buf = ft_strsub(s, 0, (size_t)pf->buf_len);
 		pf_process_cs(pf);
-		write(1, pf->buf, pf->buf_len);
+//		write(1, pf->buf, pf->buf_len);
+		pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
 	}
 	return (1);
 }
@@ -58,7 +60,8 @@ int		ftpf_undefined(t_print *pf)
 	pf->buf	= ft_strsub(pf->tfrm, 0, 1);
 	pf->buf_len = 1;
 	pf_process_cs(pf);
-	write(1, pf->buf, pf->buf_len);
+//	write(1, pf->buf, pf->buf_len);
+	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
 	return (1);
 }
 

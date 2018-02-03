@@ -12,12 +12,12 @@
 
 #include "../includes/ft_printf.h"
 
-static char			*ft_printbuf(t_print *pf, const char *start, const char *stop)
+char			*ft_catbuf(t_print *pf, const char *start, const char *stop) //change to concat woth res_line
 {
 	size_t len;
 
 	len = (stop - start);
-	write(1, start, len);
+	pf->res = ft_joinfree(pf->res, ft_strsub(start, 0, len), F_BOTH);
 	pf->res_len += len;
 	return ((char*)start + len);
 }
@@ -27,7 +27,7 @@ static char		*ft_parser(t_print *pf, char *frm)
 	int id;
 
 	ft_reset_pf(pf);
-	pf->tfrm = frm + 1;
+	pf->tfrm = ft_catbuf(pf, pf->tfrm, frm) + 1;
 	while (*pf->tfrm)
 	{
 		id = (ft_isprint(*pf->tfrm)
@@ -53,14 +53,17 @@ int				ft_printf(const char *frm, ...)
 	while (*frm)
 	{
 		if (*frm == '%')
-		{
-			ft_printbuf(pf, pf->tfrm, frm);
 			frm = ft_parser(pf, (char*)frm);
+		else if (*frm == '{')
+		{
+			pf->tfrm = ftpf_color(pf, frm);
+			frm = pf->tfrm + 1;
 		}
 		else
 			frm++;
 	}
-	ft_printbuf(pf, pf->tfrm, frm);
+	ft_catbuf(pf, pf->tfrm, frm);
+	write(1, pf->res, pf->res_len);
 	va_end(pf->initarg);
 	va_end(pf->arg);
 	return (pf->res_len);

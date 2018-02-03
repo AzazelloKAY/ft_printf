@@ -12,6 +12,16 @@
 
 #include "../includes/ft_printf.h"
 
+static int			ft_unilen(uint32_t *s)
+{
+	int len;
+
+	len = 0;
+	while (*s++ != 0)
+		len++;
+	return (len);
+}
+
 static uint32_t		pf_addmask(uint32_t x)
 {
 	if (x <= 0x7F)
@@ -22,16 +32,6 @@ static uint32_t		pf_addmask(uint32_t x)
 		return (((x & 0xF000) << 4) + ((x & 0xFC0) << 2) + (x & 0x3F) + 0xE08080);
 	else
 		return (((x & 0x1C0000) << 6) + ((x & 0x3F000) << 4) + ((x & 0xFC0) << 2) + (x & 0x3F) + 0xF0808080);
-}
-
-static int			ft_unilen(uint32_t *s)
-{
-	int len;
-
-	len = 0;
-	while (*s++ != 0)
-		len++;
-	return (len);
 }
 
 static int		ft_uni_to_chr(char *dst, uint32_t c)
@@ -65,7 +65,8 @@ int					ftpf_uni_c(t_print *pf)
 	pf->buf = ft_strnew(4);
 	pf->buf_len = ft_uni_to_chr(pf->buf, c);
 	pf_process_cs(pf);
-	write(1, pf->buf, pf->buf_len);
+//	write(1, pf->buf, pf->buf_len);
+	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
 	return (1);
 }
 
@@ -92,6 +93,7 @@ int				ftpf_uni_s(t_print *pf)
 		i++;
 	}
 	pf_process_cs(pf);
-	write(1, pf->buf, pf->buf_len);
+//	write(1, pf->buf, pf->buf_len);
+	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
 	return (1);
 }

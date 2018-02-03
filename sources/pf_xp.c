@@ -12,19 +12,19 @@
 
 #include "../includes/ft_printf.h"
 
-static void		ft_getvarg(t_print *pf, uint64_t *prm)
+static uint64_t		ft_getvarg(t_print *pf)
 {
-	if (pf->f_l > 0 || pf->f_ll > 0 || pf->f_ld > 0 || pf->f_z > 0 || pf->f_j > 0)
-		*prm = va_arg(pf->arg, uint64_t);
+	if (pf->f_l > 0 || pf->f_ll > 0 || pf->f_t > 0 || pf->f_z > 0 || pf->f_j > 0)
+		return (va_arg(pf->arg, uint64_t));
 	else if (pf->f_h == 1)
-		*prm = va_arg(pf->arg, uint16_t);
+		return (va_arg(pf->arg, uint16_t));
 	else if (pf->f_hh == 1)
-		*prm = va_arg(pf->arg, uint8_t);
+		return (va_arg(pf->arg, uint8_t));
 	else
-		*prm = va_arg(pf->arg, uint32_t);
+		return (va_arg(pf->arg, uint32_t));
 }
 
-static void		pf_process_x(t_print *pf)
+static void			pf_process_x(t_print *pf)
 {
 	int		i;
 	char	fil;
@@ -41,20 +41,20 @@ static void		pf_process_x(t_print *pf)
 			pf->buf[i] = ft_toupper(pf->buf[i]);
 }
 
-int				ftpf_x(t_print *pf)
+int					ftpf_x(t_print *pf)
 {
 	uint64_t x;
 
-	x = 0;
-	ft_getvarg(pf, &x);
+	x = ft_getvarg(pf);
 	pf->buf = ft_utoa_base(pf, x, 16);
 	((x == 0 && pf->fdot == 1 && pf->precis == 0) ? pf->buf[0] = 0 : 0);
 	pf_process_x(pf);
-	write(1, pf->buf, pf->buf_len);
+//	write(1, pf->buf, pf->buf_len);
+	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
 	return (1);
 }
 
-int				ftpf_p(t_print *pf)
+int					ftpf_p(t_print *pf)
 {
 	uint64_t x;
 
@@ -67,6 +67,7 @@ int				ftpf_p(t_print *pf)
 		pf->buf_len = 0;
 	}
 	pf_process_x(pf);
-	write(1, pf->buf, pf->buf_len);
+//	write(1, pf->buf, pf->buf_len);
+	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
 	return (1);
 }

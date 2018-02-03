@@ -11,6 +11,19 @@
 # define F_LAST 1
 # define F_BOTH 2
 
+typedef enum	e_colors {
+				e_def = 0,
+				e_white = 30,
+				e_red = 31,
+				e_green = 32,
+				e_orange = 33,
+				e_blue = 34,
+				e_purple = 35,
+				e_cyan = 36,
+				e_gray = 37,
+				e_black = 90,
+}				t_colors;
+
 typedef int		(*func_p)(void*); //0 - move forvard; 1 - time to stop ft_parser (spec parse) -1 - error
 
 typedef struct 	s_prnt
@@ -33,8 +46,6 @@ typedef struct 	s_prnt
 	int8_t		fzero;
 	int8_t		fspace;
 	int8_t		fdot;
-	//int8_t		f_ml_star;
-	int8_t		f_ps_star;
 	int8_t		f_ld;
 	int8_t		f_h;
 	int8_t		f_l;
@@ -42,7 +53,9 @@ typedef struct 	s_prnt
 	int8_t		f_ll;
 	int8_t		f_j;
 	int8_t		f_z;
+	int8_t		f_t;
 
+	t_colors	f_curcolor;
 
 	//char		spec;//в моей схеме не нужно т,к, сам символ будет вызывать ф-цию
 	va_list		arg;
@@ -51,22 +64,28 @@ typedef struct 	s_prnt
 }				t_print;
 
 int				ft_printf(const char *format, ...);
+char			*ft_catbuf(t_print *pf, const char *start, const char *stop);
+
 
 t_print			*ft_init_pf(const char *frm);
-int				ftpf_set_starflag(t_print *pf);
-int				ftpf_set_lflag(t_print *pf);
-int				ftpf_set_hflag(t_print *pf);
-int				ftpf_setdotflag(t_print *pf);
+void			ft_reset_pf(t_print *pf);
 
+int				ftpf_set_starflag(t_print *pf);
+int				ftpf_setdotflag(t_print *pf);
+int				ftpf_set_hflag(t_print *pf);
+int				ftpf_set_lflag(t_print *pf);
 int				ftpf_parsenum(t_print *pf);
+
 int 			ftpf_set_minusflag(t_print *pf);
 int 			ftpf_set_plusflag(t_print *pf);
 int 			ftpf_set_zeroflag(t_print *pf);
 int 			ftpf_set_hashflag(t_print *pf);
 int 			ftpf_set_spaceflag(t_print *pf);
+
 int 			ftpf_set_ldflag(t_print *pf);
 int 			ftpf_set_jflag(t_print *pf);
 int 			ftpf_set_zflag(t_print *pf);
+int				ftpf_set_tflag(t_print *pf);
 
 int 			ftpf_process_minlen(t_print *pf, char *buf, int len, char fil);
 int				ftpf_process_precis(t_print *p, char *buf, int len);
@@ -74,9 +93,10 @@ int				ftps_process_sign(t_print *pf);
 long			ft_abs(long x);
 int				ftpf_atoiskip(t_print *pf);
 
+void			pf_process_cs(t_print *pf);
 int				ftpf_c(t_print *pf);
 int				ftpf_s(t_print *pf);
-void			pf_process_cs(t_print *pf);
+int				ftpf_undefined(t_print *pf);
 
 int				ftpf_id(t_print *pf);
 int				ftpf_u(t_print *pf);
@@ -90,9 +110,8 @@ int				ftpf_b(t_print *pf);
 int				ftpf_uni_s(t_print *pf);
 int				ftpf_uni_c(t_print *pf);
 
-int				ftpf_undefined(t_print *pf);
-
-void			ft_reset_pf(t_print *pf);
+int				ftpf_n(t_print *pf);
+char			*ftpf_color(t_print *pf, char *s);
 
 char			*ft_joinfree(char const *s1, char const *s2, int flag);
 
