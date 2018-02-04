@@ -12,12 +12,16 @@
 
 #include "../includes/ft_printf.h"
 
+#include <stdio.h>//*******************
+
 char			*ft_catbuf(t_print *pf, const char *start, const char *stop) //change to concat woth res_line
 {
 	size_t len;
 
 	len = (stop - start);
-	pf->res = ft_joinfree(pf->res, ft_strsub(start, 0, len), F_BOTH);
+	//заменить на мемсопи
+	//pf->res = ft_joinfree(pf->res, ft_strsub(start, 0, len), F_BOTH);
+	pf->res = ft_strmemcat(pf->res, ft_strsub(start, 0, len), pf->res_len, len);
 	pf->res_len += len;
 	return ((char*)start + len);
 }

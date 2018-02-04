@@ -40,7 +40,7 @@ static int		ft_uni_to_chr(char *dst, uint32_t c)
 	int 		i;
 	int 		res;
 
-	c = pf_addmask(c);
+	//c = pf_addmask(c);
 	t = &c;
 	i = 3;
 	res = 0;
@@ -61,12 +61,17 @@ int					ftpf_uni_c(t_print *pf)
 {
 	uint32_t c;
 
+	ftpf_skipvarg(pf);
 	c = va_arg(pf->arg, uint32_t);
 	pf->buf = ft_strnew(4);
+	if (MB_CUR_MAX == 4)
+		c = pf_addmask(c);
+	else if (MB_CUR_MAX != 4 && c > 255)
+		return (-1);
 	pf->buf_len = ft_uni_to_chr(pf->buf, c);
 	pf_process_cs(pf);
-//	write(1, pf->buf, pf->buf_len);
 	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
+	pf->res_len += pf->buf_len;
 	return (1);
 }
 
@@ -77,13 +82,14 @@ int				ftpf_uni_s(t_print *pf)
 	int 		ustrlen;
 	int			ucharlen;
 
+	ftpf_skipvarg(pf);
 	s = va_arg(pf->arg, uint32_t*);
 	ustrlen = ft_unilen(s);
 	pf->buf = ft_strnew(ustrlen * 4);
 	i = 0;
 	while (i < ustrlen)
 	{
-		ucharlen = ft_uni_to_chr(&(pf->buf[pf->buf_len]), s[i]);
+		ucharlen = ft_uni_to_chr(&(pf->buf[pf->buf_len]), pf_addmask(s[i]));
 		if (pf->fdot == 1 && (pf->buf_len + ucharlen) > pf->precis)
 		{
 			pf->buf[pf->buf_len] = 0;
@@ -93,7 +99,7 @@ int				ftpf_uni_s(t_print *pf)
 		i++;
 	}
 	pf_process_cs(pf);
-//	write(1, pf->buf, pf->buf_len);
 	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
+	pf->res_len += pf->buf_len;
 	return (1);
 }

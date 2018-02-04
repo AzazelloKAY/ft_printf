@@ -14,6 +14,7 @@
 
 static int64_t		ft_getvarg_s(t_print *pf)
 {
+	ftpf_skipvarg(pf);
 	if (*pf->tfrm == 'D' || pf->f_z > 0 || pf->f_j > 0)
 		return (va_arg(pf->arg, int64_t));
 	else if (pf->f_l > 0 || pf->f_ll > 0 || pf->f_t > 0)
@@ -28,6 +29,7 @@ static int64_t		ft_getvarg_s(t_print *pf)
 
 static uint64_t		ft_getvarg_u(t_print *pf)
 {
+	ftpf_skipvarg(pf);
 	if (*pf->tfrm =='U' || pf->f_z > 0 || pf->f_j > 0)
 		return (va_arg(pf->arg, uint64_t));
 	else if (pf->f_l > 0 || pf->f_ll > 0 || pf->f_t > 0)
@@ -62,7 +64,6 @@ int				ftpf_id(t_print *pf)
 	pf->buf = ft_stoa_base(pf, x, 10);
 	((x == 0 && pf->fdot == 1 && pf->precis == 0) ? pf->buf[0] = 0 : 0);
 	pf_process_idu(pf);
-	//write(1, pf->buf, pf->buf_len);
 	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
 	return (1);
 }
@@ -75,7 +76,6 @@ int				ftpf_u(t_print *pf)
 	pf->buf = ft_utoa_base(pf, x, 10);
 	((x == 0 && pf->fdot == 1 && pf->precis == 0) ? pf->buf[0] = 0 : 0);
 	pf_process_idu(pf);
-	//write(1, pf->buf, pf->buf_len);
 	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
 	return (1);
 }

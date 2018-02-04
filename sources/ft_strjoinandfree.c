@@ -30,3 +30,23 @@ char	*ft_joinfree(char const *s1, char const *s2, int flag)
 		ft_memdel(&s2);
 	return (res);
 }
+
+char 	*ft_resconcatbuf(t_print *pf)
+{
+	char	*res;
+
+	res = ft_strmemcat(pf->res, pf->buf, pf->res_len, pf->buf_len);
+	return (res);
+}
+
+char 	*ft_strmemcat(char *s1, char *s2, int s1len, int s2len)
+{
+	char	*res;
+
+	res = ft_strnew(s1len + s2len);
+	ft_memcpy(res, s1, s1len);
+	ft_memcpy(&res[s1len], s2, s2len);
+	ft_strdel(&s1);
+	ft_strdel(&s2);
+	return (res);
+}

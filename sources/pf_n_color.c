@@ -8,6 +8,7 @@ int				ftpf_n(t_print *pf)
 {
 	void *x;
 
+	ftpf_skipvarg(pf);
 	x = va_arg(pf->arg, void*);
 	if (pf->f_t > 0 || pf->f_z > 0 || pf->f_j > 0)
 		*(int64_t*)x = pf->res_len;

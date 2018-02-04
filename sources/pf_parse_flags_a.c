@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_parse_flags.c                                   :+:      :+:    :+:   */
+/*   pf_parse_flags_a.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akokoshk <akokoshk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,7 +14,17 @@
 
 int			ftpf_parsenum(t_print *pf)
 {
-	pf->minlen = ftpf_atoiskip(pf);
+	int num;
+
+	num = ftpf_atoiskip(pf);
+	pf->f_baks = (*(pf->tfrm + 1) == '$') ? 1 : 0;
+	if (pf->f_baks == 1)
+	{
+		pf->argnum = num;
+		pf->tfrm++;
+	}
+	else
+		pf->minlen = num;
 	return (0);
 }
 

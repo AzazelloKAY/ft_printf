@@ -23,8 +23,11 @@ void		ft_reset_pf(t_print *pf)
 	pf->f_ll = 0;
 	pf->f_j = 0;
 	pf->f_z = 0;
+	pf->f_baks = 0;
+	pf->argnum = 0;
 	pf->sign = "+";
-	ft_strdel(&pf->buf);
+//	ft_strdel(&pf->buf);
+	pf->buf == NULL; //????????????????????????? я фришу в конце каждой обработки джоинфри
 }
 
 static void		ft_flist_digit(t_print *pf)
@@ -56,7 +59,6 @@ static void		ft_flist_digit(t_print *pf)
 static void		ft_init_flist(t_print *pf)
 {
 	pf->flist[0] = &ftpf_undefined;
-	pf->flist['b'] = &ftpf_b;
 	pf->flist['c'] = &ftpf_c;
 	pf->flist['C'] = &ftpf_uni_c;
 	pf->flist['s'] = &ftpf_s;
@@ -72,7 +74,9 @@ static void		ft_init_flist(t_print *pf)
 	pf->flist['o'] = &ftpf_o;
 	pf->flist['O'] = &ftpf_o;
 	pf->flist['%'] = &ftpf_undefined;
+	pf->flist['b'] = &ftpf_b;
 	pf->flist['n'] = &ftpf_n;
+	pf->flist['f'] = &ftpf_f;
 	ft_flist_digit(pf);
 }
 

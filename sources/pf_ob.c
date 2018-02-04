@@ -14,6 +14,7 @@
 
 static uint64_t		ft_getvarg(t_print *pf)
 {
+	ftpf_skipvarg(pf);
 	if (*pf->tfrm == 'O' || pf->f_z > 0 || pf->f_j > 0)
 		return (va_arg(pf->arg, uint64_t));
 	else if (pf->f_l > 0 || pf->f_ll > 0 || pf->f_t > 0)
@@ -47,7 +48,6 @@ int					ftpf_o(t_print *pf)
 	pf->buf = ft_utoa_base(pf, x, 8);
 	((x == 0 && pf->fdot == 1 && pf->precis == 0) ? pf->buf[0] = 0 : 0);
 	pf_process_o(pf);
-//	write(1, pf->buf, pf->buf_len);
 	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
 	return (1);
 }
@@ -56,10 +56,10 @@ int				ftpf_b(t_print *pf)
 {
 	uint64_t x;
 
+	ftpf_skipvarg(pf);
 	x = va_arg(pf->arg, uint64_t);;
 	pf->buf = ft_utoa_base(pf, x, 2);
 	pf_process_cs(pf);
-//	write(1, pf->buf, pf->buf_len);
 	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
 	return (1);
 }
