@@ -70,7 +70,8 @@ int					ftpf_uni_c(t_print *pf)
 		return (-1);
 	pf->buf_len = ft_uni_to_chr(pf->buf, c);
 	pf_process_cs(pf);
-	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
+//	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
+	pf->res = ft_concatresbuf(pf);
 	pf->res_len += pf->buf_len;
 	return (1);
 }
@@ -99,7 +100,8 @@ int				ftpf_uni_s(t_print *pf)
 		i++;
 	}
 	pf_process_cs(pf);
-	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
+//	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
+	pf->res = ft_concatresbuf(pf);
 	pf->res_len += pf->buf_len;
 	return (1);
 }

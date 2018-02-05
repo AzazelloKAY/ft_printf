@@ -6,12 +6,64 @@
 //	fflush(stdout);
 
 
+typedef struct bitfield
+{
+	unsigned x1:1;
+	unsigned x2:30;
+	unsigned sign:1;
+
+}				bbfield;
+
+typedef struct s_long_d
+{
+	unsigned long	man	: 64;
+	unsigned long	exp	: 63;
+	unsigned 		sign	: 1;
+
+}				t_long_d;
+
+typedef union	u_bfild
+{
+	long double	x;
+	t_long_d	f;
+}				t_bfild;
+
+
+/*
+ * 	u_type test;
+	test.x = -1;
+	test.y.sign = 0;
+	printf("==%d\n\n", test.x);
+ * */
 
 int main()
 {
 	setlocale(LC_ALL,"");
 
 //	ft_putstr("asdasdgfsdg#$%$^$&$&^*546867sd\n");
+	long double l;
+	t_bfild test;
+	test.x = -1111111111111111111111111111111111111111111.0L;
+	printf(">sign>%d\n", test.f.sign);
+	printf(">>%ld\n", test.f.exp);
+	printf(">>%Lf\n", test.x);
+
+
+	int a = 0;
+	int b = -1;
+	while (a < b)
+	{
+		printf("\nAAAAq%ld\n", 9223372036854775807);
+		a++;
+	}
+	printf("\nddd");
+
+//u_type test;
+//test.x = 2;
+//test.y.sign = 0;
+//printf("==%d\n\n", test.x);
+
+
 
 uint32_t x = 945;
 
@@ -22,9 +74,9 @@ uint32_t x = 945;
 //		printf("XYIIIII");
 
 	char *c = 0;
-	printf(">%5.2caa<\n", c);
+	printf(">%7.8s<<<\n", c);
 	fflush(stdout);
-	ft_printf(">%5.2caa<\n", c);
+	ft_printf("_%7.8s<<<\n", c);
 
 
 	//***************************************************

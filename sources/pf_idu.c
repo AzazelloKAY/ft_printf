@@ -52,7 +52,7 @@ static void			pf_process_idu(t_print *pf)
 		ftps_process_sign(pf);
 	fil = (pf->fmnus == 0 && pf->fdot == 0 && pf->fzero == 1) ? '0' : ' ';
 	ftpf_process_minlen(pf, pf->buf, pf->buf_len, fil);
-	pf->res_len += pf->buf_len;
+//	pf->res_len += pf->buf_len;
 }
 
 int				ftpf_id(t_print *pf)
@@ -64,7 +64,9 @@ int				ftpf_id(t_print *pf)
 	pf->buf = ft_stoa_base(pf, x, 10);
 	((x == 0 && pf->fdot == 1 && pf->precis == 0) ? pf->buf[0] = 0 : 0);
 	pf_process_idu(pf);
-	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
+//	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
+	pf->res = ft_concatresbuf(pf);
+	pf->res_len += pf->buf_len;
 	return (1);
 }
 
@@ -76,6 +78,8 @@ int				ftpf_u(t_print *pf)
 	pf->buf = ft_utoa_base(pf, x, 10);
 	((x == 0 && pf->fdot == 1 && pf->precis == 0) ? pf->buf[0] = 0 : 0);
 	pf_process_idu(pf);
-	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
+//	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
+	pf->res = ft_concatresbuf(pf);
+	pf->res_len += pf->buf_len;
 	return (1);
 }

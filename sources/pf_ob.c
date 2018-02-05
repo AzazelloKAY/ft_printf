@@ -37,7 +37,7 @@ static void			pf_process_o(t_print *pf)
 	ftpf_process_precis(pf, pf->buf, pf->buf_len);
 	fil = (pf->fmnus == 0 && pf->fdot == 0 && pf->fzero == 1) ? '0' : ' ';
 	ftpf_process_minlen(pf, pf->buf, pf->buf_len, fil);
-	pf->res_len += pf->buf_len;
+//	pf->res_len += pf->buf_len;
 }
 
 int					ftpf_o(t_print *pf)
@@ -48,7 +48,9 @@ int					ftpf_o(t_print *pf)
 	pf->buf = ft_utoa_base(pf, x, 8);
 	((x == 0 && pf->fdot == 1 && pf->precis == 0) ? pf->buf[0] = 0 : 0);
 	pf_process_o(pf);
-	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
+//	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
+	pf->res = ft_concatresbuf(pf);
+	pf->res_len += pf->buf_len;
 	return (1);
 }
 
@@ -60,6 +62,8 @@ int				ftpf_b(t_print *pf)
 	x = va_arg(pf->arg, uint64_t);;
 	pf->buf = ft_utoa_base(pf, x, 2);
 	pf_process_cs(pf);
-	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
+//	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
+	pf->res = ft_concatresbuf(pf);
+	pf->res_len += pf->buf_len;
 	return (1);
 }

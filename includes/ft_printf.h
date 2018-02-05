@@ -173,7 +173,7 @@ int				ftpf_f(t_print *pf);
 */
 
 char			*ft_joinfree(char const *s1, char const *s2, int flag);
-char 			*ft_resconcatbuf(t_print *pf);
+char 			*ft_concatresbuf(t_print *pf);
 char 			*ft_strmemcat(char *s1, char *s2, int s1len, int s2len);
 
 /*

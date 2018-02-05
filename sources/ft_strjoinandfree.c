@@ -31,7 +31,7 @@ char	*ft_joinfree(char const *s1, char const *s2, int flag)
 	return (res);
 }
 
-char 	*ft_resconcatbuf(t_print *pf)
+char 	*ft_concatresbuf(t_print *pf)
 {
 	char	*res;
 
