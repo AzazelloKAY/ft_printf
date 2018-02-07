@@ -41,7 +41,7 @@ static int		ft_uni_to_chr(char *dst, uint32_t c)
 	int 		res;
 
 	//c = pf_addmask(c);
-	t = &c;
+	t = (uint8_t*)&c;
 	i = 3;
 	res = 0;
 	while (i >= 0)

@@ -16,8 +16,8 @@ typedef struct bitfield
 
 typedef struct s_long_d
 {
-	unsigned long	man	: 64;
-	unsigned long	exp	: 63;
+	unsigned long	man		: 64;
+	unsigned long	exp		: 15;
 	unsigned 		sign	: 1;
 
 }				t_long_d;
@@ -38,25 +38,37 @@ typedef union	u_bfild
 
 int main()
 {
-	setlocale(LC_ALL,"");
+	//setlocale(LC_ALL,"");
+	setlocale(LC_NUMERIC,"");
 
 //	ft_putstr("asdasdgfsdg#$%$^$&$&^*546867sd\n");
+
+
+	int ff = 200000000;
+	printf("~~%'d<\n\n", ff);
+
 	long double l;
 	t_bfild test;
-	test.x = -1111111111111111111111111111111111111111111.0L;
-	printf(">sign>%d\n", test.f.sign);
-	printf(">>%ld\n", test.f.exp);
-	printf(">>%Lf\n", test.x);
+	l = 1;
+	test.x = l;
 
+	printf(">>%L.10f<\n", test.x);
+	ft_printf("sign = %b exp = %b man = %b\n", test.f.sign, test.f.exp, test.f.man);
+	test.x /= 1;
+	printf(">>%.10Lf<\n", test.x);
 
-	int a = 0;
-	int b = -1;
-	while (a < b)
+	ff = 0;
+//	while (ff < 25)
 	{
-		printf("\nAAAAq%ld\n", 9223372036854775807);
-		a++;
+		ft_printf("sign = %b exp = %b man = %b\n", test.f.sign, test.f.exp, test.f.man);
+		fflush(stdout);
+		test.x /= 2;
+		ff++;
 	}
-	printf("\nddd");
+
+	//ft_printf("sign = %b exp = %d man = %ld\n",test.f.sign, test.f.exp, test.f.man );
+
+
 
 //u_type test;
 //test.x = 2;

@@ -32,12 +32,12 @@ clean:
 	@rm -f $(OBJECTS)
 	@make clean -C $(LIBFOLDER)
 	@make clean -C $(SOURCES)
-	@echo "ft_printf cleaned"
+	@echo "all cleaned"
 
 fclean: clean
 	@rm -f $(NAME)
 	@make fclean -C $(LIBFOLDER)
 	@make fclean -C $(SOURCES)
-	@echo "ft_printf fcleaned"
+	@echo "all fcleaned"
 
 re:	fclean all

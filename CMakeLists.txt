@@ -20,7 +20,7 @@ set(SOURCE_FILES
         sources/ft_printf.c includes/ft_printf.h sources/pf_cs.c sources/ft_itoabase.c
         sources/pf_parse_flags_a.c sources/pf_parse_flags_b.c sources/pf_parse_flags_c.c
         sources/ft_strjoinandfree.c sources/ft_init_pf_flist.c sources/pf_idu.c
-        sources/pf_xp.c sources/pf_ob.c sources/pf_uni.c sources/pf_process_func.c sources/pf_n_color.c sources/pf_f.c sources/pf_parse_flags_d.c) # sources
+        sources/pf_xp.c sources/pf_ob.c sources/pf_uni.c sources/pf_process_func.c sources/pf_n_color.c sources/pf_f.c) # sources
 add_executable(ft_printf ${SOURCE_FILES}) # compilation
 target_link_libraries(ft_printf -lft) # linkage
 target_link_libraries(ft_printf ${CMAKE_SOURCE_DIR}/libft/libft.a)

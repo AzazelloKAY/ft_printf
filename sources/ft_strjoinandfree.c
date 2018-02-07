@@ -25,9 +25,9 @@ char	*ft_joinfree(char const *s1, char const *s2, int flag)
 
 	res = ft_strjoin(s1, s2);
 	if (flag == 0 || flag == 2)
-		ft_memdel(&s1);
+		ft_memdel((void**)&s1);
 	if (flag == 1 || flag == 2)
-		ft_memdel(&s2);
+		ft_memdel((void**)&s2);
 	return (res);
 }
 

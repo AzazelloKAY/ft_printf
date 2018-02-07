@@ -20,9 +20,9 @@ static uint64_t		ft_getvarg(t_print *pf)
 	else if (pf->f_l > 0 || pf->f_ll > 0 || pf->f_t > 0)
 		return (va_arg(pf->arg, uint64_t));
 	else if (pf->f_h == 1)
-		return (va_arg(pf->arg, uint16_t));
+		return ((uint16_t)va_arg(pf->arg, void*));
 	else if (pf->f_hh == 1)
-		return (va_arg(pf->arg, uint8_t));
+		return ((uint8_t)va_arg(pf->arg, void*));
 	else
 		return (va_arg(pf->arg, uint32_t));
 }

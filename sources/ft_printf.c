@@ -34,8 +34,7 @@ static char		*ft_parser(t_print *pf, char *frm)
 	pf->tfrm = ft_catbuf(pf, pf->tfrm, frm) + 1;
 	while (*pf->tfrm)
 	{
-		id = (ft_isprint(*pf->tfrm)
-			  && (pf->flist[*pf->tfrm] != NULL)) ? *pf->tfrm : 0;
+		id = (ft_isprint(*pf->tfrm) && (pf->flist[(int)*pf->tfrm] != NULL)) ? *pf->tfrm : 0;
 		if (pf->flist[id](pf))
 		{
 			pf->tfrm++;
@@ -60,7 +59,7 @@ int				ft_printf(const char *frm, ...)
 			frm = ft_parser(pf, (char*)frm);
 		else if (*frm == '{')
 		{
-			pf->tfrm = ftpf_color(pf, frm);
+			pf->tfrm = ftpf_color(pf, (char*)frm);
 			frm = pf->tfrm + 1;
 		}
 		else

@@ -27,56 +27,56 @@ void		ft_reset_pf(t_print *pf)
 	pf->argnum = 0;
 	pf->sign = "+";
 //	ft_strdel(&pf->buf);
-	pf->buf == NULL; //????????????????????????? я фришу в конце каждой обработки джоинфри
+	pf->buf = NULL; //????????????????????????? я фришу в конце каждой обработки джоинфри
 }
 
 static void		ft_flist_digit(t_print *pf)
 {
-	pf->flist['-'] = ftpf_set_minusflag;
-	pf->flist['+'] = ftpf_set_plusflag;
-	pf->flist['#'] = ftpf_set_hashflag;
-	pf->flist['0'] = ftpf_set_zeroflag;
-	pf->flist[' '] = ftpf_set_spaceflag;
-	pf->flist['.'] = ftpf_setdotflag;
-	pf->flist['l'] = ftpf_set_lflag;
-	pf->flist['L'] = ftpf_set_ldflag;
-	pf->flist['h'] = ftpf_set_hflag;
-	pf->flist['z'] = ftpf_set_zflag;
-	pf->flist['t'] = ftpf_set_tflag;
-	pf->flist['j'] = ftpf_set_jflag;
-	pf->flist['*'] = ftpf_set_starflag;
-	pf->flist['1'] = ftpf_parsenum;
-	pf->flist['2'] = ftpf_parsenum;
-	pf->flist['3'] = ftpf_parsenum;
-	pf->flist['4'] = ftpf_parsenum;
-	pf->flist['5'] = ftpf_parsenum;
-	pf->flist['6'] = ftpf_parsenum;
-	pf->flist['7'] = ftpf_parsenum;
-	pf->flist['8'] = ftpf_parsenum;
-	pf->flist['9'] = ftpf_parsenum;
+	pf->flist['-'] = (void*)ftpf_set_minusflag;
+	pf->flist['+'] = (void*)ftpf_set_plusflag;
+	pf->flist['#'] = (void*)ftpf_set_hashflag;
+	pf->flist['0'] = (void*)ftpf_set_zeroflag;
+	pf->flist[' '] = (void*)ftpf_set_spaceflag;
+	pf->flist['.'] = (void*)ftpf_setdotflag;
+	pf->flist['l'] = (void*)ftpf_set_lflag;
+	pf->flist['L'] = (void*)ftpf_set_ldflag;
+	pf->flist['h'] = (void*)ftpf_set_hflag;
+	pf->flist['z'] = (void*)ftpf_set_zflag;
+	pf->flist['t'] = (void*)ftpf_set_tflag;
+	pf->flist['j'] = (void*)ftpf_set_jflag;
+	pf->flist['*'] = (void*)ftpf_set_starflag;
+	pf->flist['1'] = (void*)ftpf_parsenum;
+	pf->flist['2'] = (void*)ftpf_parsenum;
+	pf->flist['3'] = (void*)ftpf_parsenum;
+	pf->flist['4'] = (void*)ftpf_parsenum;
+	pf->flist['5'] = (void*)ftpf_parsenum;
+	pf->flist['6'] = (void*)ftpf_parsenum;
+	pf->flist['7'] = (void*)ftpf_parsenum;
+	pf->flist['8'] = (void*)ftpf_parsenum;
+	pf->flist['9'] = (void*)ftpf_parsenum;
 }
 
 static void		ft_init_flist(t_print *pf)
 {
-	pf->flist[0] = &ftpf_undefined;
-	pf->flist['c'] = &ftpf_c;
-	pf->flist['C'] = &ftpf_uni_c;
-	pf->flist['s'] = &ftpf_s;
-	pf->flist['S'] = &ftpf_uni_s;
-	pf->flist['i'] = &ftpf_id;
-	pf->flist['d'] = &ftpf_id;
-	pf->flist['D'] = &ftpf_id;
-	pf->flist['u'] = &ftpf_u;
-	pf->flist['U'] = &ftpf_u;
-	pf->flist['p'] = &ftpf_p;
-	pf->flist['x'] = &ftpf_x;
-	pf->flist['X'] = &ftpf_x;
-	pf->flist['o'] = &ftpf_o;
-	pf->flist['O'] = &ftpf_o;
-	pf->flist['%'] = &ftpf_undefined;
-	pf->flist['b'] = &ftpf_b;
-	pf->flist['n'] = &ftpf_n;
-	pf->flist['f'] = &ftpf_f;
+	pf->flist[0] = (void*)ftpf_undefined;
+	pf->flist['c'] = (void*)ftpf_c;
+	pf->flist['C'] = (void*)ftpf_uni_c;
+	pf->flist['s'] = (void*)ftpf_s;
+	pf->flist['S'] = (void*)ftpf_uni_s;
+	pf->flist['i'] = (void*)ftpf_id;
+	pf->flist['d'] = (void*)ftpf_id;
+	pf->flist['D'] = (void*)ftpf_id;
+	pf->flist['u'] = (void*)ftpf_u;
+	pf->flist['U'] = (void*)ftpf_u;
+	pf->flist['p'] = (void*)ftpf_p;
+	pf->flist['x'] = (void*)ftpf_x;
+	pf->flist['X'] = (void*)ftpf_x;
+	pf->flist['o'] = (void*)ftpf_o;
+	pf->flist['O'] = (void*)ftpf_o;
+	pf->flist['%'] = (void*)ftpf_undefined;
+	pf->flist['b'] = (void*)ftpf_b;
+	pf->flist['n'] = (void*)ftpf_n;
+	pf->flist['f'] = (void*)ftpf_f;
 	ft_flist_digit(pf);
 }
 
@@ -91,7 +91,7 @@ t_print		*ft_init_pf(const char *frm)
 	ft_init_flist(pf);
 	if (frm == NULL)
 		return (NULL);
-	pf->tfrm = frm;
+	pf->tfrm = (char*)frm;
 	pf->f_curcolor = e_def;
 	return (pf);
 }
