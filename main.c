@@ -6,28 +6,6 @@
 //	fflush(stdout);
 
 
-typedef struct bitfield
-{
-	unsigned x1:1;
-	unsigned x2:30;
-	unsigned sign:1;
-
-}				bbfield;
-
-typedef struct s_long_d
-{
-	unsigned long	man		: 64;
-	unsigned long	exp		: 15;
-	unsigned 		sign	: 1;
-
-}				t_long_d;
-
-typedef union	u_bfild
-{
-	long double	x;
-	t_long_d	f;
-}				t_bfild;
-
 
 /*
  * 	u_type test;
@@ -38,33 +16,45 @@ typedef union	u_bfild
 
 int main()
 {
-	//setlocale(LC_ALL,"");
-	setlocale(LC_NUMERIC,"");
+	setlocale(LC_ALL,"");
+	//setlocale(LC_NUMERIC,"");
 
 //	ft_putstr("asdasdgfsdg#$%$^$&$&^*546867sd\n");
 
 
-	int ff = 200000000;
-	printf("~~%'d<\n\n", ff);
+//	int ff = 200;
+//	ft_printf("%1$d====\n%1$5'd<\n\n", ff);
 
-	long double l;
-	t_bfild test;
-	l = 1;
-	test.x = l;
+//	long double l;
+//	u_ldoublebfild test;
+//	l = -222270.9578;
+//	test.x = l;
+//	printf(">=>%'Lf<\n", test.x);
+//	fflush(stdout);
 
-	printf(">>%L.10f<\n", test.x);
-	ft_printf("sign = %b exp = %b man = %b\n", test.f.sign, test.f.exp, test.f.man);
-	test.x /= 1;
-	printf(">>%.10Lf<\n", test.x);
+	u_doublebfild d;
+//	d.x = 1.9;
+//	printf(">====>%f(S=%d E=%ld M=%ld)<\n", d.x, d.f.sign, d.f.exp, d.f.man);
+//	fflush(stdout);
+//	ft_printf("sign = %b exp = %b man = %b\n", d.f.sign, d.f.exp, d.f.man);
 
-	ff = 0;
-//	while (ff < 25)
-	{
-		ft_printf("sign = %b exp = %b man = %b\n", test.f.sign, test.f.exp, test.f.man);
-		fflush(stdout);
-		test.x /= 2;
-		ff++;
-	}
+	d.x = 99.9999;
+	printf(">====>%f(S=%d E=%ld M=%ld)<\n", d.x, d.f.sign, d.f.exp, d.f.man);
+	fflush(stdout);
+	ft_printf("sign = %b exp = %b man = %b\n", d.f.sign, d.f.exp, d.f.man);
+
+	ft_printf("##MY## >>>%.4'f<\n", d.x);
+//	test.x /= 1;
+//	printf(">>%.10Lf<\n", test.x);
+//
+//	ff = 0;
+// //	while (ff < 25)
+//	{
+//		ft_printf("sign = %b exp = %b man = %b\n", test.f.sign, test.f.exp, test.f.man);
+//		fflush(stdout);
+//		test.x /= 2;
+//		ff++;
+//	}
 
 	//ft_printf("sign = %b exp = %d man = %ld\n",test.f.sign, test.f.exp, test.f.man );
 
@@ -76,19 +66,19 @@ int main()
 //printf("==%d\n\n", test.x);
 
 
-
-uint32_t x = 945;
-
-
+//
+//uint32_t x = 945;
+//
+//
 //	if (MB_CUR_MAX == 1)
 //		printf("aaaaaa\n");
 //	else if (MB_CUR_MAX == 4)
 //		printf("XYIIIII");
-
-	char *c = 0;
-	printf(">%7.8s<<<\n", c);
-	fflush(stdout);
-	ft_printf("_%7.8s<<<\n", c);
+//
+//	char *c = 0;
+//	printf(">%7.8s<<<\n", c);
+//	fflush(stdout);
+//	ft_printf("_%7.8s<<<\n", c);
 
 
 	//***************************************************

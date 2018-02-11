@@ -76,3 +76,24 @@ char			*ftpf_color(t_print *pf, char *s)
 		s++;
 	return (s + 1);
 }
+
+#include <stdio.h>
+
+void 			pf_fquote(t_print *pf)
+{
+	char *res;
+
+	if (pf->fquote == 0 || pf->buf_len / 3 == 0)
+		return ;
+	res = ft_strnew(0);
+	while ((pf->buf_len -= 3) > 0)
+	{
+		res = ft_joinfree(ft_strsub(pf->buf, pf->buf_len, 3), res, F_LAST);
+		res = ft_joinfree(",", res, F_LAST);
+	}
+
+	res = ft_joinfree(ft_strsub(pf->buf, 0, pf->buf_len + 3), res, F_BOTH);
+	ft_strdel(&pf->buf);
+	pf->buf = res;
+	pf->buf_len = ft_strlen(pf->buf);
+}

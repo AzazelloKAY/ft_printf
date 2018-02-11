@@ -17,9 +17,9 @@ int			ftpf_parsenum(t_print *pf)
 	int num;
 
 	num = ftpf_atoiskip(pf);
-	pf->f_baks = (*(pf->tfrm + 1) == '$') ? 1 : 0;
-	if (pf->f_baks == 1)
+	if (*(pf->tfrm + 1) == '$')
 	{
+		pf->f_baks = 1;
 		pf->argnum = num;
 		pf->tfrm++;
 	}

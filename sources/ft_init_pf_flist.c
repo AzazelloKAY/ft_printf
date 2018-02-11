@@ -7,6 +7,7 @@
 void		ft_reset_pf(t_print *pf)
 {
 	pf->buf_len = 0;
+	pf->buf_flen = 0;
 	pf->minlen = 0;
 	pf->precis = 0;
 	pf->fplus = 0;
@@ -15,6 +16,7 @@ void		ft_reset_pf(t_print *pf)
 	pf->fzero = 0;
 	pf->fspace = 0;
 	pf->fdot = 0;
+	pf->fquote = 0;
 	pf->f_t = 0;
 	pf->f_ld = 0;
 	pf->f_l = 0;
@@ -45,6 +47,7 @@ static void		ft_flist_digit(t_print *pf)
 	pf->flist['t'] = (void*)ftpf_set_tflag;
 	pf->flist['j'] = (void*)ftpf_set_jflag;
 	pf->flist['*'] = (void*)ftpf_set_starflag;
+	pf->flist['\''] = (void*)ftpf_set_fquote;
 	pf->flist['1'] = (void*)ftpf_parsenum;
 	pf->flist['2'] = (void*)ftpf_parsenum;
 	pf->flist['3'] = (void*)ftpf_parsenum;

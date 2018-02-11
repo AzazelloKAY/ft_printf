@@ -12,6 +12,20 @@
 
 #include "../includes/ft_printf.h"
 
+
+static void			pf_process_idu(t_print *pf)
+{
+	char	fil;
+
+	pf_fquote(pf);
+	ftpf_process_precis(pf, pf->buf, pf->buf_len);
+	if (*pf->tfrm != 'u' && *pf->tfrm != 'U')
+		ftps_process_sign(pf);
+	fil = (pf->fmnus == 0 && pf->fdot == 0 && pf->fzero == 1) ? '0' : ' ';
+	ftpf_process_minlen(pf, pf->buf, pf->buf_len, fil);
+//	pf->res_len += pf->buf_len;
+}
+
 static int64_t		ft_getvarg_s(t_print *pf)
 {
 	ftpf_skipvarg(pf);
@@ -27,33 +41,6 @@ static int64_t		ft_getvarg_s(t_print *pf)
 		return (va_arg(pf->arg, int32_t));
 }
 
-static uint64_t		ft_getvarg_u(t_print *pf)
-{
-	ftpf_skipvarg(pf);
-	if (*pf->tfrm =='U' || pf->f_z > 0 || pf->f_j > 0)
-		return (va_arg(pf->arg, uint64_t));
-	else if (pf->f_l > 0 || pf->f_ll > 0 || pf->f_t > 0)
-		return (va_arg(pf->arg, uint64_t));
-	else if (pf->f_h == 1)
-		return ((uint16_t)va_arg(pf->arg, void*));
-	else if (pf->f_hh == 1)
-		return ((uint8_t)va_arg(pf->arg, void*));
-	else
-		return (va_arg(pf->arg, uint32_t));
-}
-
-static void			pf_process_idu(t_print *pf)
-{
-	char	fil;
-
-	ftpf_process_precis(pf, pf->buf, pf->buf_len);
-	if (*pf->tfrm != 'u' && *pf->tfrm != 'U')
-		ftps_process_sign(pf);
-	fil = (pf->fmnus == 0 && pf->fdot == 0 && pf->fzero == 1) ? '0' : ' ';
-	ftpf_process_minlen(pf, pf->buf, pf->buf_len, fil);
-//	pf->res_len += pf->buf_len;
-}
-
 int				ftpf_id(t_print *pf)
 {
 	int64_t x;
@@ -67,6 +54,21 @@ int				ftpf_id(t_print *pf)
 	pf->res = ft_concatresbuf(pf);
 	pf->res_len += pf->buf_len;
 	return (1);
+}
+
+static uint64_t		ft_getvarg_u(t_print *pf)
+{
+	ftpf_skipvarg(pf);
+	if (*pf->tfrm =='U' || pf->f_z > 0 || pf->f_j > 0)
+		return (va_arg(pf->arg, uint64_t));
+	else if (pf->f_l > 0 || pf->f_ll > 0 || pf->f_t > 0)
+		return (va_arg(pf->arg, uint64_t));
+	else if (pf->f_h == 1)
+		return ((uint16_t)va_arg(pf->arg, void*));
+	else if (pf->f_hh == 1)
+		return ((uint8_t)va_arg(pf->arg, void*));
+	else
+		return (va_arg(pf->arg, uint32_t));
 }
 
 int				ftpf_u(t_print *pf)

@@ -11,24 +11,60 @@
 # define F_LAST 1
 # define F_BOTH 2
 
-typedef enum	e_colors {
-				e_def = 0,
-				e_white = 30,
-				e_red = 31,
-				e_green = 32,
-				e_orange = 33,
-				e_blue = 34,
-				e_purple = 35,
-				e_cyan = 36,
-				e_gray = 37,
-				e_black = 90,
-}				t_colors;
+typedef struct		s_ldoublebfild
+{
+	unsigned long	man		: 64;
+	unsigned long	exp		: 15;
+	unsigned 		sign	: 1;
 
-typedef int		(*func_p)(void*); //0 - move forvard; 1 - time to stop ft_parser (spec parse) -1 - error
+}					t_ldoublebfild;
+
+typedef union		u_ldoublebfild
+{
+	long double		x;
+	t_ldoublebfild	f;
+}					u_ldoublebfild;
+
+typedef struct		s_doublebfild
+{
+	unsigned long	man		: 52;
+	unsigned long	exp		: 11;
+	unsigned 		sign	: 1;
+
+}					t_doublebfild;
+
+typedef union		u_doublebfild
+{
+	double			x;
+	t_doublebfild	f;
+}					u_doublebfild;
+
+typedef enum		e_colors
+{
+					e_def = 0,
+					e_white = 30,
+					e_red = 31,
+					e_green = 32,
+					e_orange = 33,
+					e_blue = 34,
+					e_purple = 35,
+					e_cyan = 36,
+					e_gray = 37,
+					e_black = 90,
+}					t_colors;
+
+/*
+*** 0 - move forvard;
+*** 1 - time to stop ft_parser (spec parse)
+*** -1 - error
+*/
+
+typedef int		(*func_p)(void*);
 
 typedef struct 	s_prnt
 {
 	int 		buf_len;
+	int 		buf_flen;
 	int 		res_len;
 	char	 	*tfrm;
 	char 		*res;
@@ -47,6 +83,7 @@ typedef struct 	s_prnt
 	int8_t		fzero;
 	int8_t		fspace;
 	int8_t		fdot;
+	int8_t		fquote;
 	int8_t		f_ld;
 	int8_t		f_h;
 	int8_t		f_l;
@@ -109,6 +146,12 @@ int				ftpf_set_tflag(t_print *pf);
 int				ftpf_skipvarg(t_print *pf);
 
 /*
+*** pf_parse_flags_d
+*/
+
+int				ftpf_set_fquote(t_print *pf);
+
+/*
 *** pf_process_func
 */
 
@@ -161,6 +204,7 @@ int				ftpf_uni_c(t_print *pf);
 
 int				ftpf_n(t_print *pf);
 char			*ftpf_color(t_print *pf, char *s);
+void			pf_fquote(t_print *pf);
 
 /*
 *** pf_f
@@ -182,5 +226,7 @@ char 			*ft_strmemcat(char *s1, char *s2, int s1len, int s2len);
 
 char			*ft_utoa_base(t_print *pf, uint64_t val, int base);
 char			*ft_stoa_base(t_print *pf, int64_t val, int base);
+char			*ft_ftoa(t_print *pf, u_doublebfild x);
+char			*ft_lftoa(t_print *pf, u_ldoublebfild x);
 
 #endif
