@@ -38,12 +38,12 @@ int main()
 //	fflush(stdout);
 //	ft_printf("sign = %b exp = %b man = %b\n", d.f.sign, d.f.exp, d.f.man);
 
-	d.x = 99.9999;
-	printf(">====>%f(S=%d E=%ld M=%ld)<\n", d.x, d.f.sign, d.f.exp, d.f.man);
+	d.x = 999.9999;
+	printf(">====>%.8f(S=%d E=%ld M=%ld)<\n", d.x, d.f.sign, d.f.exp, d.f.man);
 	fflush(stdout);
 	ft_printf("sign = %b exp = %b man = %b\n", d.f.sign, d.f.exp, d.f.man);
 
-	ft_printf("##MY## >>>%.4'f<\n", d.x);
+	ft_printf("##MY## >>>%.8'f<\n", d.x);
 //	test.x /= 1;
 //	printf(">>%.10Lf<\n", test.x);
 //

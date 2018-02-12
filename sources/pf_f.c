@@ -31,17 +31,20 @@ static void		pf_f_presision(t_print *pf)
 			}
 			else if (tr == 1 && (pf->buf[i] + 1) > '9')
 				pf->buf[i] = '0';
-			if (pf->buf[i] >= '5')
+			else if (pf->buf[i] >= '5')
 				tr = 1;
-
-			//printf("\nshift=%d_chr=%c",i, pf->buf[i]);
+			if (tr != 1)
+				break ;
 		}
-
+		if (tr == 1)
+		{
+			pf->buf = ft_joinfree("1", pf->buf, F_LAST);
+			pf->buf_len++;
+		}
 	}
+	pf->buf_len += -pf->buf_flen + ((pf->fhash == 1 && pf->precis == 0) ? -1 : pf->precis);
+	pf->buf	= ft_strsub(pf->buf, 0, pf->buf_len);
 
-//		обработать #
-//	if (pf->fhash == 1 && pf->precis == 0)
-//		убиваем точку в конце
 
 }
 
