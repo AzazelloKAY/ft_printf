@@ -19,10 +19,21 @@ static void			pf_process_idu(t_print *pf)
 
 	pf_fquote(pf);
 	ftpf_process_precis(pf, pf->buf, pf->buf_len);
+	if (pf->fspace == 1 && pf->fplus == 0 && pf->sign[0] != '-'
+		&& *pf->tfrm != 'u' && *pf->tfrm != 'U')
+	{
+		pf->buf = ft_joinfree(" ", pf->buf, F_LAST);
+		pf->buf_len++;
+	}
+	fil = (pf->fmnus == 0 && pf->fdot == 0 && pf->fzero == 1) ? '0' : ' ';
+	if (fil == '0' && (pf->fplus == 1 || pf->sign[0] == '-'))
+		pf->minlen = (pf->minlen < 2) ? 0: pf->minlen - 1;
+	if (fil == '0')
+		ftpf_process_minlen(pf, pf->buf, pf->buf_len, fil);
 	if (*pf->tfrm != 'u' && *pf->tfrm != 'U')
 		ftps_process_sign(pf);
-	fil = (pf->fmnus == 0 && pf->fdot == 0 && pf->fzero == 1) ? '0' : ' ';
-	ftpf_process_minlen(pf, pf->buf, pf->buf_len, fil);
+	if (fil == ' ')
+		ftpf_process_minlen(pf, pf->buf, pf->buf_len, fil);
 //	pf->res_len += pf->buf_len;
 }
 
@@ -48,7 +59,11 @@ int				ftpf_id(t_print *pf)
 	x = ft_getvarg_s(pf);
 	pf->sign = (x < 0) ? "-" : "+";
 	pf->buf = ft_stoa_base(pf, x, 10);
-	((x == 0 && pf->fdot == 1 && pf->precis == 0) ? pf->buf[0] = 0 : 0);
+	if (x == 0 && pf->fdot == 1 && pf->precis == 0)
+	{
+		pf->buf[0] = 0;
+		pf->buf_len = 0;
+	}
 	pf_process_idu(pf);
 //	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
 	pf->res = ft_concatresbuf(pf);
@@ -77,7 +92,11 @@ int				ftpf_u(t_print *pf)
 
 	x = ft_getvarg_u(pf);
 	pf->buf = ft_utoa_base(pf, x, 10);
-	((x == 0 && pf->fdot == 1 && pf->precis == 0) ? pf->buf[0] = 0 : 0);
+	if (x == 0 && pf->fdot == 1 && pf->precis == 0)
+	{
+		pf->buf[0] = 0;
+		pf->buf_len = 0;
+	}
 	pf_process_idu(pf);
 //	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
 	pf->res = ft_concatresbuf(pf);

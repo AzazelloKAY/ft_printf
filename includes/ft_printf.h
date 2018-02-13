@@ -94,6 +94,7 @@ typedef struct 	s_prnt
 	int8_t		f_t;
 	int8_t		f_baks;
 
+	int8_t		xiszero;
 	t_colors	f_curcolor;
 
 	va_list		arg;

@@ -14,10 +14,10 @@
 
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
-SOURCES = ft_printf.c pf_f.c pf_ob.c pf_parse_flags_c.c pf_uni.c \
-	ft_init_pf_flist.c ft_strjoinandfree.c pf_idu.c \
-	pf_parse_flags_a.c pf_xp.c ft_itoabase.c pf_cs.c pf_n_color.c \
-	pf_parse_flags_b.c pf_process_func.c
+SOURCES = ft_itoabase.c ft_strjoinandfree.c pf_f.c pf_n_color_quote.c \
+	pf_parse_flags_a.c pf_parse_flags_c.c pf_process_func.c pf_xp.c \
+	ft_init_pf_flist.c ft_printf.c pf_cs.c pf_idu.c pf_ob.c pf_parse_flags_b.c \
+	pf_parse_flags_d.c pf_uni.c
 OBJECTS = $(SOURCES:.c=.o)
 
 all: $(OBJECTS)
