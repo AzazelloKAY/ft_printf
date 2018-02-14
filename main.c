@@ -32,7 +32,65 @@ int main()
 //	printf(">=>%'Lf<\n", test.x);
 //	fflush(stdout);
 
-	u_doublebfild d;
+
+//	ft_printf("\n");
+
+
+//printf("\n\n\n\n>>>STEP\n");
+//fflush(stdout);
+
+
+
+	printf(">>>>>>%d\n",ft_printf(">%.6ls<\n", L"ывпаварапо"));
+	printf("@%.6ls<\n", L"ывпаварапо");
+	printf(">>>>>>%d\n", ft_printf(">%S<\n", L""));
+	printf("@>>>>>%d\n", printf("@%S<\n", L""));
+	printf(">>>>>>%d\n", ft_printf(">%03d<\n", 0));
+	printf("@>>>>>%d\n", printf("@%03d<\n", 0));
+//	ft_printf("%%\n");
+//	ft_printf("%d\n", 42);
+//	ft_printf("%d%d\n", 42, 41);
+//	ft_printf("%d%d%d\n", 42, 43, 44);
+//	ft_printf("%ld\n", 2147483647);
+//	ft_printf("%lld\n", 9223372036854775807);
+//	ft_printf("%x\n", 505);
+//	ft_printf("%X\n", 505);
+//	ft_printf("%p\n", &ft_printf);
+//	ft_printf("%20.15d\n", 54321);
+//	ft_printf("%-10d\n", 3);
+//	ft_printf("% d\n", 3);
+//	ft_printf("%+d\n", 3);
+//	ft_printf("%010d\n", 1);
+//	ft_printf("%hhd\n", 0);
+//	ft_printf("%jd\n", 9223372036854775807);
+//	ft_printf("%zd\n", 4294967295);
+//	ft_printf("%\n");
+//	ft_printf("%U\n", 4294967295);
+//	ft_printf("%u\n", 4294967295);
+//	ft_printf("%o\n", 40);
+//	ft_printf("%%#08x\n", 42);
+//	ft_printf("%x\n", 1000);
+//	ft_printf("%#X\n", 1000);
+//	ft_printf("%s\n", NULL);
+//	ft_printf("%S\n", L"ݗݜशব");
+//	ft_printf("%s%s\n", "test", "test");
+//	ft_printf("%s%s%s\n", "test", "test", "test");
+//	ft_printf("%C\n", 15000);
+
+	//system("leaks exe");
+
+
+//*******************************
+	/*
+	printf("@_%.5u<\n", 42);
+	fflush(stdout);
+	ft_printf(">_%.5u<\n", 42);
+	 */
+//*******************************
+
+//*******************************
+	//double@@@@@@@@@@@@@@@@@@@@@@@@
+//u_doublebfild d;
 //	d.x = 1.9;
 //	printf(">====>%f(S=%d E=%ld M=%ld)<\n", d.x, d.f.sign, d.f.exp, d.f.man);
 //	fflush(stdout);
@@ -46,11 +104,9 @@ int main()
 //	ft_printf("sign = %b exp = %b man = %b\n", d.f.sign, d.f.exp, d.f.man);
 //
 //	ft_printf("##MY## >>>%.8'f<\n\n", d.x);
+	//double@@@@@@@@@@@@@@@@@@@@@@@@
+	//*******************************
 
-
-	printf("@_%###-#0000 33...12..#0+0d<\n", 256);
-	fflush(stdout);
-	ft_printf(">_%###-#0000 33...12..#0+0d<\n", 256);
 
 //	test.x /= 1;
 //	printf(">>%.10Lf<\n", test.x);

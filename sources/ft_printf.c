@@ -67,6 +67,6 @@ int				ft_printf(const char *frm, ...)
 	write(1, pf->res, pf->res_len);
 	va_end(pf->initarg);
 	va_end(pf->arg);
-	return (pf->res_len);
+	return (ft_close_pf(pf));
 }
 

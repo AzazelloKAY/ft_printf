@@ -115,6 +115,7 @@ char			*ft_catbuf(t_print *pf, const char *start, const char *stop);
 
 t_print			*ft_init_pf(const char *frm);
 void			ft_reset_pf(t_print *pf);
+int				ft_close_pf(t_print *pf);
 
 /*
 *** pf_parse_flags_a

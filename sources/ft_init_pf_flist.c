@@ -100,3 +100,13 @@ t_print		*ft_init_pf(const char *frm)
 	return (pf);
 }
 
+int			ft_close_pf(t_print *pf)
+{
+	int res;
+
+	res = pf->res_len;
+	ft_memdel((void**)&(pf->res));
+	ft_memdel((void**)&(pf->flist));
+	ft_memdel((void**)&pf);
+	return (res);
+}

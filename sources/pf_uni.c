@@ -17,6 +17,8 @@ static int			ft_unilen(uint32_t *s)
 	int len;
 
 	len = 0;
+	if (!s)
+		return (0);
 	while (*s++ != 0)
 		len++;
 	return (len);
@@ -40,7 +42,6 @@ static int		ft_uni_to_chr(char *dst, uint32_t c)
 	int 		i;
 	int 		res;
 
-	//c = pf_addmask(c);
 	t = (uint8_t*)&c;
 	i = 3;
 	res = 0;
@@ -54,7 +55,7 @@ static int		ft_uni_to_chr(char *dst, uint32_t c)
 		}
 		i--;
 	}
-	return (res);
+	return ((res == 0) ? 1 : res);
 }
 
 int					ftpf_uni_c(t_print *pf)
@@ -63,14 +64,13 @@ int					ftpf_uni_c(t_print *pf)
 
 	ftpf_skipvarg(pf);
 	c = va_arg(pf->arg, uint32_t);
-	pf->buf = ft_strnew(4);
 	if (MB_CUR_MAX == 4)
 		c = pf_addmask(c);
 	else if (MB_CUR_MAX != 4 && c > 255)
 		return (-1);
+	pf->buf = ft_strnew(4);
 	pf->buf_len = ft_uni_to_chr(pf->buf, c);
 	pf_process_cs(pf);
-//	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
 	pf->res = ft_concatresbuf(pf);
 	pf->res_len += pf->buf_len;
 	return (1);
@@ -86,21 +86,23 @@ int				ftpf_uni_s(t_print *pf)
 	ftpf_skipvarg(pf);
 	s = va_arg(pf->arg, uint32_t*);
 	ustrlen = ft_unilen(s);
-	pf->buf = ft_strnew(ustrlen * 4);
-	i = 0;
+	if (s == NULL)
+		pf->buf_len = (pf->fdot == 1) ? pf->precis : 6;
+	pf->buf = (s != NULL) ? ft_strnew(ustrlen * 4) : ft_strsub("(null)", 0, (size_t)pf->buf_len);
+	i = (s != NULL) ? 0 : ustrlen;
 	while (i < ustrlen)
 	{
-		ucharlen = ft_uni_to_chr(&(pf->buf[pf->buf_len]), pf_addmask(s[i]));
+		ucharlen = ft_uni_to_chr(&(pf->buf[pf->buf_len]), pf_addmask(s[i++]));
 		if (pf->fdot == 1 && (pf->buf_len + ucharlen) > pf->precis)
-		{
+		//{
 			pf->buf[pf->buf_len] = 0;
+		if (pf->fdot == 1 && (pf->buf_len + ucharlen) > pf->precis)
 			break;
-		}
+		//}
 		pf->buf_len += ucharlen;
-		i++;
+		//i++;
 	}
 	pf_process_cs(pf);
-//	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
 	pf->res = ft_concatresbuf(pf);
 	pf->res_len += pf->buf_len;
 	return (1);

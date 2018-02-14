@@ -71,9 +71,8 @@ int 		ftpf_set_starflag(t_print *pf)
 int			ftpf_setdotflag(t_print *pf)
 {
 	pf->fdot = 1;
-	pf->fdot = 0;
+	pf->precis = 0;
 	pf->tfrm++;
-//	pf->precis = (*pf->tfrm != '*') ? ftpf_atoiskip(pf) : va_arg(pf->arg, int);
 	if (ft_isdigit(*pf->tfrm))
 		pf->precis = ftpf_atoiskip(pf);
 	else if (*pf->tfrm == '*')

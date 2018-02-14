@@ -38,7 +38,7 @@ static void			pf_process_x(t_print *pf)
 			pf->minlen = (pf->minlen < 3) ? 0: pf->minlen - 2;
 		ftpf_process_minlen(pf, pf->buf, pf->buf_len, fil);//надо после всего
 	}
-	if (pf->fhash == 1 && !pf->xiszero)
+	if ((pf->fhash == 1 && !pf->xiszero) || *pf->tfrm == 'p')
 	{
 		pf->buf = ft_joinfree("0x", pf->buf, F_LAST);//надо клеить перед 00
 		pf->buf_len += 2;
