@@ -65,42 +65,21 @@ static void		pf_process_double(t_print *pf, u_doublebfild x)
 	ftpf_process_minlen(pf, pf->buf, pf->buf_len, fil);
 }
 
-//static void		pf_process_ldouble(t_print *pf, u_ldoublebfild x)
-//{
-//	pf->sign = (x.f.sign == 1) ? "-" : "+";
-//	x.f.sign = 0;
-//	pf->buf = ft_lftoa(pf, x);
-//
-//
-//
-//	ftps_process_sign(pf);
-//}
-//
-//static int		ftpf_lf(t_print *pf)
-//{
-//	u_ldoublebfild	x;
-//
-//	ftpf_skipvarg(pf);
-//	x.x = va_arg(pf->arg, typeof(x.x));
-//
-//	pf_process_ldouble(pf, x);
-//	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
-//	return (1);
-//}
-
 int				ftpf_f(t_print *pf)
 {
+	//u_ldoublebfild	x;
 	u_doublebfild	x;
 
 	pf->precis = (pf->fdot == 0) ? 6 : pf->precis;
 	pf->fdot = 1;
-//	if (pf->f_ld == 1)
-//		return (ftpf_lf(pf));
 	ftpf_skipvarg(pf);
-	x.x = va_arg(pf->arg, typeof(x.x));
+	if (pf->f_ld == 0)
+		x.x = va_arg(pf->arg, double);
+	else
+		x.x = va_arg(pf->arg, long double);
+
 
 	pf_process_double(pf, x);
-
 
 	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
 	pf->res_len += pf->buf_len;

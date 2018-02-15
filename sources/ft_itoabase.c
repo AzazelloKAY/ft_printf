@@ -87,11 +87,48 @@ char	*ft_ftoa(t_print *pf, u_doublebfild x)
 
 
 
-
-
-
-
-
+//char	*ft_ftoa(t_print *pf, u_ldoublebfild x)
+//{
+//	char	*tchar;
+//	int 	i;
+//	int		num;
+//	double 	tmp;
+//
+//
+//	tmp = x.x;
+//	i = 0;
+//	while (tmp >= 1)
+//	{
+//		tmp /= 10;
+//		i++;
+//	}
+//	tchar = ft_strnew(1);
+//	while (i--)
+//	{
+//		tmp = pf_dblpow(i);
+//		num = (uint8_t)(x.x / tmp);
+//		tchar[0] = (uint8_t)num + (uint8_t)'0';
+//		pf->buf = ft_joinfree(pf->buf, tchar, F_FIRST);
+//		x.x -= num * tmp;
+//		pf->buf_len++;
+//	}
+//	pf_fquote(pf);
+//	pf->buf = ft_joinfree(pf->buf, ".", F_FIRST);
+//	pf->buf_len++;
+//	if (x.x == 0)
+//		return (pf->buf);
+//	while (x.x != 0)
+//	{
+//		x.x *= 10;
+//		tchar[0] = (uint8_t)x.x+ '0';
+//		pf->buf = ft_joinfree(pf->buf, tchar, F_FIRST);
+//		x.x -= (uint8_t)x.x;
+//		pf->buf_flen++;
+//	}
+//	pf->buf_len += pf->buf_flen;
+//	ft_strdel(&tchar);
+//	return (pf->buf);
+//}
 
 
 char	*ft_lftoa(t_print *pf, u_ldoublebfild x)

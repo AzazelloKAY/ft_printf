@@ -39,16 +39,35 @@ int main()
 //printf("\n\n\n\n>>>STEP\n");
 //fflush(stdout);
 
+//char *s = "*asdwerфывапрнекуцй";
+//	printf(">>>>>>%d\n",ft_printf(">%.6ls<\n", s));
+//	printf("@%S<\n", s);
+//	printf(">>>>>>%d\n", ft_printf(">%S<\n", L""));
+//	printf("@>>>>>%d\n", printf("@%S<\n", L""));
+//	printf(">>>>>>%d\n", ft_printf(">%03d<\n", 0));
+//	printf("@>>>>>%d\n", printf("@%03d<\n", 0));
+//	fflush(stdout);
+//	ft_printf(">%#o<\n", 0);
+//	printf(">%#o<\n", 0);
+//	fflush(stdout);
+	char *format = "{%#.2o}\n";
+	ft_printf(ft_strjoin(">", format), 0);
+	printf(ft_strjoin("@", format), 0);
+	fflush(stdout);
+	double t = 111111111111111111.0;
+	long double sd = t;
+	printf("@>>%.0f<\n", t);
+	fflush(stdout);
+	ft_printf(">>>%.0f<\n", t);
 
 
-	printf(">>>>>>%d\n",ft_printf(">%.6ls<\n", L"ывпаварапо"));
-	printf("@%.6ls<\n", L"ывпаварапо");
-	printf(">>>>>>%d\n", ft_printf(">%S<\n", L""));
-	printf("@>>>>>%d\n", printf("@%S<\n", L""));
-	printf(">>>>>>%d\n", ft_printf(">%03d<\n", 0));
-	printf("@>>>>>%d\n", printf("@%03d<\n", 0));
-//	ft_printf("%%\n");
-//	ft_printf("%d\n", 42);
+//	char *form = "{%f}{%F}\n";
+//	ft_printf(ft_strjoin(">", form), t, t);
+//	printf(ft_strjoin("@", form), t, t);
+//	fflush(stdout);
+//	ft_printf(">>%c<<\n", 0);
+//	printf(">>%c<<\n", 0);
+
 //	ft_printf("%d%d\n", 42, 41);
 //	ft_printf("%d%d%d\n", 42, 43, 44);
 //	ft_printf("%ld\n", 2147483647);

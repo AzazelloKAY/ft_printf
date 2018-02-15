@@ -19,17 +19,20 @@ static void			pf_process_idu(t_print *pf)
 
 	pf_fquote(pf);
 	ftpf_process_precis(pf, pf->buf, pf->buf_len);
-	if (pf->fspace == 1 && pf->fplus == 0 && pf->sign[0] != '-'
-		&& *pf->tfrm != 'u' && *pf->tfrm != 'U')
+	if (pf->fplus == 1 || pf->sign[0] == '-'
+		|| *pf->tfrm == 'u' || *pf->tfrm == 'U')
+		pf->fspace = 0;
+	fil = (pf->fmnus == 0 && pf->fdot == 0 && pf->fzero == 1) ? '0' : ' ';
+	if ((fil == '0' && (pf->fplus == 1 || pf->sign[0] == '-'))
+		|| (pf->fspace == 1 && pf->fmnus == 0))
+		pf->minlen = (pf->minlen < 2) ? 0: pf->minlen - 1;
+	if (fil == '0')
+		ftpf_process_minlen(pf, pf->buf, pf->buf_len, fil);
+	if (pf->fspace == 1)
 	{
 		pf->buf = ft_joinfree(" ", pf->buf, F_LAST);
 		pf->buf_len++;
 	}
-	fil = (pf->fmnus == 0 && pf->fdot == 0 && pf->fzero == 1) ? '0' : ' ';
-	if (fil == '0' && (pf->fplus == 1 || pf->sign[0] == '-'))
-		pf->minlen = (pf->minlen < 2) ? 0: pf->minlen - 1;
-	if (fil == '0')
-		ftpf_process_minlen(pf, pf->buf, pf->buf_len, fil);
 	if (*pf->tfrm != 'u' && *pf->tfrm != 'U')
 		ftps_process_sign(pf);
 	if (fil == ' ')
