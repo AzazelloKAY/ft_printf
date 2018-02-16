@@ -81,6 +81,7 @@ static void		ft_init_flist(t_print *pf)
 	pf->flist['b'] = (void*)ftpf_b;
 	pf->flist['n'] = (void*)ftpf_n;
 	pf->flist['f'] = (void*)ftpf_f;
+	pf->flist['F'] = (void*)ftpf_f;
 	ft_flist_digit(pf);
 }
 

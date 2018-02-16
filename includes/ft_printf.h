@@ -228,7 +228,7 @@ char 			*ft_strmemcat(char *s1, char *s2, int s1len, int s2len);
 
 char			*ft_utoa_base(t_print *pf, uint64_t val, int base);
 char			*ft_stoa_base(t_print *pf, int64_t val, int base);
-char	*ft_ftoa(t_print *pf, u_doublebfild x);
+char			*ft_ftoa(t_print *pf, u_ldoublebfild x);
 
 //char	*ft_fftoa(t_print *pf, u_doublebfild x);
 

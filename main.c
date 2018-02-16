@@ -14,9 +14,65 @@
 	printf("==%d\n\n", test.x);
  * */
 
+//static double pf_dblpow(int i)
+//{
+//	double res;
+//
+//	res = 1;
+//	while (i--)
+//		res *= 10;
+//	return (res);
+//}
+//
+//char	*ft_ffftoa(u_ldoublebfild x)
+//{
+//	char	*tchar;
+//	int 	i;
+//	int		num;
+//	double 	tmp;
+//
+//	char 	*res;
+//
+//
+//	tmp = x.x;
+//	i = 0;
+//	while (tmp >= 1)
+//	{
+//		tmp /= 10;
+//		i++;
+//	}
+//	tchar = ft_strnew(1);
+//	while (i--)
+//	{
+//		tmp = pf_dblpow(i);
+//		num = (uint8_t)(x.x / tmp);
+//		tchar[0] = (uint8_t)num + (uint8_t)'0';
+//		res = ft_joinfree(res, tchar, F_FIRST);
+//		x.x -= num * tmp;
+//		//pf->buf_len++;
+//	}
+// //	pf_fquote(pf);
+//	res = ft_joinfree(res, ".", F_FIRST);
+//	//pf->buf_len++;
+//	if (x.x == 0)
+//		return (res);
+//	while (x.x != 0)
+//	{
+//		x.x *= 10;
+//		tchar[0] = (uint8_t)x.x+ '0';
+//		res = ft_joinfree(res, tchar, F_FIRST);
+//		x.x -= (uint8_t)x.x;
+//		//pf->buf_flen++;
+//	}
+//	//pf->buf_len += pf->buf_flen;
+//	ft_strdel(&tchar);
+//	return (res);
+//}
+
+
 int main()
 {
-	setlocale(LC_ALL,"");
+	setlocale(LC_ALL, "");
 	//setlocale(LC_NUMERIC,"");
 
 //	ft_putstr("asdasdgfsdg#$%$^$&$&^*546867sd\n");
@@ -54,11 +110,17 @@ int main()
 	ft_printf(ft_strjoin(">", format), 0);
 	printf(ft_strjoin("@", format), 0);
 	fflush(stdout);
-	double t = 111111111111111111.0;
-	long double sd = t;
-	printf("@>>%.0f<\n", t);
+//	double t = 111111111111111.123456789L;
+//	u_ldoublebfild x;
+//	x.x = t;
+	long double sd = 123.99995454654879875488888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888885L;//11111111111111111111111111111.123456789L;
+	format = "%+.4LF<\n";
+	sd = -(0.0 / 0.0);
+
+	printf(ft_strjoin("@", format), sd);
 	fflush(stdout);
-	ft_printf(">>>%.0f<\n", t);
+	ft_printf(ft_strjoin(">", format), sd);
+	//printf("new >%s\n", ft_ffftoa(x));
 
 
 //	char *form = "{%f}{%F}\n";
