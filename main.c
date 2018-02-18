@@ -107,19 +107,27 @@ int main()
 //	printf(">%#o<\n", 0);
 //	fflush(stdout);
 	char *format = "{%#.2o}\n";
-	ft_printf(ft_strjoin(">", format), 0);
-	printf(ft_strjoin("@", format), 0);
-	fflush(stdout);
+//	ft_printf(ft_strjoin(">", format), 0);
+//	printf(ft_strjoin("@", format), 0);
+//	fflush(stdout);
+
 //	double t = 111111111111111.123456789L;
 //	u_ldoublebfild x;
 //	x.x = t;
 	long double sd = 123.99995454654879875488888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888885L;//11111111111111111111111111111.123456789L;
-	format = "%+.4LF<\n";
+	format = "--%####0000 5..1..#00d<\n";
 	sd = -(0.0 / 0.0);
 
-	printf(ft_strjoin("@", format), sd);
+	printf(ft_strjoin("@", format), 256);
 	fflush(stdout);
-	ft_printf(ft_strjoin(">", format), sd);
+	ft_printf(ft_strjoin(">", format), 256);
+
+	format = "% 03i<\n";
+	sd = -(0.0 / 0.0);
+
+	printf(ft_strjoin("@", format), 0);
+	fflush(stdout);
+	ft_printf(ft_strjoin(">", format), 0);
 	//printf("new >%s\n", ft_ffftoa(x));
 
 

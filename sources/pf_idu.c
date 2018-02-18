@@ -24,7 +24,7 @@ static void			pf_process_idu(t_print *pf)
 		pf->fspace = 0;
 	fil = (pf->fmnus == 0 && pf->fdot == 0 && pf->fzero == 1) ? '0' : ' ';
 	if ((fil == '0' && (pf->fplus == 1 || pf->sign[0] == '-'))
-		|| (pf->fspace == 1 && pf->fmnus == 0))
+		|| (pf->fspace == 1 && (pf->fmnus == 1 || pf->xiszero == 1)))
 		pf->minlen = (pf->minlen < 2) ? 0: pf->minlen - 1;
 	if (fil == '0')
 		ftpf_process_minlen(pf, pf->buf, pf->buf_len, fil);
@@ -60,6 +60,7 @@ int				ftpf_id(t_print *pf)
 	int64_t x;
 
 	x = ft_getvarg_s(pf);
+	pf->xiszero = (x == 0) ? 1 : 0;
 	pf->sign = (x < 0) ? "-" : "+";
 	pf->buf = ft_stoa_base(pf, x, 10);
 	if (x == 0 && pf->fdot == 1 && pf->precis == 0)
