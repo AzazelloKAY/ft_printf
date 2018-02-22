@@ -40,7 +40,7 @@ clean:
 	@echo "libft objects cleaned"
 
 fclean: clean
-	@rm -f $(NAME)
+#	@rm -f $(NAME)
 	@echo "libft objects fcleaned"
 
 re:	fclean all

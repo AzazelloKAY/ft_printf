@@ -23,4 +23,4 @@ set(SOURCE_FILES
         sources/pf_xp.c sources/pf_ob.c sources/pf_uni.c sources/pf_process_func.c sources/pf_n_color_quote.c sources/pf_f.c sources/pf_parse_flags_d.c) # sources
 add_executable(ft_printf ${SOURCE_FILES}) # compilation
 target_link_libraries(ft_printf -lft) # linkage
-target_link_libraries(ft_printf ${CMAKE_SOURCE_DIR}/libft/libft.a)
+target_link_libraries(ft_printf ${CMAKE_SOURCE_DIR}/tmp/libft.a)
