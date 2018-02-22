@@ -23,6 +23,7 @@ static void			pf_process_idu(t_print *pf)
 		|| *pf->tfrm == 'u' || *pf->tfrm == 'U')
 		pf->fspace = 0;
 	fil = (pf->fmnus == 0 && pf->fdot == 0 && pf->fzero == 1) ? '0' : ' ';
+	pf->xiszero = (int8_t)((pf->fzero == 1 && pf->fdot == 0) ? 1 : 0);
 	if ((fil == '0' && (pf->fplus == 1 || pf->sign[0] == '-'))
 		|| (pf->fspace == 1 && (pf->fmnus == 1 || pf->xiszero == 1)))
 		pf->minlen = (pf->minlen < 2) ? 0: pf->minlen - 1;
@@ -37,7 +38,6 @@ static void			pf_process_idu(t_print *pf)
 		ftps_process_sign(pf);
 	if (fil == ' ')
 		ftpf_process_minlen(pf, pf->buf, pf->buf_len, fil);
-//	pf->res_len += pf->buf_len;
 }
 
 static int64_t		ft_getvarg_s(t_print *pf)

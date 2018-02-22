@@ -1,21 +1,28 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "includes/ft_printf.h"
-#include <locale.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   printf_test_main.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dkovalch, okosiako                         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/20 12:24:07 by dkovalch          #+#    #+#             */
+/*   Updated: 2017/02/20 15:13:22 by dkovalch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-//	fflush(stdout);
+
+//pf->xiszero = (int8_t)((pf->fzero == 1) ? 1 : 0);
+//
+#include <stdio.h>
+#include <stddef.h>
+#include <locale.h>
 #include <limits.h>
 #include <errno.h>
-#include <stddef.h>
 
-
-//
-//
-//
 #define RED "\x1b[31m"
 #define NORM "\x1b[0m"
 
-////Testing macro - dont change!
+//Testing macro - dont change!
 #define PRINTF(...){\
 	    int ret = 0,ret2 = 0;\
 		printf("Origin:\t");ret = printf(__VA_ARGS__);\
@@ -25,7 +32,7 @@
 }
 #define TITLE(...){printf("\033[1m\n");printf(__VA_ARGS__);printf("\n\033[0m");}
 
-////Include your printf here!
+//Include your printf here!
 #include "ft_printf.h"
 
 //Test switchers - comment some of then to turn the tests off
@@ -44,15 +51,15 @@ int	main(void)
 #ifdef CHAR
 	TITLE("Char options:\n");
 	{
-		char a = ' ';
-		for (a = ' '; a <' ' + 60 ; a+=15)
+	char a = ' ';
+	for (a = ' '; a <' ' + 60 ; a+=15)
 		PRINTF("|%-2c|(%3d)\t|%-2c|(%3d)\t|%-2c|(%3d)", a, a, a+5,a+5,a+10,a+10);
-		PRINTF("|%-2.3c|(%3d)\t|%-2.5c|(%3d)\t|%-2.0c|(%3d)", a, a, a+5,a+5,a+10,a+10);
-		PRINTF("|%+3c|(%3d)\t|%+3c|(%3d)\t|%+c|(%3d)", a, a, a+5, a+5, a+10, a+10);
-		PRINTF("|%3.4c|(%3d)\t|%+3.4c|(%3d)\t|%.4c|(%3d)", a, a, a+5, a+5, a+10, a+10);
-		PRINTF("|%-3w|(%3w)\t|%3Z|(%3Z)\t|%Q|(%3Q)");
-		PRINTF("|%3h|\t|%3l|\t|%3hhll|\t|%3llhhllQ|\t|%3z|\t|%3j|\t|%3J|");
-		PRINTF("|%-3c|\t|%3c|\t|%c|\t|%-03c|\t|%03c|\t|%.c|\t|%.5c|\t|%.C|\t|%.5C|", 0,0,0,0,0,0,0,0,0);
+	PRINTF("|%-2.3c|(%3d)\t|%-2.5c|(%3d)\t|%-2.0c|(%3d)", a, a, a+5,a+5,a+10,a+10);
+	PRINTF("|%+3c|(%3d)\t|%+3c|(%3d)\t|%+c|(%3d)", a, a, a+5, a+5, a+10, a+10);
+	PRINTF("|%3.4c|(%3d)\t|%+3.4c|(%3d)\t|%.4c|(%3d)", a, a, a+5, a+5, a+10, a+10);
+	PRINTF("|%-3w|(%3w)\t|%3Z|(%3Z)\t|%Q|(%3Q)");
+	PRINTF("|%3h|\t|%3l|\t|%3hhll|\t|%3llhhllQ|\t|%3z|\t|%3j|\t|%3J|");
+	PRINTF("|%-3c|\t|%3c|\t|%c|\t|%-03c|\t|%03c|\t|%.c|\t|%.5c|\t|%.C|\t|%.5C|", 0,0,0,0,0,0,0,0,0);
 	}
 #endif
 
@@ -60,7 +67,7 @@ int	main(void)
 	TITLE("Percent options:\n");
 	PRINTF("|%-6%|   |%6%|   |%6.2%|   |%-06%|   |%-06.3%|");
 #endif
-
+	
 #ifdef STR
 	TITLE("Strings:\n");
 	PRINTF("|%s|", NULL);
@@ -68,11 +75,11 @@ int	main(void)
 	PRINTF("|%s|\t","ç±³");
 	TITLE("String options(field width, presicion and justification):\n");
 	{
-		const char A[] = "this is tEEEEst!";
-		PRINTF("|%5.3s|\t\t|%3.5s|\t|%7s|\t|%7.3s|",A, A,A,NULL);
-		PRINTF("|%07.5s|\t|%02.5s|\t|%.10s|\t\t|%.5s|\t",A,A,A, "");
-		PRINTF("|%-7.5s|\t|%-2.5s|\t|%-.10s|\t\t|%-.5s|\t",A,A,A, "");
-		PRINTF("|%-07.5s|\t|%-02.5s|\t|%-020s|\t|%-0.5s|\t",A,A,A, "");
+	const char A[] = "this is tEEEEst!";
+	PRINTF("|%5.3s|\t\t|%3.5s|\t|%7s|\t|%7.3s|",A, A,A,NULL);
+	PRINTF("|%07.5s|\t|%02.5s|\t|%.10s|\t\t|%.5s|\t",A,A,A, "");
+	PRINTF("|%-7.5s|\t|%-2.5s|\t|%-.10s|\t\t|%-.5s|\t",A,A,A, "");
+	PRINTF("|%-07.5s|\t|%-02.5s|\t|%-020s|\t|%-0.5s|\t",A,A,A, "");
 	}
 #endif
 
@@ -81,27 +88,27 @@ int	main(void)
 	PRINTF("|%S|\t|%S|\t|%C|\t|%S|",L"Wide sample string..",L"米",L'米',L"");
 	PRINTF("|%S|  |%S|\t|%S|",L"বিড়াল এবং খাওয়া তিমি ঘুঘু", L"合気道",L"ድመቶች ሰዎች አልወደውም.");
 
-//Presicions for wide strings
+//Presicions for wide strings	
 	TITLE("Wide string options(field width, presicion and justification):\n");fflush(stdout);
 	{
-		const wchar_t B[] = L"ድመቶች ሰዎች አልወደውም.";
-		PRINTF("|%5.3S|\t\t|%3.5S|\t|%7S|\t|%7.3S|",B, B,B,L"");
-		PRINTF("|%.3S|\t|%2.5S|\t|%.10S|\t\t|%.5S|",B,B,B, L"");
-		PRINTF("|%-7.5S|\t|%-2.5S|\t|%-.10S|\t\t|%-.5S|",B,B,B, L"");
-		PRINTF("|%-07.5S|\t|%-02.5S|\t|%-020S|\t|%-0.5S|",B,B,B, L"");
+	const wchar_t B[] = L"ድመቶች ሰዎች አልወደውም.";
+	PRINTF("|%5.3S|\t\t|%3.5S|\t|%7S|\t|%7.3S|",B, B,B,L"");
+	PRINTF("|%.3S|\t|%2.5S|\t|%.10S|\t\t|%.5S|",B,B,B, L"");
+	PRINTF("|%-7.5S|\t|%-2.5S|\t|%-.10S|\t\t|%-.5S|",B,B,B, L"");
+	PRINTF("|%-07.5S|\t|%-02.5S|\t|%-020S|\t|%-0.5S|",B,B,B, L"");
 	}
 #endif
 
 #ifdef PTR
 	TITLE("Pointer options(field width, presicioin and justification):\n");
 	{
-		char *ptr_c = (char*)malloc(sizeof(char));
-		int ptr_i = 43;
-		long ptr_l = 874748;
-		PRINTF("|%.0p|\t\t|%6p|\t\t|%6.p|\t|%10.6p|", NULL,NULL,NULL,NULL);
-		PRINTF("|%12p||%17p|\t|%-22p|", ptr_c, &ptr_i, &ptr_l);
-		PRINTF("\tOr:\t|%.0p||%6p|\t|%6.p||%.20p|", &ptr_l, &ptr_l, &ptr_l,&ptr_l);
-		free(ptr_c);
+	char *ptr_c = (char*)malloc(sizeof(char));
+	int ptr_i = 43;
+	long ptr_l = 874748;
+	PRINTF("|%.0p|\t\t|%6p|\t\t|%6.p|\t|%10.6p|", NULL,NULL,NULL,NULL);
+	PRINTF("|%12p||%17p|\t|%-22p|", ptr_c, &ptr_i, &ptr_l);
+	PRINTF("\tOr:\t|%.0p||%6p|\t|%6.p||%.20p|", &ptr_l, &ptr_l, &ptr_l,&ptr_l);
+	free(ptr_c);
 	}
 #endif
 
@@ -137,7 +144,7 @@ int	main(void)
 	TITLE("Number options(field width, presicion and -):\n");
 	{
 		int nmb = 4235;
-#define CNV "i"
+		#define CNV "i"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%1.1"CNV"|\t\t|%5.1"CNV"|\t\t|%5.3"CNV"|\t\t|%1.5"CNV"|\t",nmb, nmb, nmb, nmb);
 		PRINTF("|%1.1"CNV"|\t\t|%5.1"CNV"|\t\t|%5.3"CNV"|\t\t|%1.5"CNV"|",-nmb, -nmb, -nmb, -nmb);
@@ -151,7 +158,7 @@ int	main(void)
 	}
 	{
 		int nmb = 4235;
-#define CNV "d"
+		#define CNV "d"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%1.1"CNV"|\t\t|%5.1"CNV"|\t\t|%5.3"CNV"|\t\t|%1.5"CNV"|\t",nmb, nmb, nmb, nmb);
 		PRINTF("|%1.1"CNV"|\t\t|%5.1"CNV"|\t\t|%5.3"CNV"|\t\t|%1.5"CNV"|",-nmb, -nmb, -nmb, -nmb);
@@ -165,7 +172,7 @@ int	main(void)
 	}
 	{
 		int nmb = 4235;
-#define CNV "D"
+		#define CNV "D"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%1.1"CNV"|\t\t|%5.1"CNV"|\t\t|%5.3"CNV"|\t\t|%1.5"CNV"|\t",nmb, nmb, nmb, nmb);
 		PRINTF("|%1.1"CNV"|\t|%5.1"CNV"|\t|%5.3"CNV"|\t|%1.5"CNV"|",-nmb, -nmb, -nmb, -nmb);
@@ -179,7 +186,7 @@ int	main(void)
 	}
 	{
 		int nmb = 4235;
-#define CNV "u"
+		#define CNV "u"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%1.1"CNV"|\t\t|%5.1"CNV"|\t\t|%5.3"CNV"|\t\t|%1.5"CNV"|\t",nmb, nmb, nmb, nmb);
 		PRINTF("|%1.1"CNV"|\t|%5.1"CNV"|\t|%5.3"CNV"|\t|%1.5"CNV"|",-nmb, -nmb, -nmb, -nmb);
@@ -193,7 +200,7 @@ int	main(void)
 	}
 	{
 		int nmb = 4235;
-#define CNV "U"
+		#define CNV "U"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%1.1"CNV"|\t\t|%5.1"CNV"|\t\t|%5.3"CNV"|\t\t|%1.5"CNV"|\t",nmb, nmb, nmb, nmb);
 		PRINTF("|%1.1"CNV"|\t|%5.1"CNV"|\t|%5.3"CNV"|\t|%1.5"CNV"|",-nmb, -nmb, -nmb, -nmb);
@@ -207,7 +214,7 @@ int	main(void)
 	}
 	{
 		int nmb = 4235;
-#define CNV "o"
+		#define CNV "o"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%1.1"CNV"|\t\t|%5.1"CNV"|\t\t|%5.3"CNV"|\t\t|%1.5"CNV"|\t",nmb, nmb, nmb, nmb);
 		PRINTF("|%1.1"CNV"|\t|%5.1"CNV"|\t|%5.3"CNV"|\t|%1.5"CNV"|",-nmb, -nmb, -nmb, -nmb);
@@ -221,7 +228,7 @@ int	main(void)
 	}
 	{
 		int nmb = 4235;
-#define CNV "O"
+		#define CNV "O"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%1.1"CNV"|\t\t|%5.1"CNV"|\t\t|%5.3"CNV"|\t\t|%1.5"CNV"|\t",nmb, nmb, nmb, nmb);
 		PRINTF("|%1.1"CNV"|\t|%5.1"CNV"|\t|%5.3"CNV"|\t|%1.5"CNV"|",-nmb, -nmb, -nmb, -nmb);
@@ -235,7 +242,7 @@ int	main(void)
 	}
 	{
 		int nmb = 4235;
-#define CNV "x"
+		#define CNV "x"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%1.1"CNV"|\t\t|%5.1"CNV"|\t\t|%5.3"CNV"|\t\t|%1.5"CNV"|\t",nmb, nmb, nmb, nmb);
 		PRINTF("|%1.1"CNV"|\t|%5.1"CNV"|\t|%5.3"CNV"|\t|%1.5"CNV"|",-nmb, -nmb, -nmb, -nmb);
@@ -249,7 +256,7 @@ int	main(void)
 	}
 	{
 		int nmb = 4235;
-#define CNV "X"
+		#define CNV "X"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%1.1"CNV"|\t\t|%5.1"CNV"|\t\t|%5.3"CNV"|\t\t|%1.5"CNV"|\t",nmb, nmb, nmb, nmb);
 		PRINTF("|%1.1"CNV"|\t|%5.1"CNV"|\t|%5.3"CNV"|\t|%1.5"CNV"|",-nmb, -nmb, -nmb, -nmb);
@@ -262,66 +269,66 @@ int	main(void)
 		PRINTF("|%."CNV" %.0"CNV" %0."CNV" %0.0"CNV"|\t\t|%"CNV" %.2"CNV" %2."CNV" %2.2"CNV"|\t\t\t\t",0,0,0,0,0,0,0,0);
 	}
 //Flag + - 0 and space
-	TITLE("Number options(field width, justification, +, space and 0):\n");
+	TITLE("Number options(field width, justification, +, space and 0):\n");	
 	{
 		int nmb = 42;
-#define CNV "i"
+		#define CNV "i"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%-11-0"CNV"|\t|%-0+11"CNV"|\t|%11+"CNV"|\t|%-11+"CNV"|\t|%0 "CNV"|",nmb,nmb,nmb,nmb,nmb);nmb *= -1;
 		PRINTF("|%-11-0"CNV"|\t|%-0+11"CNV"|\t|%11+"CNV"|\t|%-11+"CNV"|\t|%0 "CNV"|",nmb,nmb,nmb,nmb,nmb);nmb *= -1;
 	}
 	{
 		int nmb = 42;
-#define CNV "d"
+		#define CNV "d"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%-11-0"CNV"|\t|%-0+11"CNV"|\t|%11+"CNV"|\t|%-11+"CNV"|\t|%0 "CNV"|",nmb,nmb,nmb,nmb,nmb);nmb *= -1;
 		PRINTF("|%-11-0"CNV"|\t|%-0+11"CNV"|\t|%11+"CNV"|\t|%-11+"CNV"|\t|%0 "CNV"|",nmb,nmb,nmb,nmb,nmb);nmb *= -1;
 	}
 	{
 		int nmb = 42;
-#define CNV "D"
-		printf("\n   |"CNV"|:\n");
-		PRINTF("|%-11-0"CNV"|\t|%-0+11"CNV"|\t|%11+"CNV"|\t|%-11+"CNV"|\t|%0 "CNV"|\t",nmb,nmb,nmb,nmb,nmb);nmb *= -1;
-		PRINTF("|%-11-0"CNV"|\t|%-0+11"CNV"|\t|%11+"CNV"|\t|%-11+"CNV"|\t|%0 "CNV"|",nmb,nmb,nmb,nmb,nmb);nmb *= -1;
-	}
-	{
-		int nmb = 42;
-#define CNV "u"
+		#define CNV "D"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%-11-0"CNV"|\t|%-0+11"CNV"|\t|%11+"CNV"|\t|%-11+"CNV"|\t|%0 "CNV"|\t",nmb,nmb,nmb,nmb,nmb);nmb *= -1;
 		PRINTF("|%-11-0"CNV"|\t|%-0+11"CNV"|\t|%11+"CNV"|\t|%-11+"CNV"|\t|%0 "CNV"|",nmb,nmb,nmb,nmb,nmb);nmb *= -1;
 	}
 	{
 		int nmb = 42;
-#define CNV "U"
+		#define CNV "u"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%-11-0"CNV"|\t|%-0+11"CNV"|\t|%11+"CNV"|\t|%-11+"CNV"|\t|%0 "CNV"|\t",nmb,nmb,nmb,nmb,nmb);nmb *= -1;
 		PRINTF("|%-11-0"CNV"|\t|%-0+11"CNV"|\t|%11+"CNV"|\t|%-11+"CNV"|\t|%0 "CNV"|",nmb,nmb,nmb,nmb,nmb);nmb *= -1;
 	}
 	{
 		int nmb = 42;
-#define CNV "o"
+		#define CNV "U"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%-11-0"CNV"|\t|%-0+11"CNV"|\t|%11+"CNV"|\t|%-11+"CNV"|\t|%0 "CNV"|\t",nmb,nmb,nmb,nmb,nmb);nmb *= -1;
 		PRINTF("|%-11-0"CNV"|\t|%-0+11"CNV"|\t|%11+"CNV"|\t|%-11+"CNV"|\t|%0 "CNV"|",nmb,nmb,nmb,nmb,nmb);nmb *= -1;
 	}
 	{
 		int nmb = 42;
-#define CNV "O"
+		#define CNV "o"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%-11-0"CNV"|\t|%-0+11"CNV"|\t|%11+"CNV"|\t|%-11+"CNV"|\t|%0 "CNV"|\t",nmb,nmb,nmb,nmb,nmb);nmb *= -1;
 		PRINTF("|%-11-0"CNV"|\t|%-0+11"CNV"|\t|%11+"CNV"|\t|%-11+"CNV"|\t|%0 "CNV"|",nmb,nmb,nmb,nmb,nmb);nmb *= -1;
 	}
 	{
 		int nmb = 42;
-#define CNV "x"
+		#define CNV "O"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%-11-0"CNV"|\t|%-0+11"CNV"|\t|%11+"CNV"|\t|%-11+"CNV"|\t|%0 "CNV"|\t",nmb,nmb,nmb,nmb,nmb);nmb *= -1;
 		PRINTF("|%-11-0"CNV"|\t|%-0+11"CNV"|\t|%11+"CNV"|\t|%-11+"CNV"|\t|%0 "CNV"|",nmb,nmb,nmb,nmb,nmb);nmb *= -1;
 	}
 	{
 		int nmb = 42;
-#define CNV "X"
+		#define CNV "x"
+		printf("\n   |"CNV"|:\n");
+		PRINTF("|%-11-0"CNV"|\t|%-0+11"CNV"|\t|%11+"CNV"|\t|%-11+"CNV"|\t|%0 "CNV"|\t",nmb,nmb,nmb,nmb,nmb);nmb *= -1;
+		PRINTF("|%-11-0"CNV"|\t|%-0+11"CNV"|\t|%11+"CNV"|\t|%-11+"CNV"|\t|%0 "CNV"|",nmb,nmb,nmb,nmb,nmb);nmb *= -1;
+	}
+	{
+		int nmb = 42;
+		#define CNV "X"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%-11-0"CNV"|\t|%-0+11"CNV"|\t|%11+"CNV"|\t|%-11+"CNV"|\t|%0 "CNV"|\t",nmb,nmb,nmb,nmb,nmb);nmb *= -1;
 		PRINTF("|%-11-0"CNV"|\t|%-0+11"CNV"|\t|%11+"CNV"|\t|%-11+"CNV"|\t|%0 "CNV"|",nmb,nmb,nmb,nmb,nmb);nmb *= -1;
@@ -329,7 +336,7 @@ int	main(void)
 //Flag # for X x and o and O and i
 	TITLE("Number options(field width, presicion, justification and #):\n");
 	{
-# define CNV "o"
+		# define CNV "o"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%#6"CNV"|\t|%#-12"CNV"|\t|%#"CNV"|\t\t|%#09"CNV"|\t|%#02"CNV"|", 8400,8400,0,8400,8400);
 		PRINTF("|%#6.7"CNV"|\t|%#-12.7"CNV"|\t|%#.7"CNV"|\t|%#09.7"CNV"|\t|%#02.7"CNV"|", 8400,8400,0,8400,8400);
@@ -337,7 +344,7 @@ int	main(void)
 		PRINTF("|%-#13.10"CNV"|\t|%-12#.10"CNV"|\t|%-13.10#"CNV"|\t|%-13.-9#"CNV"|\t\t", 25,25,25,25);
 	}
 	{
-# define CNV "O"
+		# define CNV "O"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%#6"CNV"|\t|%#-12"CNV"|\t|%#"CNV"|\t\t|%#09"CNV"|\t|%#02"CNV"|", 8400,8400,0,8400,8400);
 		PRINTF("|%#6.7"CNV"|\t|%#-12.7"CNV"|\t|%#.7"CNV"|\t|%#09.7"CNV"|\t|%#02.7"CNV"|", 8400,8400,0,8400,8400);
@@ -345,7 +352,7 @@ int	main(void)
 		PRINTF("|%-#13.10"CNV"|\t|%-12#.10"CNV"|\t|%-13.10#"CNV"|\t|%-13.-9#"CNV"|\t\t", 25,25,25,25);
 	}
 	{
-# define CNV "x"
+		# define CNV "x"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%#6"CNV"|\t|%#-12"CNV"|\t|%#"CNV"|\t\t|%#09"CNV"|\t|%#02"CNV"|", 8400,8400,0,8400,8400);
 		PRINTF("|%#6.7"CNV"|\t|%#-12.7"CNV"|\t|%#.7"CNV"|\t|%#09.7"CNV"|\t|%#02.7"CNV"|", 8400,8400,0,8400,8400);
@@ -353,7 +360,7 @@ int	main(void)
 		PRINTF("|%-#13.10"CNV"|\t|%-12#.10"CNV"|\t|%-13.10#"CNV"|\t|%-13.-9#"CNV"|\t\t", 25,25,25,25);
 	}
 	{
-# define CNV "X"
+		# define CNV "X"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%#6"CNV"|\t|%#-12"CNV"|\t|%#"CNV"|\t\t|%#09"CNV"|\t|%#02"CNV"|", 8400,8400,0,8400,8400);
 		PRINTF("|%#6.7"CNV"|\t|%#-12.7"CNV"|\t|%#.7"CNV"|\t|%#09.7"CNV"|\t|%#02.7"CNV"|", 8400,8400,0,8400,8400);
@@ -361,7 +368,7 @@ int	main(void)
 		PRINTF("|%-#13.10"CNV"|\t|%-12#.10"CNV"|\t|%-13.10#"CNV"|\t|%-13.-9#"CNV"|\t\t", 25,25,25,25);
 	}
 	{
-# define CNV "i"
+		# define CNV "i"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%#6"CNV"|\t|%#-12"CNV"|\t|%#"CNV"|\t\t|%#09"CNV"|\t|%#02"CNV"|\t", 8400,8400,0,8400,8400);
 		PRINTF("|%#6.7"CNV"|\t|%#-12.7"CNV"|\t|%#.7"CNV"|\t|%#09.7"CNV"|\t|%#02.7"CNV"|", 8400,8400,0,8400,8400);
@@ -369,7 +376,7 @@ int	main(void)
 		PRINTF("|%-#13.10"CNV"|\t|%-12#.10"CNV"|\t|%-13.10#"CNV"|\t|%-13.-9#"CNV"|\t\t", 25,25,25,25);
 	}
 	{
-# define CNV "d"
+		# define CNV "d"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%#6"CNV"|\t|%#-12"CNV"|\t|%#"CNV"|\t\t|%#09"CNV"|\t|%#02"CNV"|\t", 8400,8400,0,8400,8400);
 		PRINTF("|%#6.7"CNV"|\t|%#-12.7"CNV"|\t|%#.7"CNV"|\t|%#09.7"CNV"|\t|%#02.7"CNV"|", 8400,8400,0,8400,8400);
@@ -377,7 +384,7 @@ int	main(void)
 		PRINTF("|%-#13.10"CNV"|\t|%-12#.10"CNV"|\t|%-13.10#"CNV"|\t|%-13.-9#"CNV"|\t\t", 25,25,25,25);
 	}
 	{
-# define CNV "D"
+		# define CNV "D"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%#6"CNV"|\t|%#-12"CNV"|\t|%#"CNV"|\t\t|%#09"CNV"|\t|%#02"CNV"|\t", 8400,8400,0,8400,8400);
 		PRINTF("|%#6.7"CNV"|\t|%#-12.7"CNV"|\t|%#.7"CNV"|\t|%#09.7"CNV"|\t|%#02.7"CNV"|", 8400,8400,0,8400,8400);
@@ -385,7 +392,7 @@ int	main(void)
 		PRINTF("|%-#13.10"CNV"|\t|%-12#.10"CNV"|\t|%-13.10#"CNV"|\t|%-13.-9#"CNV"|\t\t", 25,25,25,25);
 	}
 	{
-# define CNV "u"
+		# define CNV "u"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%#6"CNV"|\t|%#-12"CNV"|\t|%#"CNV"|\t\t|%#09"CNV"|\t|%#02"CNV"|\t", 8400,8400,0,8400,8400);
 		PRINTF("|%#6.7"CNV"|\t|%#-12.7"CNV"|\t|%#.7"CNV"|\t|%#09.7"CNV"|\t|%#02.7"CNV"|", 8400,8400,0,8400,8400);
@@ -393,7 +400,7 @@ int	main(void)
 		PRINTF("|%-#13.10"CNV"|\t|%-12#.10"CNV"|\t|%-13.10#"CNV"|\t|%-13.-9#"CNV"|\t\t", 25,25,25,25);
 	}
 	{
-# define CNV "u"
+		# define CNV "u"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%#6"CNV"|\t|%#-12"CNV"|\t|%#"CNV"|\t\t|%#09"CNV"|\t|%#02"CNV"|\t", 8400,8400,0,8400,8400);
 		PRINTF("|%#6.7"CNV"|\t|%#-12.7"CNV"|\t|%#.7"CNV"|\t|%#09.7"CNV"|\t|%#02.7"CNV"|", 8400,8400,0,8400,8400);
@@ -405,55 +412,55 @@ int	main(void)
 	TITLE("Number options(field width and length modifiers):\n");
 	printf("\t|%5s|\t|%5s|\t|%20s|\t|%20s|\t|%20s|\t|%10s|\t|%10s|\n", "hh", "h", "l", "ll","j", "z", "nothing" );
 	{
-# define CNV "i"
+		# define CNV "i"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%5hh"CNV"|\t|%5h"CNV"|\t|%20l"CNV"|\t|%20ll"CNV"|\t|%20j"CNV"|\t|%10z"CNV"|\t|%10"CNV"|", LONG_MAX,LONG_MAX,LONG_MAX,LONG_MAX,LONG_MAX,-2,LONG_MAX);
 		PRINTF("|%5hh"CNV"|\t|%5h"CNV"|\t|%20l"CNV"|\t|%20ll"CNV"|\t|%20j"CNV"|\t|%10z"CNV"|\t|%10"CNV"|", LONG_MIN,LONG_MIN,LONG_MIN,LONG_MIN,LONG_MIN,-2,LONG_MIN);
 	}
 	{
-# define CNV "d"
+		# define CNV "d"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%5hh"CNV"|\t|%5h"CNV"|\t|%20l"CNV"|\t|%20ll"CNV"|\t|%20j"CNV"|\t|%10z"CNV"|\t|%10"CNV"|", LONG_MAX,LONG_MAX,LONG_MAX,LONG_MAX,LONG_MAX,-2,LONG_MAX);
 		PRINTF("|%5hh"CNV"|\t|%5h"CNV"|\t|%20l"CNV"|\t|%20ll"CNV"|\t|%20j"CNV"|\t|%10z"CNV"|\t|%10"CNV"|", LONG_MIN,LONG_MIN,LONG_MIN,LONG_MIN,LONG_MIN,-2,LONG_MIN);
 	}
 	{
-# define CNV "D"
+		# define CNV "D"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%5hh"CNV"|\t|%5h"CNV"|\t|%20l"CNV"|\t|%20ll"CNV"|\t|%20j"CNV"|\t|%10z"CNV"|\t|%10"CNV"|", LONG_MAX,LONG_MAX,LONG_MAX,LONG_MAX,LONG_MAX,-2,LONG_MAX);
 		PRINTF("|%5hh"CNV"|\t|%5h"CNV"|\t|%20l"CNV"|\t|%20ll"CNV"|\t|%20j"CNV"|\t|%10z"CNV"|\t|%10"CNV"|", LONG_MIN,LONG_MIN,LONG_MIN,LONG_MIN,LONG_MIN,-2,LONG_MIN);
 	}
 	{
-# define CNV "u"
+		# define CNV "u"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%5hh"CNV"|\t|%5h"CNV"|\t|%20l"CNV"|\t|%20ll"CNV"|\t|%20j"CNV"|\t|%10z"CNV"|\t|%10"CNV"|", LONG_MAX,LONG_MAX,LONG_MAX,LONG_MAX,LONG_MAX,-2,LONG_MAX);
 		PRINTF("|%5hh"CNV"|\t|%5h"CNV"|\t|%20l"CNV"|\t|%20ll"CNV"|\t|%20j"CNV"|\t|%10z"CNV"|\t|%10"CNV"|", LONG_MIN,LONG_MIN,LONG_MIN,LONG_MIN,LONG_MIN,-2,LONG_MIN);
 	}
 	{
-# define CNV "U"
+		# define CNV "U"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%5hh"CNV"|\t|%5h"CNV"|\t|%20l"CNV"|\t|%20ll"CNV"|\t|%20j"CNV"|\t|%10z"CNV"|\t|%10"CNV"|", LONG_MAX,LONG_MAX,LONG_MAX,LONG_MAX,LONG_MAX,-2,LONG_MAX);
 		PRINTF("|%5hh"CNV"|\t|%5h"CNV"|\t|%20l"CNV"|\t|%20ll"CNV"|\t|%20j"CNV"|\t|%10z"CNV"|\t|%10"CNV"|", LONG_MIN,LONG_MIN,LONG_MIN,LONG_MIN,LONG_MIN,-2,LONG_MIN);
 	}
 	{
-# define CNV "o"
+		# define CNV "o"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%5hh"CNV"|\t|%5h"CNV"|\t|%20l"CNV"|\t|%20ll"CNV"|\t|%20j"CNV"|\t|%10z"CNV"|\t|%10"CNV"|", LONG_MAX,LONG_MAX,LONG_MAX,LONG_MAX,LONG_MAX,-2,LONG_MAX);
 		PRINTF("|%5hh"CNV"|\t|%5h"CNV"|\t|%20l"CNV"|\t|%20ll"CNV"|\t|%20j"CNV"|\t|%10z"CNV"|\t|%10"CNV"|", LONG_MIN,LONG_MIN,LONG_MIN,LONG_MIN,LONG_MIN,-2,LONG_MIN);
 	}
 	{
-# define CNV "O"
+		# define CNV "O"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%5hh"CNV"|\t|%5h"CNV"|\t|%20l"CNV"|\t|%20ll"CNV"|\t|%20j"CNV"|\t|%10z"CNV"|\t|%10"CNV"|", LONG_MAX,LONG_MAX,LONG_MAX,LONG_MAX,LONG_MAX,-2,LONG_MAX);
 		PRINTF("|%5hh"CNV"|\t|%5h"CNV"|\t|%20l"CNV"|\t|%20ll"CNV"|\t|%20j"CNV"|\t|%10z"CNV"|\t|%10"CNV"|", LONG_MIN,LONG_MIN,LONG_MIN,LONG_MIN,LONG_MIN,-2,LONG_MIN);
 	}
 	{
-# define CNV "x"
+		# define CNV "x"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%5hh"CNV"|\t|%5h"CNV"|\t|%20l"CNV"|\t|%20ll"CNV"|\t|%20j"CNV"|\t|%10z"CNV"|\t|%10"CNV"|", LONG_MAX,LONG_MAX,LONG_MAX,LONG_MAX,LONG_MAX,-2,LONG_MAX);
 		PRINTF("|%5hh"CNV"|\t|%5h"CNV"|\t|%20l"CNV"|\t|%20ll"CNV"|\t|%20j"CNV"|\t|%10z"CNV"|\t|%10"CNV"|", LONG_MIN,LONG_MIN,LONG_MIN,LONG_MIN,LONG_MIN,-2,LONG_MIN);
 	}
 	{
-# define CNV "X"
+		# define CNV "X"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%5hh"CNV"|\t|%5h"CNV"|\t|%20l"CNV"|\t|%20ll"CNV"|\t|%20j"CNV"|\t|%10z"CNV"|\t|%10"CNV"|", LONG_MAX,LONG_MAX,LONG_MAX,LONG_MAX,LONG_MAX,-2,LONG_MAX);
 		PRINTF("|%5hh"CNV"|\t|%5h"CNV"|\t|%20l"CNV"|\t|%20ll"CNV"|\t|%20j"CNV"|\t|%10z"CNV"|\t|%10"CNV"|", LONG_MIN,LONG_MIN,LONG_MIN,LONG_MIN,LONG_MIN,-2,LONG_MIN);
@@ -461,55 +468,55 @@ int	main(void)
 
 	TITLE("Another test\n");
 	{
-# define CNV "i"
-		printf("\n   |"CNV"|:\n");
-		PRINTF("|%5h h"CNV"|\t|%20l l"CNV"|", SHRT_MIN,LONG_MIN);
-		//PRINTF("|%20l"CNV"|\t|%20ll"CNV"|\t|%20hh"CNV"|\t|%20h"CNV"|", -42,-42,-42,-42);
-	}
-	{
-# define CNV "d"
+		# define CNV "i"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%5h h"CNV"|\t|%20l l"CNV"|", SHRT_MIN,LONG_MIN);
 		PRINTF("|%20l"CNV"|\t|%20ll"CNV"|\t|%20hh"CNV"|\t|%20h"CNV"|", -42,-42,-42,-42);
 	}
 	{
-# define CNV "d"
+		# define CNV "d"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%5h h"CNV"|\t|%20l l"CNV"|", SHRT_MIN,LONG_MIN);
 		PRINTF("|%20l"CNV"|\t|%20ll"CNV"|\t|%20hh"CNV"|\t|%20h"CNV"|", -42,-42,-42,-42);
 	}
 	{
-# define CNV "u"
+		# define CNV "d"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%5h h"CNV"|\t|%20l l"CNV"|", SHRT_MIN,LONG_MIN);
 		PRINTF("|%20l"CNV"|\t|%20ll"CNV"|\t|%20hh"CNV"|\t|%20h"CNV"|", -42,-42,-42,-42);
 	}
 	{
-# define CNV "U"
+		# define CNV "u"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%5h h"CNV"|\t|%20l l"CNV"|", SHRT_MIN,LONG_MIN);
 		PRINTF("|%20l"CNV"|\t|%20ll"CNV"|\t|%20hh"CNV"|\t|%20h"CNV"|", -42,-42,-42,-42);
 	}
 	{
-# define CNV "x"
+		# define CNV "U"
+		printf("\n   |"CNV"|:\n");
+		PRINTF("|%5h h"CNV"|\t|%20l l"CNV"|", SHRT_MIN,LONG_MIN);
+		PRINTF("|%20l"CNV"|\t|%20ll"CNV"|\t|%20hh"CNV"|\t|%20h"CNV"|", -42,-42,-42,-42);
+	}	
+	{
+		# define CNV "x"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%5h h"CNV"|\t|%20l l"CNV"|", SHRT_MIN,LONG_MIN);
 		PRINTF("|%20l"CNV"|\t|%20ll"CNV"|\t|%20hh"CNV"|\t|%20h"CNV"|", -42,-42,-42,-42);
 	}
 	{
-# define CNV "X"
+		# define CNV "X"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%5h h"CNV"|\t|%20l l"CNV"|", SHRT_MIN,LONG_MIN);
 		PRINTF("|%20l"CNV"|\t|%20ll"CNV"|\t|%20hh"CNV"|\t|%20h"CNV"|", -42,-42,-42,-42);
 	}
 	{
-# define CNV "o"
+		# define CNV "o"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%5h h"CNV"|\t|%20l l"CNV"|", SHRT_MIN,LONG_MIN);
 		PRINTF("|%20l"CNV"|\t|%20ll"CNV"|\t|%20hh"CNV"|\t|%20h"CNV"|", -42,-42,-42,-42);
 	}
 	{
-# define CNV "O"
+		# define CNV "O"
 		printf("\n   |"CNV"|:\n");
 		PRINTF("|%5h h"CNV"|\t|%20l l"CNV"|", SHRT_MIN,LONG_MIN);
 		PRINTF("|%20l"CNV"|\t|%20ll"CNV"|\t|%20hh"CNV"|\t|%20h"CNV"|", -42,-42,-42,-42);
@@ -528,47 +535,47 @@ int	main(void)
 //Not number options
 	TITLE("Not number number options(field width and length modifiers):");
 	{
-# define CNV "i"
+		# define CNV "i"
 		printf("\n   |"CNV"|:\t|%20s|\t|%20s|\t|%20s|\t|%20s|\n", "l", "ll","hh", "h");
 		PRINTF("|%20l"CNV"|\t|%20ll"CNV"|\t|%20hh"CNV"|\t|%20h"CNV"|", "4294967296","4294967296","4294967296","4294967296");
 	}
 	{
-# define CNV "d"
+		# define CNV "d"
 		printf("\n   |"CNV"|:\t|%20s|\t|%20s|\t|%20s|\t|%20s|\n", "l", "ll","hh", "h");
 		PRINTF("|%20l"CNV"|\t|%20ll"CNV"|\t|%20hh"CNV"|\t|%20h"CNV"|", "4294967296","4294967296","4294967296","4294967296");
 	}
 	{
-# define CNV "D"
+		# define CNV "D"
 		printf("\n   |"CNV"|:\t|%20s|\t|%20s|\t|%20s|\t|%20s|\n", "l", "ll","hh", "h");
 		PRINTF("|%20l"CNV"|\t|%20ll"CNV"|\t|%20hh"CNV"|\t|%20h"CNV"|", "4294967296","4294967296","4294967296","4294967296");
 	}
 	{
-# define CNV "u"
+		# define CNV "u"
 		printf("\n   |"CNV"|:\t|%20s|\t|%20s|\t|%20s|\t|%20s|\n", "l", "ll","hh", "h");
 		PRINTF("|%20l"CNV"|\t|%20ll"CNV"|\t|%20hh"CNV"|\t|%20h"CNV"|", "4294967296","4294967296","4294967296","4294967296");
 	}
 	{
-# define CNV "U"
+		# define CNV "U"
 		printf("\n   |"CNV"|:\t|%20s|\t|%20s|\t|%20s|\t|%20s|\n", "l", "ll","hh", "h");
 		PRINTF("|%20l"CNV"|\t|%20ll"CNV"|\t|%20hh"CNV"|\t|%20h"CNV"|", "4294967296","4294967296","4294967296","4294967296");
 	}
 	{
-# define CNV "x"
+		# define CNV "x"
 		printf("\n   |"CNV"|:\t|%20s|\t|%20s|\t|%20s|\t|%20s|\n", "l", "ll","hh", "h");
 		PRINTF("|%20l"CNV"|\t|%20ll"CNV"|\t|%20hh"CNV"|\t|%20h"CNV"|", "4294967296","4294967296","4294967296","4294967296");
 	}
 	{
-# define CNV "X"
+		# define CNV "X"
 		printf("\n   |"CNV"|:\t|%20s|\t|%20s|\t|%20s|\t|%20s|\n", "l", "ll","hh", "h");
 		PRINTF("|%20l"CNV"|\t|%20ll"CNV"|\t|%20hh"CNV"|\t|%20h"CNV"|", "4294967296","4294967296","4294967296","4294967296");
 	}
 	{
-# define CNV "o"
+		# define CNV "o"
 		printf("\n   |"CNV"|:\t|%20s|\t|%20s|\t|%20s|\t|%20s|\n", "l", "ll","hh", "h");
 		PRINTF("|%20l"CNV"|\t|%20ll"CNV"|\t|%20hh"CNV"|\t|%20h"CNV"|", "4294967296","4294967296","4294967296","4294967296");
 	}
 	{
-# define CNV "O"
+		# define CNV "O"
 		printf("\n   |"CNV"|:\t|%20s|\t|%20s|\t|%20s|\t|%20s|\n", "l", "ll","hh", "h");
 		PRINTF("|%20l"CNV"|\t|%20ll"CNV"|\t|%20hh"CNV"|\t|%20h"CNV"|", "4294967296","4294967296","4294967296","4294967296");
 	}
@@ -586,7 +593,7 @@ int	main(void)
 	printf("\nRound 4:|ll.15.12|\t|.ll 15.12|\t\t|.015ll.12|\t|.ll#15.12|\t\t|.ll#15.12x|\n");
 	PRINTF("|%ll.15.12d|\t|%.ll 15.12d|\t|%.015ll.12d|\t|%.ll#15.12d|\t|%.ll#15.12x|",-42,-42,-42,-42,-42);
 #endif
-
+	
 /*
 **	Put new stuff here like:
 
@@ -607,309 +614,3 @@ int	main(void)
 #endif
 	return (0);
 }
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-// * 	u_type test;
-//	test.x = -1;
-//	test.y.sign = 0;
-//	printf("==%d\n\n", test.x);
-// * */
-//
-//static double pf_dblpow(int i)
-//{
-//	double res;
-//
-//	res = 1;
-//	while (i--)
-//		res *= 10;
-//	return (res);
-//}
-//
-//char	*ft_ffftoa(u_ldoublebfild x)
-//{
-//	char	*tchar;
-//	int 	i;
-//	int		num;
-//	double 	tmp;
-//
-//	char 	*res;
-//
-//
-//	tmp = x.x;
-//	i = 0;
-//	while (tmp >= 1)
-//	{
-//		tmp /= 10;
-//		i++;
-//	}
-//	tchar = ft_strnew(1);
-//	while (i--)
-//	{
-//		tmp = pf_dblpow(i);
-//		num = (uint8_t)(x.x / tmp);
-//		tchar[0] = (uint8_t)num + (uint8_t)'0';
-//		res = ft_joinfree(res, tchar, F_FIRST);
-//		x.x -= num * tmp;
-//		//pf->buf_len++;
-//	}
-// //	pf_fquote(pf);
-//	res = ft_joinfree(res, ".", F_FIRST);
-//	//pf->buf_len++;
-//	if (x.x == 0)
-//		return (res);
-//	while (x.x != 0)
-//	{
-//		x.x *= 10;
-//		tchar[0] = (uint8_t)x.x+ '0';
-//		res = ft_joinfree(res, tchar, F_FIRST);
-//		x.x -= (uint8_t)x.x;
-//		//pf->buf_flen++;
-//	}
-//	//pf->buf_len += pf->buf_flen;
-//	ft_strdel(&tchar);
-//	return (res);
-//}
-
-
-//int main()
-//{
-//	setlocale(LC_ALL, "");
-//	setlocale(LC_NUMERIC, "");
-//
-//	//char *format = "|%5h hi|\t|%20l li|\n";
-//	char *format = "|%5h hi|\n";
-//
-//	int res_orig = printf(format, SHRT_MIN);
-//	fflush(stdout);
-//	int res_ftpf = ft_printf(format, SHRT_MIN);
-//
-//
-//
-//	printf("MY\t=%d\nOR\t=%d\n", res_ftpf, res_orig);
-//	//format = "|% 03d|\t|% 03d|\n";
-//	format = "|% 03.1d|\n";
-//
-//	res_orig = printf(format, LONG_MIN);
-//	fflush(stdout);
-//	res_ftpf = ft_printf(format, LONG_MIN);
-//	printf("MY\t=%d\nOR\t=%d\n", res_ftpf, res_orig);
-//
-//
-//return (0);
-//}
-//
-//	char *format = ">%#.2C<test text %-10#x<\n";
-//	int res_ftpf = ft_printf(format, 0, 0);
-//	int res_orig = printf(format, 0, 0);
-//	printf("MY\t=%d\nOR\t=%d\n", res_ftpf, res_orig);
-
-
-//	ft_putstr("asdasdgfsdg#$%$^$&$&^*546867sd\n");
-
-
-//	int ff = 200;
-//	ft_printf("%1$d====\n%1$5'd<\n\n", ff);
-
-//	long double l;
-//	u_ldoublebfild test;
-//	l = -222270.9578;
-//	test.x = l;
-//	printf(">=>%'Lf<\n", test.x);
-//	fflush(stdout);
-
-
-//	ft_printf("\n");
-
-
-//printf("\n\n\n\n>>>STEP\n");
-//fflush(stdout);
-
-//char *s = "*asdwerфывапрнекуцй";
-//	printf(">>>>>>%d\n",ft_printf(">%.6ls<\n", s));
-//	printf("@%S<\n", s);
-//	printf(">>>>>>%d\n", ft_printf(">%S<\n", L""));
-//	printf("@>>>>>%d\n", printf("@%S<\n", L""));
-//	printf(">>>>>>%d\n", ft_printf(">%03d<\n", 0));
-//	printf("@>>>>>%d\n", printf("@%03d<\n", 0));
-//	fflush(stdout);
-//	ft_printf(">%#o<\n", 0);
-//	printf(">%#o<\n", 0);
-//	fflush(stdout);
-//	ft_printf(ft_strjoin(">", format), 0);
-//	printf(ft_strjoin("@", format), 0);
-//	fflush(stdout);
-
-//	double t = 111111111111111.123456789L;
-//	u_ldoublebfild x;
-//	x.x = 125.12;
-//
-//	x.f.sign = 1;
-
-
-
-
-//	format = "--%####0000 5..1..#00d<\n";
-//	sd = -(0.0 / 0.0);
-//
-//	printf(ft_strjoin("@", format), 256);
-//	fflush(stdout);
-//	ft_printf(ft_strjoin(">", format), 256);
-//
-//	format = "% 03i<\n";
-//	sd = -(0.0 / 0.0);
-//
-//	printf(ft_strjoin("@", format), 0);
-//	fflush(stdout);
-//	ft_printf(ft_strjoin(">", format), 0);
-	//printf("new >%s\n", ft_ffftoa(x));
-
-
-//	char *form = "{%f}{%F}\n";
-//	ft_printf(ft_strjoin(">", form), t, t);
-//	printf(ft_strjoin("@", form), t, t);
-//	fflush(stdout);
-//	ft_printf(">>%c<<\n", 0);
-//	printf(">>%c<<\n", 0);
-
-//	ft_printf("%d%d\n", 42, 41);
-//	ft_printf("%d%d%d\n", 42, 43, 44);
-//	ft_printf("%ld\n", 2147483647);
-//	ft_printf("%lld\n", 9223372036854775807);
-//	ft_printf("%x\n", 505);
-//	ft_printf("%X\n", 505);
-//	ft_printf("%p\n", &ft_printf);
-//	ft_printf("%20.15d\n", 54321);
-//	ft_printf("%-10d\n", 3);
-//	ft_printf("% d\n", 3);
-//	ft_printf("%+d\n", 3);
-//	ft_printf("%010d\n", 1);
-//	ft_printf("%hhd\n", 0);
-//	ft_printf("%jd\n", 9223372036854775807);
-//	ft_printf("%zd\n", 4294967295);
-//	ft_printf("%\n");
-//	ft_printf("%U\n", 4294967295);
-//	ft_printf("%u\n", 4294967295);
-//	ft_printf("%o\n", 40);
-//	ft_printf("%%#08x\n", 42);
-//	ft_printf("%x\n", 1000);
-//	ft_printf("%#X\n", 1000);
-//	ft_printf("%s\n", NULL);
-//	ft_printf("%S\n", L"ݗݜशব");
-//	ft_printf("%s%s\n", "test", "test");
-//	ft_printf("%s%s%s\n", "test", "test", "test");
-//	ft_printf("%C\n", 15000);
-
-	//system("leaks exe");
-
-
-//*******************************
-	/*
-	printf("@_%.5u<\n", 42);
-	fflush(stdout);
-	ft_printf(">_%.5u<\n", 42);
-	 */
-//*******************************
-
-//*******************************
-	//double@@@@@@@@@@@@@@@@@@@@@@@@
-//u_doublebfild d;
-//	d.x = 1.9;
-//	printf(">====>%f(S=%d E=%ld M=%ld)<\n", d.x, d.f.sign, d.f.exp, d.f.man);
-//	fflush(stdout);
-//	ft_printf("sign = %b exp = %b man = %b\n", d.f.sign, d.f.exp, d.f.man);
-
-//	d.x = 9.99999;
-//	printf("#%.0e\n",d.x);
-//
-//	printf(">====>%.8f(S=%d E=%ld M=%ld)<\n", d.x, d.f.sign, d.f.exp, d.f.man);
-//	fflush(stdout);
-//	ft_printf("sign = %b exp = %b man = %b\n", d.f.sign, d.f.exp, d.f.man);
-//
-//	ft_printf("##MY## >>>%.8'f<\n\n", d.x);
-	//double@@@@@@@@@@@@@@@@@@@@@@@@
-	//*******************************
-
-
-//	test.x /= 1;
-//	printf(">>%.10Lf<\n", test.x);
-//
-//	ff = 0;
-// //	while (ff < 25)
-//	{
-//		ft_printf("sign = %b exp = %b man = %b\n", test.f.sign, test.f.exp, test.f.man);
-//		fflush(stdout);
-//		test.x /= 2;
-//		ff++;
-//	}
-
-	//ft_printf("sign = %b exp = %d man = %ld\n",test.f.sign, test.f.exp, test.f.man );
-
-
-
-//u_type test;
-//test.x = 2;
-//test.y.sign = 0;
-//printf("==%d\n\n", test.x);
-
-
-//
-//uint32_t x = 945;
-//
-//
-//	if (MB_CUR_MAX == 1)
-//		printf("aaaaaa\n");
-//	else if (MB_CUR_MAX == 4)
-//		printf("XYIIIII");
-//
-//	char *c = 0;
-//	printf(">%7.8s<<<\n", c);
-//	fflush(stdout);
-//	ft_printf("_%7.8s<<<\n", c);
-
-
-	//***************************************************
-
-//	printf("long dbl size = %lu\n", sizeof(long double));
-//	printf("double size = %lu\n", sizeof(double));
-//	long double ld= 0;
-//	fflush(stdout);
-//	double d;
-//	d = 1.0;
-//	ft_printf("binary = %b\n", d);
-
-//	while (d >0)
-//	{
-//		d /= 2.0;
-//		ft_printf("2binary = %b\n", d);
-//	}
-//	d /= 2.0;
-//	ft_printf("3binary = %b\n", d);
-//	d /= 2.0;
-//	ft_printf("4binary = %b\n", d);
-//	printf("ld = %5.2f\n", d);
-
-
-//	char *cc = NULL;
-//	printf("123\e[m%s\n", ft_strjoin(cc, "asd"));
-//	fflush(stdout);
-//
-//	t_colors n = e_blue;
-
-	//printf("n = %s\n", ft_joinfree("\\e[", ft_itoa(n), F_LAST));
-	//ft_printf("a{black}a{red}a{green}a{orange}a{blue}s{purple}s{cyan}s{gay}s{white}sss%dzzz{{white}zzz", 54);
-
-
-
-//	return (0);
-//}
-
-
-

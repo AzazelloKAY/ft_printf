@@ -12,6 +12,7 @@ include_directories(
 ) # header directories
 #target_include_directories(includes)
 link_directories(
+        tmp
         libft
 #        includes
 ) # library directories
