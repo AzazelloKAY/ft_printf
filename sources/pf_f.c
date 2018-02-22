@@ -79,11 +79,9 @@ int				ftpf_f(t_print *pf)
 		x.x = va_arg(pf->arg, double);
 	else
 		x.x = va_arg(pf->arg, long double);
-
-
 	pf_process_double(pf, x);
-
-	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
+//	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
+	pf->res = ft_concatresbuf(pf);
 	pf->res_len += pf->buf_len;
 	return (1);
 }

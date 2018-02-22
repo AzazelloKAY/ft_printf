@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <locale.h>
 #include "includes/ft_printf.h"
+#include <locale.h>
 
 //	fflush(stdout);
 
@@ -75,6 +75,14 @@ int main()
 	setlocale(LC_ALL, "");
 	//setlocale(LC_NUMERIC,"");
 
+
+
+	char *format = ">%#.2C<te{red}st text%o\n";
+	int res_ftpf = ft_printf(format, 0, 256);
+	int res_orig = printf(format, 0, 256);
+	printf("MY\t=%d\nOR\t=%d\n", res_ftpf, res_orig);
+
+
 //	ft_putstr("asdasdgfsdg#$%$^$&$&^*546867sd\n");
 
 
@@ -106,28 +114,32 @@ int main()
 //	ft_printf(">%#o<\n", 0);
 //	printf(">%#o<\n", 0);
 //	fflush(stdout);
-	char *format = "{%#.2o}\n";
 //	ft_printf(ft_strjoin(">", format), 0);
 //	printf(ft_strjoin("@", format), 0);
 //	fflush(stdout);
 
 //	double t = 111111111111111.123456789L;
 //	u_ldoublebfild x;
-//	x.x = t;
-	long double sd = 123.99995454654879875488888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888885L;//11111111111111111111111111111.123456789L;
-	format = "--%####0000 5..1..#00d<\n";
-	sd = -(0.0 / 0.0);
+//	x.x = 125.12;
+//
+//	x.f.sign = 1;
 
-	printf(ft_strjoin("@", format), 256);
-	fflush(stdout);
-	ft_printf(ft_strjoin(">", format), 256);
 
-	format = "% 03i<\n";
-	sd = -(0.0 / 0.0);
 
-	printf(ft_strjoin("@", format), 0);
-	fflush(stdout);
-	ft_printf(ft_strjoin(">", format), 0);
+
+//	format = "--%####0000 5..1..#00d<\n";
+//	sd = -(0.0 / 0.0);
+//
+//	printf(ft_strjoin("@", format), 256);
+//	fflush(stdout);
+//	ft_printf(ft_strjoin(">", format), 256);
+//
+//	format = "% 03i<\n";
+//	sd = -(0.0 / 0.0);
+//
+//	printf(ft_strjoin("@", format), 0);
+//	fflush(stdout);
+//	ft_printf(ft_strjoin(">", format), 0);
 	//printf("new >%s\n", ft_ffftoa(x));
 
 

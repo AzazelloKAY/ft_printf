@@ -60,8 +60,8 @@ int			ftpf_s(t_print *pf)
 		pf->buf = (s != NULL) ? ft_strsub(s, 0, (size_t)pf->buf_len) : ft_strsub("(null)", 0, (size_t)pf->buf_len);
 		pf->buf_len = ft_strlen(pf->buf);
 		pf_process_cs(pf);
-		pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
-//		pf->res = ft_concatresbuf(pf);
+//		pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
+		pf->res = ft_concatresbuf(pf);
 		pf->res_len += pf->buf_len;
 	}
 	return (1);

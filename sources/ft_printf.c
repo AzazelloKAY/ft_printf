@@ -14,7 +14,7 @@
 
 #include <stdio.h>//*******************
 
-char			*ft_catbuf(t_print *pf, const char *start, const char *stop) //change to concat woth res_line
+char		*ft_catbuf(t_print *pf, const char *start, const char *stop)
 {
 	size_t len;
 
@@ -24,26 +24,30 @@ char			*ft_catbuf(t_print *pf, const char *start, const char *stop) //change to 
 	return ((char*)start + len);
 }
 
-static char		*ft_parser(t_print *pf, char *frm)
+static int	ft_parser(t_print *pf, char *frm)
 {
 	int id;
+	int funcret;
 
 	ft_reset_pf(pf);
 	pf->tfrm = ft_catbuf(pf, pf->tfrm, frm) + 1;
 	while (*pf->tfrm)
 	{
 		id = (ft_isprint(*pf->tfrm) && (pf->flist[(int)*pf->tfrm] != NULL)) ? *pf->tfrm : 0;
-		if (pf->flist[id](pf))
+		funcret = pf->flist[id](pf);
+		if (funcret > 0)
 		{
 			pf->tfrm++;
 			break;
 		}
+		else if (funcret < 0)
+			return (-1);
 		pf->tfrm++;
 	}
-	return (pf->tfrm);
+	return (0);
 }
 
-int				ft_printf(const char *frm, ...)
+int			ft_printf(const char *frm, ...)
 {
 	t_print	*pf;
 
@@ -54,7 +58,11 @@ int				ft_printf(const char *frm, ...)
 	while (*frm)
 	{
 		if (*frm == '%')
-			frm = ft_parser(pf, (char*)frm);
+		{
+			if (ft_parser(pf, (char *) frm) < 0)
+				return (-1);
+			frm = pf->tfrm;
+		}
 		else if (*frm == '{')
 		{
 			pf->tfrm = ftpf_color(pf, (char*)frm);

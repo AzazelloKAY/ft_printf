@@ -25,19 +25,19 @@ typedef union		u_ldoublebfild
 	t_ldoublebfild	f;
 }					u_ldoublebfild;
 
-typedef struct		s_doublebfild
-{
-	unsigned long	man		: 52;
-	unsigned long	exp		: 11;
-	unsigned 		sign	: 1;
-
-}					t_doublebfild;
-
-typedef union		u_doublebfild
-{
-	double			x;
-	t_doublebfild	f;
-}					u_doublebfild;
+//typedef struct		s_doublebfild
+//{
+//	unsigned long	man		: 52;
+//	unsigned long	exp		: 11;
+//	unsigned 		sign	: 1;
+//
+//}					t_doublebfild;
+//
+//typedef union		u_doublebfild
+//{
+//	double			x;
+//	t_doublebfild	f;
+//}					u_doublebfild;
 
 typedef enum		e_colors
 {

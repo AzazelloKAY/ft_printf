@@ -43,7 +43,7 @@ static void		pf_addcolor(t_print *pf, t_colors color)
 	{
 		colorcode = ft_joinfree(
 				ft_joinfree("\e[", ft_itoa(color), F_LAST), "m", F_FIRST);
-		pf->res = ft_joinfree(pf->res, colorcode, F_BOTH);
+		pf->res = ft_strmemcat(pf->res, colorcode, pf->res_len, 5);
 		pf->f_curcolor = color;
 		pf->res_len += 5;
 	}
@@ -76,8 +76,6 @@ char			*ftpf_color(t_print *pf, char *s)
 		s++;
 	return (s + 1);
 }
-
-#include <stdio.h>
 
 void 			pf_fquote(t_print *pf)
 {

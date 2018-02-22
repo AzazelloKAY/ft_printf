@@ -55,8 +55,8 @@ int					ftpf_o(t_print *pf)
 		pf->buf_len = 0;
 	}
 	pf_process_o(pf);
-	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
-//	pf->res = ft_concatresbuf(pf);
+//	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
+	pf->res = ft_concatresbuf(pf);
 	pf->res_len += pf->buf_len;
 	return (1);
 }
@@ -69,8 +69,8 @@ int				ftpf_b(t_print *pf)
 	x = va_arg(pf->arg, uint64_t);
 	pf->buf = ft_utoa_base(pf, x, 2);
 	pf_process_cs(pf);
-	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
-//	pf->res = ft_concatresbuf(pf);
+//	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
+	pf->res = ft_concatresbuf(pf);
 	pf->res_len += pf->buf_len;
 	return (1);
 }
