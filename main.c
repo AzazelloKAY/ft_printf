@@ -4,11 +4,11 @@
 #include <locale.h>
 
 //	fflush(stdout);
-#include <limits.h>
-#include <errno.h>
-#include <stddef.h>
+//#include <limits.h>
+//#include <errno.h>
+//#include <stddef.h>
 
-
+/*
 //
 //
 //
@@ -587,26 +587,25 @@ int	main(void)
 	PRINTF("|%ll.15.12d|\t|%.ll 15.12d|\t|%.015ll.12d|\t|%.ll#15.12d|\t|%.ll#15.12x|",-42,-42,-42,-42,-42);
 #endif
 
-/*
-**	Put new stuff here like:
 
-#ifdef <test_name>
-	TITLE("<test name>\n");
-	PRINTF("test without \n in the end!");
-#endif
 
-*/
 
-//Don't remove!
+	ft_printf(">%S<", "ываывп шрплдыпр");
+
 	if (errno)
 		printf(RED"\n\n\tSome error has been found:\t%s\n"NORM,strerror(errno));
 
-//LEAKS test (just make <gcc -D LEAKS> and it will work)
+
+
+
+
 #ifdef LEAKS
 	while (1) sleep(120);
 #endif
 	return (0);
 }
+
+*/
 //
 //
 //
@@ -623,68 +622,14 @@ int	main(void)
 //	printf("==%d\n\n", test.x);
 // * */
 //
-//static double pf_dblpow(int i)
-//{
-//	double res;
-//
-//	res = 1;
-//	while (i--)
-//		res *= 10;
-//	return (res);
-//}
-//
-//char	*ft_ffftoa(u_ldoublebfild x)
-//{
-//	char	*tchar;
-//	int 	i;
-//	int		num;
-//	double 	tmp;
-//
-//	char 	*res;
-//
-//
-//	tmp = x.x;
-//	i = 0;
-//	while (tmp >= 1)
-//	{
-//		tmp /= 10;
-//		i++;
-//	}
-//	tchar = ft_strnew(1);
-//	while (i--)
-//	{
-//		tmp = pf_dblpow(i);
-//		num = (uint8_t)(x.x / tmp);
-//		tchar[0] = (uint8_t)num + (uint8_t)'0';
-//		res = ft_joinfree(res, tchar, F_FIRST);
-//		x.x -= num * tmp;
-//		//pf->buf_len++;
-//	}
-// //	pf_fquote(pf);
-//	res = ft_joinfree(res, ".", F_FIRST);
-//	//pf->buf_len++;
-//	if (x.x == 0)
-//		return (res);
-//	while (x.x != 0)
-//	{
-//		x.x *= 10;
-//		tchar[0] = (uint8_t)x.x+ '0';
-//		res = ft_joinfree(res, tchar, F_FIRST);
-//		x.x -= (uint8_t)x.x;
-//		//pf->buf_flen++;
-//	}
-//	//pf->buf_len += pf->buf_flen;
-//	ft_strdel(&tchar);
-//	return (res);
-//}
 
 
-//int main()
-//{
-//	setlocale(LC_ALL, "");
-//	setlocale(LC_NUMERIC, "");
-//
-//	//char *format = "|%5h hi|\t|%20l li|\n";
+int main()
+{
+	setlocale(LC_ALL, "");
+	//setlocale(LC_NUMERIC, "");
+
+	//char *format = "|%5h hi|\t|%20l li|\n";
 //	char *format = "|%5h hi|\n";
 //
 //	int res_orig = printf(format, SHRT_MIN);
@@ -701,10 +646,19 @@ int	main(void)
 //	fflush(stdout);
 //	res_ftpf = ft_printf(format, LONG_MIN);
 //	printf("MY\t=%d\nOR\t=%d\n", res_ftpf, res_orig);
-//
-//
-//return (0);
-//}
+
+	char *s = "*asdwerфывапрнекуцй";
+
+	ft_printf(">%-20.5S<\n", L"rфывапрнекуцй");
+	printf("@%-20.5S<\n", L"rфывапрнекуцй");
+//	printf(">>>>>>%d\n",ft_printf(">%.6ls<\n", s));
+//	fflush(stdout);
+//	printf("@%S<\n", s);
+//	printf(">>>>>>%d\n", ft_printf(">%S<\n", L""));
+//	printf("@>>>>>%d\n", printf("@%S<\n", L""));
+
+return (0);
+}
 //
 //	char *format = ">%#.2C<test text %-10#x<\n";
 //	int res_ftpf = ft_printf(format, 0, 0);

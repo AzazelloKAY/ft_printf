@@ -1,10 +1,18 @@
-//
-// Created by Antonin KOKOSHKO on 2/11/18.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pf_parse_flags_d.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akokoshk <akokoshk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/31 20:43:37 by akokoshk          #+#    #+#             */
+/*   Updated: 2018/02/01 19:17:53 by akokoshk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int 		ftpf_set_fquote(t_print *pf)
+int			ftpf_set_fquote(t_print *pf)
 {
 	pf->fquote = 1;
 	return (0);

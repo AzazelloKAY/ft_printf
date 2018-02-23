@@ -12,7 +12,6 @@
 
 #include "../includes/ft_printf.h"
 
-
 static void			pf_process_idu(t_print *pf)
 {
 	char	fil;
@@ -26,7 +25,7 @@ static void			pf_process_idu(t_print *pf)
 	pf->xiszero = (int8_t)((pf->fzero == 1 && pf->fdot == 0) ? 1 : 0);
 	if ((fil == '0' && (pf->fplus == 1 || pf->sign[0] == '-'))
 		|| (pf->fspace == 1 && (pf->fmnus == 1 || pf->xiszero == 1)))
-		pf->minlen = (pf->minlen < 2) ? 0: pf->minlen - 1;
+		pf->minlen = (pf->minlen < 2) ? 0 : pf->minlen - 1;
 	if (fil == '0')
 		ftpf_process_minlen(pf, pf->buf, pf->buf_len, fil);
 	if (pf->fspace == 1)
@@ -48,14 +47,14 @@ static int64_t		ft_getvarg_s(t_print *pf)
 	else if (pf->f_l > 0 || pf->f_ll > 0 || pf->f_t > 0)
 		return (va_arg(pf->arg, int64_t));
 	else if (pf->f_h == 1)
-		return ((int16_t)va_arg(pf->arg, void*)); //int16_t
+		return ((int16_t)va_arg(pf->arg, void*));
 	else if (pf->f_hh == 1)
-		return ((int8_t)va_arg(pf->arg, void*)); //int8_t
+		return ((int8_t)va_arg(pf->arg, void*));
 	else
 		return (va_arg(pf->arg, int32_t));
 }
 
-int				ftpf_id(t_print *pf)
+int					ftpf_id(t_print *pf)
 {
 	int64_t x;
 
@@ -69,7 +68,6 @@ int				ftpf_id(t_print *pf)
 		pf->buf_len = 0;
 	}
 	pf_process_idu(pf);
-//	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
 	pf->res = ft_concatresbuf(pf);
 	pf->res_len += pf->buf_len;
 	return (1);
@@ -78,7 +76,7 @@ int				ftpf_id(t_print *pf)
 static uint64_t		ft_getvarg_u(t_print *pf)
 {
 	ftpf_skipvarg(pf);
-	if (*pf->tfrm =='U' || pf->f_z > 0 || pf->f_j > 0)
+	if (*pf->tfrm == 'U' || pf->f_z > 0 || pf->f_j > 0)
 		return (va_arg(pf->arg, uint64_t));
 	else if (pf->f_l > 0 || pf->f_ll > 0 || pf->f_t > 0)
 		return (va_arg(pf->arg, uint64_t));
@@ -90,7 +88,7 @@ static uint64_t		ft_getvarg_u(t_print *pf)
 		return (va_arg(pf->arg, uint32_t));
 }
 
-int				ftpf_u(t_print *pf)
+int					ftpf_u(t_print *pf)
 {
 	uint64_t x;
 
@@ -102,7 +100,6 @@ int				ftpf_u(t_print *pf)
 		pf->buf_len = 0;
 	}
 	pf_process_idu(pf);
-//	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
 	pf->res = ft_concatresbuf(pf);
 	pf->res_len += pf->buf_len;
 	return (1);

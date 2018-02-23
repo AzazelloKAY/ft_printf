@@ -12,8 +12,6 @@
 
 #include "../includes/ft_printf.h"
 
-#include <stdio.h>//*******************
-
 char		*ft_catbuf(t_print *pf, const char *start, const char *stop)
 {
 	size_t len;
@@ -33,7 +31,8 @@ static int	ft_parser(t_print *pf, char *frm)
 	pf->tfrm = ft_catbuf(pf, pf->tfrm, frm) + 1;
 	while (*pf->tfrm)
 	{
-		id = (ft_isprint(*pf->tfrm) && (pf->flist[(int)*pf->tfrm] != NULL)) ? *pf->tfrm : 0;
+		id = (ft_isprint(*pf->tfrm)
+			  && (pf->flist[(int)*pf->tfrm] != NULL)) ? *pf->tfrm : 0;
 		funcret = pf->flist[id](pf);
 		if (funcret > 0)
 		{

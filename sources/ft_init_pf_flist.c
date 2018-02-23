@@ -1,6 +1,14 @@
-//
-// Created by Antonin KOKOSHKO on 1/24/18.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_init_pf_flist.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akokoshk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/23 19:41:29 by akokoshk          #+#    #+#             */
+/*   Updated: 2018/02/23 19:41:37 by akokoshk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
@@ -29,8 +37,7 @@ void		ft_reset_pf(t_print *pf)
 	pf->argnum = 0;
 	pf->sign = "+";
 	pf->xiszero = 0;
-//	ft_strdel(&pf->buf);
-	pf->buf = NULL; //????????????????????????? я фришу в конце каждой обработки джоинфри
+	pf->buf = NULL;
 }
 
 static void		ft_flist_digit(t_print *pf)

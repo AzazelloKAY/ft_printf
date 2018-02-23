@@ -33,7 +33,6 @@ clean:
 	@echo "ft_printf objects cleaned"
 
 fclean: clean
-#	@rm -f $(NAME)
 	@echo "ft_printf objects fcleaned"
 
 re:	fclean all

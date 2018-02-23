@@ -45,11 +45,11 @@ int			ftpf_set_hflag(t_print *pf)
 	if (pf->f_h == 1)
 	{
 		pf->f_hh = 1;
-		pf->f_h	= 0;
+		pf->f_h = 0;
 	}
 	else if (pf->f_hh == 1)
 	{
-		pf->f_h	= 1;
+		pf->f_h = 1;
 		pf->f_hh = 0;
 	}
 	else
@@ -57,7 +57,7 @@ int			ftpf_set_hflag(t_print *pf)
 	return (0);
 }
 
-int 		ftpf_set_starflag(t_print *pf)
+int			ftpf_set_starflag(t_print *pf)
 {
 	pf->minlen = va_arg(pf->arg, int);
 	if (pf->minlen < 0)

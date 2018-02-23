@@ -12,31 +12,31 @@
 
 #include "../includes/ft_printf.h"
 
-int 		ftpf_set_ldflag(t_print *pf)
+int			ftpf_set_ldflag(t_print *pf)
 {
 	pf->f_ld = 1;
 	return (0);
 }
 
-int 		ftpf_set_jflag(t_print *pf)
+int			ftpf_set_jflag(t_print *pf)
 {
 	pf->f_j = 1;
 	return (0);
 }
 
-int 		ftpf_set_zflag(t_print *pf)
+int			ftpf_set_zflag(t_print *pf)
 {
 	pf->f_z = 1;
 	return (0);
 }
 
-int 		ftpf_set_tflag(t_print *pf)
+int			ftpf_set_tflag(t_print *pf)
 {
 	pf->f_t = 1;
 	return (0);
 }
 
-int		ftpf_skipvarg(t_print *pf)
+int			ftpf_skipvarg(t_print *pf)
 {
 	if (pf->f_baks == 1)
 	{

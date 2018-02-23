@@ -1,6 +1,14 @@
-//
-// Created by Antonin KOKOSHKO on 2/3/18.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pf_n_color_quote.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akokoshk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/23 19:43:14 by akokoshk          #+#    #+#             */
+/*   Updated: 2018/02/23 19:43:14 by akokoshk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
@@ -52,23 +60,23 @@ static void		pf_addcolor(t_print *pf, t_colors color)
 char			*ftpf_color(t_print *pf, char *s)
 {
 	ft_catbuf(pf, pf->tfrm, s);
-	if(ft_strnstr(s, "{black}", 7))
+	if (ft_strnstr(s, "{black}", 7))
 		pf_addcolor(pf, e_black);
-	else if(ft_strnstr(s, "{white}", 7))
+	else if (ft_strnstr(s, "{white}", 7))
 		pf_addcolor(pf, e_white);
-	else if(ft_strnstr(s, "{red}", 5))
+	else if (ft_strnstr(s, "{red}", 5))
 		pf_addcolor(pf, e_red);
-	else if(ft_strnstr(s, "{green}", 7))
+	else if (ft_strnstr(s, "{green}", 7))
 		pf_addcolor(pf, e_green);
-	else if(ft_strnstr(s, "{orange}", 8))
+	else if (ft_strnstr(s, "{orange}", 8))
 		pf_addcolor(pf, e_orange);
-	else if(ft_strnstr(s, "{blue}", 6))
+	else if (ft_strnstr(s, "{blue}", 6))
 		pf_addcolor(pf, e_blue);
-	else if(ft_strnstr(s, "{purple}", 8))
+	else if (ft_strnstr(s, "{purple}", 8))
 		pf_addcolor(pf, e_purple);
-	else if(ft_strnstr(s, "{cyan}", 6))
+	else if (ft_strnstr(s, "{cyan}", 6))
 		pf_addcolor(pf, e_cyan);
-	else if(ft_strnstr(s, "{gray}", 6))
+	else if (ft_strnstr(s, "{gray}", 6))
 		pf_addcolor(pf, e_gray);
 	else
 		return (s);
@@ -77,7 +85,7 @@ char			*ftpf_color(t_print *pf, char *s)
 	return (s + 1);
 }
 
-void 			pf_fquote(t_print *pf)
+void			pf_fquote(t_print *pf)
 {
 	char *res;
 
@@ -89,7 +97,6 @@ void 			pf_fquote(t_print *pf)
 		res = ft_joinfree(ft_strsub(pf->buf, pf->buf_len, 3), res, F_LAST);
 		res = ft_joinfree(",", res, F_LAST);
 	}
-
 	res = ft_joinfree(ft_strsub(pf->buf, 0, pf->buf_len + 3), res, F_BOTH);
 	ft_strdel(&pf->buf);
 	pf->buf = res;

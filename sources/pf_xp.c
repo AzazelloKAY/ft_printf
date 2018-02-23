@@ -15,7 +15,8 @@
 static uint64_t		ft_getvarg(t_print *pf)
 {
 	ftpf_skipvarg(pf);
-	if (pf->f_l > 0 || pf->f_ll > 0 || pf->f_t > 0 || pf->f_z > 0 || pf->f_j > 0)
+	if (pf->f_l > 0 || pf->f_ll > 0 || pf->f_t > 0
+		|| pf->f_z > 0 || pf->f_j > 0)
 		return (va_arg(pf->arg, uint64_t));
 	else if (pf->f_h == 1)
 		return ((uint16_t)va_arg(pf->arg, void*));
@@ -35,16 +36,16 @@ static void			pf_process_x(t_print *pf)
 	if (fil == '0')
 	{
 		if (pf->fhash == 1)
-			pf->minlen = (pf->minlen < 3) ? 0: pf->minlen - 2;
-		ftpf_process_minlen(pf, pf->buf, pf->buf_len, fil);//надо после всего
+			pf->minlen = (pf->minlen < 3) ? 0 : pf->minlen - 2;
+		ftpf_process_minlen(pf, pf->buf, pf->buf_len, fil);
 	}
 	if ((pf->fhash == 1 && !pf->xiszero) || *pf->tfrm == 'p')
 	{
-		pf->buf = ft_joinfree("0x", pf->buf, F_LAST);//надо клеить перед 00
+		pf->buf = ft_joinfree("0x", pf->buf, F_LAST);
 		pf->buf_len += 2;
 	}
 	if (fil == ' ')
-		ftpf_process_minlen(pf, pf->buf, pf->buf_len, fil);//надо после всего
+		ftpf_process_minlen(pf, pf->buf, pf->buf_len, fil);
 	i = pf->buf_len;
 	if (*pf->tfrm == 'X')
 		while (i--)
@@ -64,7 +65,6 @@ int					ftpf_x(t_print *pf)
 		pf->buf_len = 0;
 	}
 	pf_process_x(pf);
-//	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
 	pf->res = ft_concatresbuf(pf);
 	pf->res_len += pf->buf_len;
 	return (1);
@@ -85,7 +85,6 @@ int					ftpf_p(t_print *pf)
 		pf->buf_len = 0;
 	}
 	pf_process_x(pf);
-//	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
 	pf->res = ft_concatresbuf(pf);
 	pf->res_len += pf->buf_len;
 	return (1);

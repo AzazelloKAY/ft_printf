@@ -3,7 +3,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
-//# include <stdint-gcc.h>
 # include "../libft/libft.h"
 
 # define F_NONE -1
@@ -24,20 +23,6 @@ typedef union		u_ldoublebfild
 	long double		x;
 	t_ldoublebfild	f;
 }					u_ldoublebfild;
-
-//typedef struct		s_doublebfild
-//{
-//	unsigned long	man		: 52;
-//	unsigned long	exp		: 11;
-//	unsigned 		sign	: 1;
-//
-//}					t_doublebfild;
-//
-//typedef union		u_doublebfild
-//{
-//	double			x;
-//	t_doublebfild	f;
-//}					u_doublebfild;
 
 typedef enum		e_colors
 {
@@ -69,10 +54,6 @@ typedef struct 	s_prnt
 	char	 	*tfrm;
 	char 		*res;
 	char 		*buf;
-
-	//long double	forthefuture;// for presitious float
-
-	//move flags and spec-s to separet struct????
 	int 		minlen;
 	int			precis;
 	int			argnum;
@@ -93,10 +74,8 @@ typedef struct 	s_prnt
 	int8_t		f_z;
 	int8_t		f_t;
 	int8_t		f_baks;
-
 	int8_t		xiszero;
 	t_colors	f_curcolor;
-
 	va_list		arg;
 	va_list		initarg;
 	func_p		*flist;
@@ -229,10 +208,5 @@ char 			*ft_strmemcat(char *s1, char *s2, int s1len, int s2len);
 char			*ft_utoa_base(t_print *pf, uint64_t val, int base);
 char			*ft_stoa_base(t_print *pf, int64_t val, int base);
 char			*ft_ftoa(t_print *pf, u_ldoublebfild x);
-
-//char	*ft_fftoa(t_print *pf, u_doublebfild x);
-
-
-char			*ft_lftoa(t_print *pf, u_ldoublebfild x);
 
 #endif
