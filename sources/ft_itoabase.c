@@ -70,7 +70,7 @@ static long double	pf_ldblpow(int i)
 	return (res);
 }
 
-static char			*pf_addfract(t_print *pf, u_ldoublebfild x)
+static char			*pf_addfract(t_print *pf, t_ldoubleunion x)
 {
 	char	*tchar;
 
@@ -88,7 +88,7 @@ static char			*pf_addfract(t_print *pf, u_ldoublebfild x)
 	return (pf->buf);
 }
 
-char				*ft_ftoa(t_print *pf, u_ldoublebfild x)
+char				*ft_ftoa(t_print *pf, t_ldoubleunion x)
 {
 	int				i;
 	long double		tmp;

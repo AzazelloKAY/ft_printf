@@ -29,7 +29,7 @@ int			ftpf_c(t_print *pf)
 	else
 	{
 		ftpf_skipvarg(pf);
-		c = (va_arg(pf->arg, int32_t));
+		c = (va_arg(pf->arg, int));
 		pf->buf = ft_strnew(1);
 		pf->buf[0] = (c == 0) ? '0' : c;
 		pf->buf_len = 1;

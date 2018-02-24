@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-static int			ft_unilen(uint32_t *s)
+static int			ft_unilen(unsigned int *s)
 {
 	int len;
 
@@ -38,7 +38,7 @@ static uint32_t		pf_addmask(uint32_t x)
 				+ ((x & 0xFC0) << 2) + (x & 0x3F) + 0xF0808080);
 }
 
-static int			ft_uni_to_chr(char *dst, uint32_t c)
+static int			ft_uni_to_chr(char *dst, unsigned int c)
 {
 	uint8_t		*t;
 	int			i;
@@ -62,10 +62,10 @@ static int			ft_uni_to_chr(char *dst, uint32_t c)
 
 int					ftpf_uni_c(t_print *pf)
 {
-	uint32_t c;
+	unsigned int c;
 
 	ftpf_skipvarg(pf);
-	c = va_arg(pf->arg, uint32_t);
+	c = va_arg(pf->arg, unsigned int);
 	if (MB_CUR_MAX == 4)
 		c = pf_addmask(c);
 	else if (MB_CUR_MAX != 4 && c > 255)
@@ -80,13 +80,13 @@ int					ftpf_uni_c(t_print *pf)
 
 int					ftpf_uni_s(t_print *pf)
 {
-	uint32_t	*s;
-	int			i;
-	int			ustrlen;
-	int			ucharlen;
+	unsigned int	*s;
+	int				i;
+	int				ustrlen;
+	int				ucharlen;
 
 	ftpf_skipvarg(pf);
-	if ((s = va_arg(pf->arg, uint32_t*)) == NULL)
+	if ((s = va_arg(pf->arg, unsigned int*)) == NULL)
 		pf->buf_len = (pf->fdot == 1) ? pf->precis : 6;
 	ustrlen = ft_unilen(s);
 	pf->buf = (s != NULL) ? ft_strnew(ustrlen * 4)

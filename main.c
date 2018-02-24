@@ -590,7 +590,9 @@ int	main(void)
 
 
 
-	ft_printf(">%S<", L"ываывп шрплдыпр");
+	ft_printf(">%-10.7S<\n", L"ываывп шрплдыпр");
+	ft_printf(">%-20.5f<\n", 42.568999999);
+	printf("@%-20.5f<\n", 42.568999999);
 
 	if (errno)
 		printf(RED"\n\n\tSome error has been found:\t%s\n"NORM,strerror(errno));

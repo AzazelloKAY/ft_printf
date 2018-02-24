@@ -55,7 +55,7 @@ static void		pf_f_precision(t_print *pf)
 	pf->buf[pf->buf_len] = 0;
 }
 
-static void		pf_process_double(t_print *pf, u_ldoublebfild x)
+static void		pf_process_double(t_print *pf, t_ldoubleunion x)
 {
 	char fil;
 
@@ -79,7 +79,7 @@ static void		pf_process_double(t_print *pf, u_ldoublebfild x)
 
 int				ftpf_f(t_print *pf)
 {
-	u_ldoublebfild	x;
+	t_ldoubleunion	x;
 
 	pf->precis = (pf->fdot == 0) ? 6 : pf->precis;
 	pf->fdot = 1;

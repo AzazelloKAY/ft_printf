@@ -42,16 +42,18 @@ static void			pf_process_idu(t_print *pf)
 static int64_t		ft_getvarg_s(t_print *pf)
 {
 	ftpf_skipvarg(pf);
-	if (*pf->tfrm == 'D' || pf->f_z > 0 || pf->f_j > 0)
+	if (*pf->tfrm == 'D' || pf->f_t > 0 || pf->f_z > 0 || pf->f_j > 0)
 		return (va_arg(pf->arg, int64_t));
-	else if (pf->f_l > 0 || pf->f_ll > 0 || pf->f_t > 0)
-		return (va_arg(pf->arg, int64_t));
+	else if (pf->f_ll > 0)
+		return ((long long)va_arg(pf->arg, void*));
+	else if (pf->f_l > 0)
+		return ((long)va_arg(pf->arg, void*));
 	else if (pf->f_h == 1)
-		return ((int16_t)va_arg(pf->arg, void*));
+		return ((short)va_arg(pf->arg, void*));
 	else if (pf->f_hh == 1)
-		return ((int8_t)va_arg(pf->arg, void*));
+		return ((char)va_arg(pf->arg, void*));
 	else
-		return (va_arg(pf->arg, int32_t));
+		return ((int)va_arg(pf->arg, void*));
 }
 
 int					ftpf_id(t_print *pf)
@@ -76,16 +78,18 @@ int					ftpf_id(t_print *pf)
 static uint64_t		ft_getvarg_u(t_print *pf)
 {
 	ftpf_skipvarg(pf);
-	if (*pf->tfrm == 'U' || pf->f_z > 0 || pf->f_j > 0)
+	if (*pf->tfrm == 'U' || pf->f_t > 0 || pf->f_z > 0 || pf->f_j > 0)
 		return (va_arg(pf->arg, uint64_t));
-	else if (pf->f_l > 0 || pf->f_ll > 0 || pf->f_t > 0)
-		return (va_arg(pf->arg, uint64_t));
+	else if (pf->f_ll > 0)
+		return ((unsigned long long)va_arg(pf->arg, void*));
+	else if (pf->f_l > 0)
+		return ((unsigned long)va_arg(pf->arg, void*));
 	else if (pf->f_h == 1)
-		return ((uint16_t)va_arg(pf->arg, void*));
+		return ((unsigned short)va_arg(pf->arg, void*));
 	else if (pf->f_hh == 1)
-		return ((uint8_t)va_arg(pf->arg, void*));
+		return ((unsigned char)va_arg(pf->arg, void*));
 	else
-		return (va_arg(pf->arg, uint32_t));
+		return ((unsigned int)va_arg(pf->arg, void*));
 }
 
 int					ftpf_u(t_print *pf)

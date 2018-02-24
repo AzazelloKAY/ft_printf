@@ -98,7 +98,7 @@ t_print			*ft_init_pf(const char *frm)
 
 	if (!(pf = ft_memalloc(sizeof(t_print))))
 		return (NULL);
-	if (!(pf->flist = ft_memalloc(sizeof(func_p) * 128)))
+	if (!(pf->flist = ft_memalloc(sizeof(t_func_p) * 128)))
 		return (NULL);
 	ft_init_flist(pf);
 	if (frm == NULL)
