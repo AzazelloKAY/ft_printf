@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-void		ft_reset_pf(t_print *pf)
+void			ft_reset_pf(t_print *pf)
 {
 	pf->buf_len = 0;
 	pf->buf_flen = 0;
@@ -92,7 +92,7 @@ static void		ft_init_flist(t_print *pf)
 	ft_flist_digit(pf);
 }
 
-t_print		*ft_init_pf(const char *frm)
+t_print			*ft_init_pf(const char *frm)
 {
 	t_print	*pf;
 
@@ -108,10 +108,12 @@ t_print		*ft_init_pf(const char *frm)
 	return (pf);
 }
 
-int			ft_close_pf(t_print *pf)
+int				ft_close_pf(t_print *pf)
 {
 	int res;
 
+	va_end(pf->initarg);
+	va_end(pf->arg);
 	res = pf->res_len;
 	ft_memdel((void**)&(pf->res));
 	ft_memdel((void**)&(pf->flist));

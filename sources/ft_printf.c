@@ -32,12 +32,12 @@ static int	ft_parser(t_print *pf, char *frm)
 	while (*pf->tfrm)
 	{
 		id = (ft_isprint(*pf->tfrm)
-			  && (pf->flist[(int)*pf->tfrm] != NULL)) ? *pf->tfrm : 0;
+			&& (pf->flist[(int)*pf->tfrm] != NULL)) ? *pf->tfrm : 0;
 		funcret = pf->flist[id](pf);
 		if (funcret > 0)
 		{
 			pf->tfrm++;
-			break;
+			break ;
 		}
 		else if (funcret < 0)
 			return (-1);
@@ -58,7 +58,7 @@ int			ft_printf(const char *frm, ...)
 	{
 		if (*frm == '%')
 		{
-			if (ft_parser(pf, (char *) frm) < 0)
+			if (ft_parser(pf, (char *)frm) < 0)
 				return (-1);
 			frm = pf->tfrm;
 		}
@@ -72,8 +72,5 @@ int			ft_printf(const char *frm, ...)
 	}
 	ft_catbuf(pf, pf->tfrm, frm);
 	write(1, pf->res, pf->res_len);
-	va_end(pf->initarg);
-	va_end(pf->arg);
 	return (ft_close_pf(pf));
 }
-

@@ -18,7 +18,6 @@ void		pf_process_cs(t_print *pf)
 
 	fil = (pf->fmnus == 0 && pf->fzero == 1) ? '0' : ' ';
 	ftpf_process_minlen(pf, pf->buf, pf->buf_len, fil);
-	//pf->res_len += pf->buf_len;
 }
 
 int			ftpf_c(t_print *pf)
@@ -36,9 +35,10 @@ int			ftpf_c(t_print *pf)
 		pf->buf_len = 1;
 		pf_process_cs(pf);
 		if (c == 0)
-			((pf->fmnus == 1) ? (pf->buf[0] = 0) : (pf->buf[pf->buf_len - 1] = 0));
-		pf->res = ft_concatresbuf(pf);//ft_joinfree(pf->res, pf->buf, F_BOTH);
-		pf->res_len += pf->buf_len; // можно запхать в конкатер//*************************
+			((pf->fmnus == 1) ? (pf->buf[0] = 0)
+				: (pf->buf[pf->buf_len - 1] = 0));
+		pf->res = ft_concatresbuf(pf);
+		pf->res_len += pf->buf_len;
 	}
 	return (1);
 }
@@ -57,22 +57,21 @@ int			ftpf_s(t_print *pf)
 			pf->buf_len = pf->precis;
 		else
 			pf->buf_len = (s == NULL) ? 6 : (int)ft_strlen(s);
-		pf->buf = (s != NULL) ? ft_strsub(s, 0, (size_t)pf->buf_len) : ft_strsub("(null)", 0, (size_t)pf->buf_len);
+		pf->buf = (s != NULL) ? ft_strsub(s, 0, (size_t)pf->buf_len)
+			: ft_strsub("(null)", 0, (size_t)pf->buf_len);
 		pf->buf_len = ft_strlen(pf->buf);
 		pf_process_cs(pf);
-//		pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
 		pf->res = ft_concatresbuf(pf);
 		pf->res_len += pf->buf_len;
 	}
 	return (1);
 }
 
-int		ftpf_undefined(t_print *pf)
+int			ftpf_undefined(t_print *pf)
 {
-	pf->buf	= ft_strsub(pf->tfrm, 0, 1);
+	pf->buf = ft_strsub(pf->tfrm, 0, 1);
 	pf->buf_len = 1;
 	pf_process_cs(pf);
-//	pf->res = ft_joinfree(pf->res, pf->buf, F_BOTH);
 	pf->res = ft_concatresbuf(pf);
 	pf->res_len += pf->buf_len;
 	return (1);

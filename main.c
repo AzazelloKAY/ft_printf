@@ -4,11 +4,11 @@
 #include <locale.h>
 
 //	fflush(stdout);
-//#include <limits.h>
-//#include <errno.h>
-//#include <stddef.h>
+#include <limits.h>
+#include <errno.h>
+#include <stddef.h>
 
-/*
+
 //
 //
 //
@@ -590,7 +590,7 @@ int	main(void)
 
 
 
-	ft_printf(">%S<", "ываывп шрплдыпр");
+	ft_printf(">%S<", L"ываывп шрплдыпр");
 
 	if (errno)
 		printf(RED"\n\n\tSome error has been found:\t%s\n"NORM,strerror(errno));
@@ -605,7 +605,7 @@ int	main(void)
 	return (0);
 }
 
-*/
+
 //
 //
 //
@@ -620,10 +620,10 @@ int	main(void)
 //	test.x = -1;
 //	test.y.sign = 0;
 //	printf("==%d\n\n", test.x);
-// * */
+// */
 //
 
-
+/*
 int main()
 {
 	setlocale(LC_ALL, "");
@@ -649,8 +649,8 @@ int main()
 
 	char *s = "*asdwerфывапрнекуцй";
 
-	ft_printf(">%-20.5S<\n", L"rфывапрнекуцй");
-	printf("@%-20.5S<\n", L"rфывапрнекуцй");
+	ft_printf(">%-20.5f<\n", 42.568999999);
+	printf("@%-20.5f<\n", 42.568999999);
 //	printf(">>>>>>%d\n",ft_printf(">%.6ls<\n", s));
 //	fflush(stdout);
 //	printf("@%S<\n", s);
@@ -659,6 +659,9 @@ int main()
 
 return (0);
 }
+ */
+
+
 //
 //	char *format = ">%#.2C<test text %-10#x<\n";
 //	int res_ftpf = ft_printf(format, 0, 0);

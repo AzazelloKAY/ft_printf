@@ -27,7 +27,7 @@ char				*ft_utoa_base(t_print *pf, uint64_t val, int base)
 	pf->buf_len = len;
 	if (!(res = ft_strnew(len)))
 		return (NULL);
-	res[0] = (char) '0';
+	res[0] = (char)'0';
 	while (val)
 	{
 		res[--len] = bchr[val % base];
@@ -51,7 +51,7 @@ char				*ft_stoa_base(t_print *pf, int64_t val, int base)
 	pf->buf_len = len;
 	if (!(res = ft_strnew(len)))
 		return (NULL);
-	res[0] = (char) '0';
+	res[0] = (char)'0';
 	while (val)
 	{
 		res[--len] = bchr[ft_abs(val % base)];
@@ -90,9 +90,9 @@ static char			*pf_addfract(t_print *pf, u_ldoublebfild x)
 
 char				*ft_ftoa(t_print *pf, u_ldoublebfild x)
 {
+	int				i;
+	long double		tmp;
 	char			*tchar;
-	int 			i;
-	long double 	tmp;
 
 	tmp = x.x;
 	i = 1;
